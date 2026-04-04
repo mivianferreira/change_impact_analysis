@@ -185,8 +185,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 # ─── helpers ─────────────────────────────────────────────────────────────────
 def short_name(full):
-    """Last segment of a dotted class name."""
-    return full.split('.')[-1] if full and full != 'NONE' else full
+    """Last segment of a dotted class name or a file path (strips extension)."""
+    if not full or full == 'NONE':
+        return full
+    # If it looks like a file path (contains / or \), use the filename without extension
+    if '/' in full or '\\' in full:
+        basename = full.replace('\\', '/').rsplit('/', 1)[-1]
+        # Strip file extension (e.g. .java, .kt)
+        if '.' in basename:
+            basename = basename.rsplit('.', 1)[0]
+        return basename
+    # Otherwise treat as dotted class name (e.g. com.example.MyClass)
+    return full.split('.')[-1]
 
 def make_card_html(repo, src_name, rank_str, target, score, cochange, distance, path_text, coupling_text, card_uid):
     """Generate one card div (minified)."""
