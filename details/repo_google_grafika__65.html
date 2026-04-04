@@ -58,11 +58,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .vote-btn.correct.selected{background:#1a3d2b;border-color:#3fb950;color:#3fb950;}
 .vote-btn.incorrect.selected{background:#3d1a1a;border-color:#f85149;color:#f85149;}
 .vote-btn.unsure.selected{background:#3d2e1a;border-color:#e3b341;color:#e3b341;}
-.fields-row{display:flex;gap:8px;margin-bottom:8px;}
-.validation-input{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:7px 10px;color:var(--text);font-size:12px;width:100%;font-family:inherit;}
-.validation-input:focus{outline:none;border-color:var(--accent);}
 .validation-textarea{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:7px 10px;color:var(--text);font-size:12px;width:100%;font-family:inherit;resize:vertical;min-height:60px;}
 .validation-textarea:focus{outline:none;border-color:var(--accent);}
+.header-email-wrap{display:flex;flex-direction:column;gap:3px;}
+.header-email-wrap label{font-size:11px;color:var(--text2);}
+.header-email-input{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 12px;color:var(--text);font-size:13px;width:240px;font-family:inherit;}
+.header-email-input:focus{outline:none;border-color:var(--accent);}
+.header-email-input.invalid{border-color:var(--red);}
 .submit-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:8px;}
 .submit-btn{padding:7px 18px;border-radius:7px;border:none;background:var(--accent);color:#0d1117;font-weight:700;font-size:12px;cursor:pointer;}
 .submit-btn:disabled{opacity:.4;cursor:default;}
@@ -81,22 +83,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="src-name-h">com.android.grafika.TextureFromCameraActivity$RenderThread</div>
   </div>
   <div style="flex:1"></div>
+  <div class="header-email-wrap">
+    <label for="globalEmail">✉️ Your email <span style="color:var(--red)">*</span></label>
+    <input type="email" class="header-email-input" id="globalEmail" placeholder="your@email.com" oninput="localStorage.setItem('globalEmail',this.value);this.classList.remove('invalid')">
+  </div>
   <button onclick="exportCSV()" style="padding:7px 14px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text);cursor:pointer;font-size:12px;">📥 Export CSV</button>
 </div>
 <div class="container">
   <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
-  <div class="progress-label" id="progressLabel">0 / 2 validated</div>
+  <div class="progress-label" id="progressLabel">0 / 1 validated</div>
   <div class="cards-list" style="margin-top:16px;">
-<div class="card" data-cardid="google_grafika__65_0" data-repo="google_grafika" data-source="com.android.grafika.TextureFromCameraActivity$RenderThread" data-target="com.android.grafika.TextureFromCameraActivity" data-score="0.1714" data-cochange="1" data-distance="1" data-rank="2"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.TextureFromCameraActivity$RenderThread">TextureFromCameraActivity$RenderThread</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.TextureFromCameraActivity">TextureFromCameraActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#2</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1714</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.TextureFromCameraActivity$RenderThread → com.android.grafika.TextureFromCameraActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.TextureFromCameraActivity$RenderThread</code></div><div><strong>Target:</strong> <code>com.android.grafika.TextureFromCameraActivity</code></div></div><div class="validation-section" id="validation_google_grafika__65_0">
+<div class="card" data-cardid="google_grafika__65_0" data-repo="google_grafika" data-source="com.android.grafika.TextureFromCameraActivity$RenderThread" data-target="com.android.grafika.TextureFromCameraActivity$RenderThread" data-score="1.0" data-cochange="NONE" data-distance="0" data-rank="1"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.TextureFromCameraActivity$RenderThread">TextureFromCameraActivity$RenderThread</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.TextureFromCameraActivity$RenderThread">TextureFromCameraActivity$RenderThread</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">1.0</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">0</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><span class="none-text">Path: NONE — no path between source and target</span></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.TextureFromCameraActivity$RenderThread</code></div><div><strong>Target:</strong> <code>com.android.grafika.TextureFromCameraActivity$RenderThread</code></div></div><div class="validation-section" id="validation_google_grafika__65_0">
 <h4>📋 Validation — Is this propagation correct?</h4>
 <div class="vote-buttons">
 <button class="vote-btn correct" onclick="selectVote('google_grafika__65_0','correct',this)">✅ Correct</button>
 <button class="vote-btn incorrect" onclick="selectVote('google_grafika__65_0','incorrect',this)">❌ Incorrect</button>
 <button class="vote-btn unsure" onclick="selectVote('google_grafika__65_0','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_google_grafika__65_0" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_google_grafika__65_0" placeholder="Your email (required)">
 </div>
 <textarea class="validation-textarea" id="comment_google_grafika__65_0" placeholder="Optional comment..."></textarea>
 <div class="submit-row">
@@ -106,43 +108,18 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <input type="hidden" id="vote_google_grafika__65_0" value="">
 <input type="hidden" id="meta_repo_google_grafika__65_0" value="google_grafika">
 <input type="hidden" id="meta_source_google_grafika__65_0" value="com.android.grafika.TextureFromCameraActivity$RenderThread">
-<input type="hidden" id="meta_target_google_grafika__65_0" value="com.android.grafika.TextureFromCameraActivity">
-<input type="hidden" id="meta_rank_google_grafika__65_0" value="2">
-<input type="hidden" id="meta_score_google_grafika__65_0" value="0.1714">
-<input type="hidden" id="meta_cochange_google_grafika__65_0" value="1">
-<input type="hidden" id="meta_distance_google_grafika__65_0" value="1">
-</div></div></div>
-<div class="card" data-cardid="google_grafika__65_1" data-repo="google_grafika" data-source="com.android.grafika.TextureFromCameraActivity$RenderThread" data-target="app/src/main/java/com/android/grafika/CameraPermissionHelper.java" data-score="0.1269" data-cochange="—" data-distance="2" data-rank="3"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.TextureFromCameraActivity$RenderThread">TextureFromCameraActivity$RenderThread</span><span class="arrow-icon">→</span><span class="class-badge target" title="app/src/main/java/com/android/grafika/CameraPermissionHelper.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1269</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.TextureFromCameraActivity$RenderThread → com.android.grafika.TextureFromCameraActivity → app/src/main/java/com/android/grafika/CameraPermissionHelper.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.TextureFromCameraActivity$RenderThread</code></div><div><strong>Target:</strong> <code>app/src/main/java/com/android/grafika/CameraPermissionHelper.java</code></div></div><div class="validation-section" id="validation_google_grafika__65_1">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('google_grafika__65_1','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('google_grafika__65_1','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('google_grafika__65_1','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_google_grafika__65_1" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_google_grafika__65_1" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_google_grafika__65_1" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_google_grafika__65_1" onclick="submitVote('google_grafika__65_1')" disabled>Submit</button>
-<span class="submit-status" id="status_google_grafika__65_1" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_google_grafika__65_1" value="">
-<input type="hidden" id="meta_repo_google_grafika__65_1" value="google_grafika">
-<input type="hidden" id="meta_source_google_grafika__65_1" value="com.android.grafika.TextureFromCameraActivity$RenderThread">
-<input type="hidden" id="meta_target_google_grafika__65_1" value="app/src/main/java/com/android/grafika/CameraPermissionHelper.java">
-<input type="hidden" id="meta_rank_google_grafika__65_1" value="3">
-<input type="hidden" id="meta_score_google_grafika__65_1" value="0.1269">
-<input type="hidden" id="meta_cochange_google_grafika__65_1" value="—">
-<input type="hidden" id="meta_distance_google_grafika__65_1" value="2">
+<input type="hidden" id="meta_target_google_grafika__65_0" value="com.android.grafika.TextureFromCameraActivity$RenderThread">
+<input type="hidden" id="meta_rank_google_grafika__65_0" value="1">
+<input type="hidden" id="meta_score_google_grafika__65_0" value="1.0">
+<input type="hidden" id="meta_cochange_google_grafika__65_0" value="NONE">
+<input type="hidden" id="meta_distance_google_grafika__65_0" value="0">
 </div></div></div>
   </div>
 </div>
 <script>
 const REPO = 'google_grafika';
 const SRC  = 'com.android.grafika.TextureFromCameraActivity$RenderThread';
-const TOTAL_CARDS = 2;
+const TOTAL_CARDS = 1;
 
 function selectVote(id, vote, btn) {
   document.querySelectorAll('#validation_' + id + ' .vote-btn').forEach(b => b.classList.remove('selected'));
@@ -153,11 +130,14 @@ function selectVote(id, vote, btn) {
 
 function submitVote(id) {
   const vote    = document.getElementById('vote_' + id).value;
-  const name    = document.getElementById('name_'  + id).value.trim();
-  const email   = document.getElementById('email_' + id).value.trim();
+  const email   = document.getElementById('globalEmail').value.trim();
   const comment = document.getElementById('comment_'+ id).value.trim();
-  if (!name)  { document.getElementById('name_' + id).focus();  return; }
-  if (!email || !email.includes('@')) { document.getElementById('email_' + id).focus(); return; }
+  if (!email || !email.includes('@')) {
+    document.getElementById('globalEmail').classList.add('invalid');
+    document.getElementById('globalEmail').focus();
+    return;
+  }
+  document.getElementById('globalEmail').classList.remove('invalid');
   const repo   = document.getElementById('meta_repo_'    + id).value;
   const source = document.getElementById('meta_source_'  + id).value;
   const target = document.getElementById('meta_target_'  + id).value;
@@ -166,8 +146,9 @@ function submitVote(id) {
   const coch   = document.getElementById('meta_cochange_'+ id).value;
   const dist   = document.getElementById('meta_distance_'+ id).value;
   const key = 'vote_' + repo + '__' + id;
+  localStorage.setItem('globalEmail', email);
   localStorage.setItem(key, JSON.stringify({
-    Vote: vote, Name: name, Email: email, Comment: comment,
+    Vote: vote, Email: email, Comment: comment,
     Repository: repo, Source: source, Target: target,
     Rank: rank, Score: score, CoChange: coch, Distance: dist,
     Timestamp: new Date().toISOString()
@@ -193,7 +174,7 @@ function updateProgress() {
 }
 
 function exportCSV() {
-  const rows = [['Repository','Source','Target','Rank','Score','CoChange','Distance','Vote','Name','Email','Comment','Timestamp']];
+  const rows = [['Repository','Source','Target','Rank','Score','CoChange','Distance','Vote','Email','Comment','Timestamp']];
   document.querySelectorAll('.card').forEach(card => {
     const id = card.dataset.cardid;
     const saved = localStorage.getItem('vote_' + REPO + '__' + id);
@@ -201,7 +182,7 @@ function exportCSV() {
     rows.push([
       card.dataset.repo||REPO, card.dataset.source||'', card.dataset.target||'',
       card.dataset.rank||'', card.dataset.score||'', card.dataset.cochange||'',
-      card.dataset.distance||'', v.Vote||'', v.Name||'', v.Email||'',
+      card.dataset.distance||'', v.Vote||'', v.Email||'',
       v.Comment||'', v.Timestamp||''
     ]);
   });
@@ -213,6 +194,9 @@ function exportCSV() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // restore global email
+  const savedEmail = localStorage.getItem('globalEmail') || '';
+  if (savedEmail) document.getElementById('globalEmail').value = savedEmail;
   // restore saved votes UI
   document.querySelectorAll('.validation-section').forEach(sec => {
     const id = sec.id.replace('validation_', '');
@@ -225,8 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('submitBtn_' + id).disabled = false;
       document.getElementById('vote_' + id).value = v.Vote;
     }
-    if (v.Name)    document.getElementById('name_'   + id).value = v.Name;
-    if (v.Email)   document.getElementById('email_'  + id).value = v.Email;
     if (v.Comment) document.getElementById('comment_'+ id).value = v.Comment;
   });
   updateProgress();

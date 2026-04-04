@@ -58,11 +58,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .vote-btn.correct.selected{background:#1a3d2b;border-color:#3fb950;color:#3fb950;}
 .vote-btn.incorrect.selected{background:#3d1a1a;border-color:#f85149;color:#f85149;}
 .vote-btn.unsure.selected{background:#3d2e1a;border-color:#e3b341;color:#e3b341;}
-.fields-row{display:flex;gap:8px;margin-bottom:8px;}
-.validation-input{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:7px 10px;color:var(--text);font-size:12px;width:100%;font-family:inherit;}
-.validation-input:focus{outline:none;border-color:var(--accent);}
 .validation-textarea{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:7px 10px;color:var(--text);font-size:12px;width:100%;font-family:inherit;resize:vertical;min-height:60px;}
 .validation-textarea:focus{outline:none;border-color:var(--accent);}
+.header-email-wrap{display:flex;flex-direction:column;gap:3px;}
+.header-email-wrap label{font-size:11px;color:var(--text2);}
+.header-email-input{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 12px;color:var(--text);font-size:13px;width:240px;font-family:inherit;}
+.header-email-input:focus{outline:none;border-color:var(--accent);}
+.header-email-input.invalid{border-color:var(--red);}
 .submit-row{display:flex;justify-content:flex-end;align-items:center;gap:10px;margin-top:8px;}
 .submit-btn{padding:7px 18px;border-radius:7px;border:none;background:var(--accent);color:#0d1117;font-weight:700;font-size:12px;cursor:pointer;}
 .submit-btn:disabled{opacity:.4;cursor:default;}
@@ -81,22 +83,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="src-name-h">net.wequick.small.Small$ActivityLifecycleCallbacks</div>
   </div>
   <div style="flex:1"></div>
+  <div class="header-email-wrap">
+    <label for="globalEmail">✉️ Your email <span style="color:var(--red)">*</span></label>
+    <input type="email" class="header-email-input" id="globalEmail" placeholder="your@email.com" oninput="localStorage.setItem('globalEmail',this.value);this.classList.remove('invalid')">
+  </div>
   <button onclick="exportCSV()" style="padding:7px 14px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--text);cursor:pointer;font-size:12px;">📥 Export CSV</button>
 </div>
 <div class="container">
   <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
-  <div class="progress-label" id="progressLabel">0 / 18 validated</div>
+  <div class="progress-label" id="progressLabel">0 / 1 validated</div>
   <div class="cards-list" style="margin-top:16px;">
-<div class="card" data-cardid="wequick_Small__39_0" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.small.util.ReflectAccelerator" data-score="0.8121" data-cochange="1" data-distance="1" data-rank="2"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.small.util.ReflectAccelerator">ReflectAccelerator</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#2</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8121</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.util.ReflectAccelerator</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.small.util.ReflectAccelerator</code></div></div><div class="validation-section" id="validation_wequick_Small__39_0">
+<div class="card" data-cardid="wequick_Small__39_0" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.small.Small$ActivityLifecycleCallbacks" data-score="1.0" data-cochange="NONE" data-distance="0" data-rank="1"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">1.0</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">0</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><span class="none-text">Path: NONE — no path between source and target</span></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div></div><div class="validation-section" id="validation_wequick_Small__39_0">
 <h4>📋 Validation — Is this propagation correct?</h4>
 <div class="vote-buttons">
 <button class="vote-btn correct" onclick="selectVote('wequick_Small__39_0','correct',this)">✅ Correct</button>
 <button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_0','incorrect',this)">❌ Incorrect</button>
 <button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_0','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_0" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_0" placeholder="Your email (required)">
 </div>
 <textarea class="validation-textarea" id="comment_wequick_Small__39_0" placeholder="Optional comment..."></textarea>
 <div class="submit-row">
@@ -106,443 +108,18 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <input type="hidden" id="vote_wequick_Small__39_0" value="">
 <input type="hidden" id="meta_repo_wequick_Small__39_0" value="wequick_Small">
 <input type="hidden" id="meta_source_wequick_Small__39_0" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_0" value="net.wequick.small.util.ReflectAccelerator">
-<input type="hidden" id="meta_rank_wequick_Small__39_0" value="2">
-<input type="hidden" id="meta_score_wequick_Small__39_0" value="0.8121">
-<input type="hidden" id="meta_cochange_wequick_Small__39_0" value="1">
-<input type="hidden" id="meta_distance_wequick_Small__39_0" value="1">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_1" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/Bundle.java" data-score="0.7345" data-cochange="—" data-distance="2" data-rank="3"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/Bundle.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.7345</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/DevSample/small/src/main/java/net/wequick/small/Bundle.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/Bundle.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_1">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_1','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_1','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_1','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_1" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_1" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_1" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_1" onclick="submitVote('wequick_Small__39_1')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_1" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_1" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_1" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_1" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_1" value="Android/DevSample/small/src/main/java/net/wequick/small/Bundle.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_1" value="3">
-<input type="hidden" id="meta_score_wequick_Small__39_1" value="0.7345">
-<input type="hidden" id="meta_cochange_wequick_Small__39_1" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_1" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_2" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.small.Small" data-score="0.6913" data-cochange="1" data-distance="1" data-rank="4"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.small.Small">Small</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#4</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.6913</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.small.Small</code></div></div><div class="validation-section" id="validation_wequick_Small__39_2">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_2','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_2','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_2','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_2" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_2" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_2" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_2" onclick="submitVote('wequick_Small__39_2')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_2" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_2" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_2" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_2" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_2" value="net.wequick.small.Small">
-<input type="hidden" id="meta_rank_wequick_Small__39_2" value="4">
-<input type="hidden" id="meta_score_wequick_Small__39_2" value="0.6913">
-<input type="hidden" id="meta_cochange_wequick_Small__39_2" value="1">
-<input type="hidden" id="meta_distance_wequick_Small__39_2" value="1">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_3" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.small.ApkBundleLauncher" data-score="0.5687" data-cochange="1" data-distance="1" data-rank="5"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.small.ApkBundleLauncher">ApkBundleLauncher</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#5</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5687</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.ApkBundleLauncher</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.small.ApkBundleLauncher</code></div></div><div class="validation-section" id="validation_wequick_Small__39_3">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_3','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_3','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_3','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_3" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_3" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_3" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_3" onclick="submitVote('wequick_Small__39_3')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_3" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_3" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_3" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_3" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_3" value="net.wequick.small.ApkBundleLauncher">
-<input type="hidden" id="meta_rank_wequick_Small__39_3" value="5">
-<input type="hidden" id="meta_score_wequick_Small__39_3" value="0.5687">
-<input type="hidden" id="meta_cochange_wequick_Small__39_3" value="1">
-<input type="hidden" id="meta_distance_wequick_Small__39_3" value="1">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_4" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/SetUpProvider.java" data-score="0.5386" data-cochange="—" data-distance="2" data-rank="6"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/SetUpProvider.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#6</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5386</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/DevSample/small/src/main/java/net/wequick/small/SetUpProvider.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/SetUpProvider.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_4">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_4','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_4','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_4','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_4" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_4" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_4" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_4" onclick="submitVote('wequick_Small__39_4')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_4" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_4" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_4" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_4" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_4" value="Android/DevSample/small/src/main/java/net/wequick/small/SetUpProvider.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_4" value="6">
-<input type="hidden" id="meta_score_wequick_Small__39_4" value="0.5386">
-<input type="hidden" id="meta_cochange_wequick_Small__39_4" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_4" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_5" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/SetUpActivity.java" data-score="0.5386" data-cochange="—" data-distance="2" data-rank="7"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/SetUpActivity.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#7</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5386</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/DevSample/small/src/main/java/net/wequick/small/SetUpActivity.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/SetUpActivity.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_5">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_5','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_5','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_5','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_5" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_5" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_5" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_5" onclick="submitVote('wequick_Small__39_5')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_5" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_5" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_5" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_5" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_5" value="Android/DevSample/small/src/main/java/net/wequick/small/SetUpActivity.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_5" value="7">
-<input type="hidden" id="meta_score_wequick_Small__39_5" value="0.5386">
-<input type="hidden" id="meta_cochange_wequick_Small__39_5" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_5" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_6" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/BundleParser.java" data-score="0.5386" data-cochange="—" data-distance="2" data-rank="8"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/BundleParser.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#8</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5386</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/DevSample/small/src/main/java/net/wequick/small/BundleParser.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/BundleParser.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_6">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_6','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_6','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_6','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_6" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_6" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_6" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_6" onclick="submitVote('wequick_Small__39_6')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_6" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_6" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_6" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_6" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_6" value="Android/DevSample/small/src/main/java/net/wequick/small/BundleParser.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_6" value="8">
-<input type="hidden" id="meta_score_wequick_Small__39_6" value="0.5386">
-<input type="hidden" id="meta_cochange_wequick_Small__39_6" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_6" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_7" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/util/BundleParser.java" data-score="0.5386" data-cochange="—" data-distance="2" data-rank="9"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/util/BundleParser.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#9</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5386</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/DevSample/small/src/main/java/net/wequick/small/util/BundleParser.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/util/BundleParser.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_7">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_7','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_7','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_7','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_7" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_7" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_7" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_7" onclick="submitVote('wequick_Small__39_7')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_7" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_7" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_7" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_7" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_7" value="Android/DevSample/small/src/main/java/net/wequick/small/util/BundleParser.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_7" value="9">
-<input type="hidden" id="meta_score_wequick_Small__39_7" value="0.5386">
-<input type="hidden" id="meta_cochange_wequick_Small__39_7" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_7" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_8" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/webkit/WebViewPool.java" data-score="0.5386" data-cochange="—" data-distance="2" data-rank="10"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/webkit/WebViewPool.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#10</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5386</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/DevSample/small/src/main/java/net/wequick/small/webkit/WebViewPool.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/webkit/WebViewPool.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_8">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_8','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_8','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_8','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_8" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_8" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_8" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_8" onclick="submitVote('wequick_Small__39_8')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_8" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_8" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_8" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_8" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_8" value="Android/DevSample/small/src/main/java/net/wequick/small/webkit/WebViewPool.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_8" value="10">
-<input type="hidden" id="meta_score_wequick_Small__39_8" value="0.5386">
-<input type="hidden" id="meta_cochange_wequick_Small__39_8" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_8" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_9" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/A.java" data-score="0.4786" data-cochange="—" data-distance="2" data-rank="11"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/A.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#11</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4786</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/DevSample/small/src/main/java/net/wequick/small/A.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/A.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_9">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_9','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_9','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_9','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_9" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_9" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_9" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_9" onclick="submitVote('wequick_Small__39_9')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_9" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_9" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_9" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_9" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_9" value="Android/DevSample/small/src/main/java/net/wequick/small/A.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_9" value="11">
-<input type="hidden" id="meta_score_wequick_Small__39_9" value="0.4786">
-<input type="hidden" id="meta_cochange_wequick_Small__39_9" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_9" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_10" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.small.webkit.WebView" data-score="0.4726" data-cochange="1" data-distance="1" data-rank="12"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.small.webkit.WebView">WebView</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#12</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4726</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.webkit.WebView</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.small.webkit.WebView</code></div></div><div class="validation-section" id="validation_wequick_Small__39_10">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_10','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_10','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_10','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_10" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_10" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_10" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_10" onclick="submitVote('wequick_Small__39_10')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_10" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_10" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_10" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_10" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_10" value="net.wequick.small.webkit.WebView">
-<input type="hidden" id="meta_rank_wequick_Small__39_10" value="12">
-<input type="hidden" id="meta_score_wequick_Small__39_10" value="0.4726">
-<input type="hidden" id="meta_cochange_wequick_Small__39_10" value="1">
-<input type="hidden" id="meta_distance_wequick_Small__39_10" value="1">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_11" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/small/src/main/java/net/wequick/small/util/SignUtils.java" data-score="0.4633" data-cochange="—" data-distance="2" data-rank="13"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/small/src/main/java/net/wequick/small/util/SignUtils.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#13</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4633</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.ApkBundleLauncher → Android/DevSample/small/src/main/java/net/wequick/small/util/SignUtils.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/small/src/main/java/net/wequick/small/util/SignUtils.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_11">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_11','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_11','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_11','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_11" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_11" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_11" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_11" onclick="submitVote('wequick_Small__39_11')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_11" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_11" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_11" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_11" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_11" value="Android/DevSample/small/src/main/java/net/wequick/small/util/SignUtils.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_11" value="13">
-<input type="hidden" id="meta_score_wequick_Small__39_11" value="0.4633">
-<input type="hidden" id="meta_cochange_wequick_Small__39_11" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_11" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_12" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/DevSample/buildSrc/src/main/groovy/net/wequick/gradle/util/FullRevision.java" data-score="0.4633" data-cochange="—" data-distance="2" data-rank="14"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/DevSample/buildSrc/src/main/groovy/net/wequick/gradle/util/FullRevision.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#14</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4633</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.ApkBundleLauncher → Android/DevSample/buildSrc/src/main/groovy/net/wequick/gradle/util/FullRevision.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/DevSample/buildSrc/src/main/groovy/net/wequick/gradle/util/FullRevision.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_12">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_12','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_12','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_12','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_12" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_12" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_12" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_12" onclick="submitVote('wequick_Small__39_12')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_12" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_12" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_12" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_12" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_12" value="Android/DevSample/buildSrc/src/main/groovy/net/wequick/gradle/util/FullRevision.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_12" value="14">
-<input type="hidden" id="meta_score_wequick_Small__39_12" value="0.4633">
-<input type="hidden" id="meta_cochange_wequick_Small__39_12" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_12" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_13" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/Sample/jni_plugin/src/androidTest/java/com/example/hellojni/HelloPluginJni/ApplicationTest.java" data-score="0.4370" data-cochange="—" data-distance="2" data-rank="15"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/Sample/jni_plugin/src/androidTest/java/com/example/hellojni/HelloPluginJni/ApplicationTest.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#15</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4370</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/Sample/jni_plugin/src/androidTest/java/com/example/hellojni/HelloPluginJni/ApplicationTest.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/Sample/jni_plugin/src/androidTest/java/com/example/hellojni/HelloPluginJni/ApplicationTest.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_13">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_13','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_13','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_13','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_13" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_13" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_13" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_13" onclick="submitVote('wequick_Small__39_13')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_13" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_13" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_13" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_13" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_13" value="Android/Sample/jni_plugin/src/androidTest/java/com/example/hellojni/HelloPluginJni/ApplicationTest.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_13" value="15">
-<input type="hidden" id="meta_score_wequick_Small__39_13" value="0.4370">
-<input type="hidden" id="meta_cochange_wequick_Small__39_13" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_13" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_14" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="Android/Sample/jni_plugin/src/test/java/com/example/hellojni/HelloPluginJni/ExampleUnitTest.java" data-score="0.4370" data-cochange="—" data-distance="2" data-rank="16"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="Android/Sample/jni_plugin/src/test/java/com/example/hellojni/HelloPluginJni/ExampleUnitTest.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#16</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4370</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → Android/Sample/jni_plugin/src/test/java/com/example/hellojni/HelloPluginJni/ExampleUnitTest.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>Android/Sample/jni_plugin/src/test/java/com/example/hellojni/HelloPluginJni/ExampleUnitTest.java</code></div></div><div class="validation-section" id="validation_wequick_Small__39_14">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_14','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_14','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_14','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_14" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_14" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_14" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_14" onclick="submitVote('wequick_Small__39_14')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_14" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_14" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_14" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_14" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_14" value="Android/Sample/jni_plugin/src/test/java/com/example/hellojni/HelloPluginJni/ExampleUnitTest.java">
-<input type="hidden" id="meta_rank_wequick_Small__39_14" value="16">
-<input type="hidden" id="meta_score_wequick_Small__39_14" value="0.4370">
-<input type="hidden" id="meta_cochange_wequick_Small__39_14" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_14" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_15" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.small.ApkBundleLauncher$InstrumentationWrapper" data-score="0.2988" data-cochange="—" data-distance="2" data-rank="17"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.small.ApkBundleLauncher$InstrumentationWrapper">ApkBundleLauncher$InstrumentationWrapper</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#17</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.2988</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → net.wequick.small.ApkBundleLauncher$InstrumentationWrapper</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.small.ApkBundleLauncher$InstrumentationWrapper</code></div></div><div class="validation-section" id="validation_wequick_Small__39_15">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_15','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_15','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_15','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_15" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_15" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_15" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_15" onclick="submitVote('wequick_Small__39_15')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_15" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_15" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_15" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_15" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_15" value="net.wequick.small.ApkBundleLauncher$InstrumentationWrapper">
-<input type="hidden" id="meta_rank_wequick_Small__39_15" value="17">
-<input type="hidden" id="meta_score_wequick_Small__39_15" value="0.2988">
-<input type="hidden" id="meta_cochange_wequick_Small__39_15" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_15" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_16" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.small.webkit.WebActivity" data-score="0.1401" data-cochange="—" data-distance="2" data-rank="18"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.small.webkit.WebActivity">WebActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#18</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1401</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → net.wequick.small.webkit.WebActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.small.webkit.WebActivity</code></div></div><div class="validation-section" id="validation_wequick_Small__39_16">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_16','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_16','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_16','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_16" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_16" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_16" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_16" onclick="submitVote('wequick_Small__39_16')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_16" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_16" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_16" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_16" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_16" value="net.wequick.small.webkit.WebActivity">
-<input type="hidden" id="meta_rank_wequick_Small__39_16" value="18">
-<input type="hidden" id="meta_score_wequick_Small__39_16" value="0.1401">
-<input type="hidden" id="meta_cochange_wequick_Small__39_16" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_16" value="2">
-</div></div></div>
-<div class="card" data-cardid="wequick_Small__39_17" data-repo="wequick_Small" data-source="net.wequick.small.Small$ActivityLifecycleCallbacks" data-target="net.wequick.example.small.app.main.MainActivity" data-score="0.1022" data-cochange="—" data-distance="2" data-rank="19"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="net.wequick.small.Small$ActivityLifecycleCallbacks">Small$ActivityLifecycleCallbacks</span><span class="arrow-icon">→</span><span class="class-badge target" title="net.wequick.example.small.app.main.MainActivity">MainActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#19</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1022</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">net.wequick.small.Small$ActivityLifecycleCallbacks → net.wequick.small.Small → net.wequick.example.small.app.main.MainActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>net.wequick.small.Small$ActivityLifecycleCallbacks</code></div><div><strong>Target:</strong> <code>net.wequick.example.small.app.main.MainActivity</code></div></div><div class="validation-section" id="validation_wequick_Small__39_17">
-<h4>📋 Validation — Is this propagation correct?</h4>
-<div class="vote-buttons">
-<button class="vote-btn correct" onclick="selectVote('wequick_Small__39_17','correct',this)">✅ Correct</button>
-<button class="vote-btn incorrect" onclick="selectVote('wequick_Small__39_17','incorrect',this)">❌ Incorrect</button>
-<button class="vote-btn unsure" onclick="selectVote('wequick_Small__39_17','unsure',this)">❓ Unsure</button>
-</div>
-<div class="fields-row">
-<input type="text" class="validation-input" id="name_wequick_Small__39_17" placeholder="Your name (required)">
-<input type="email" class="validation-input" id="email_wequick_Small__39_17" placeholder="Your email (required)">
-</div>
-<textarea class="validation-textarea" id="comment_wequick_Small__39_17" placeholder="Optional comment..."></textarea>
-<div class="submit-row">
-<button class="submit-btn" id="submitBtn_wequick_Small__39_17" onclick="submitVote('wequick_Small__39_17')" disabled>Submit</button>
-<span class="submit-status" id="status_wequick_Small__39_17" style="display:none"></span>
-</div>
-<input type="hidden" id="vote_wequick_Small__39_17" value="">
-<input type="hidden" id="meta_repo_wequick_Small__39_17" value="wequick_Small">
-<input type="hidden" id="meta_source_wequick_Small__39_17" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
-<input type="hidden" id="meta_target_wequick_Small__39_17" value="net.wequick.example.small.app.main.MainActivity">
-<input type="hidden" id="meta_rank_wequick_Small__39_17" value="19">
-<input type="hidden" id="meta_score_wequick_Small__39_17" value="0.1022">
-<input type="hidden" id="meta_cochange_wequick_Small__39_17" value="—">
-<input type="hidden" id="meta_distance_wequick_Small__39_17" value="2">
+<input type="hidden" id="meta_target_wequick_Small__39_0" value="net.wequick.small.Small$ActivityLifecycleCallbacks">
+<input type="hidden" id="meta_rank_wequick_Small__39_0" value="1">
+<input type="hidden" id="meta_score_wequick_Small__39_0" value="1.0">
+<input type="hidden" id="meta_cochange_wequick_Small__39_0" value="NONE">
+<input type="hidden" id="meta_distance_wequick_Small__39_0" value="0">
 </div></div></div>
   </div>
 </div>
 <script>
 const REPO = 'wequick_Small';
 const SRC  = 'net.wequick.small.Small$ActivityLifecycleCallbacks';
-const TOTAL_CARDS = 18;
+const TOTAL_CARDS = 1;
 
 function selectVote(id, vote, btn) {
   document.querySelectorAll('#validation_' + id + ' .vote-btn').forEach(b => b.classList.remove('selected'));
@@ -553,11 +130,14 @@ function selectVote(id, vote, btn) {
 
 function submitVote(id) {
   const vote    = document.getElementById('vote_' + id).value;
-  const name    = document.getElementById('name_'  + id).value.trim();
-  const email   = document.getElementById('email_' + id).value.trim();
+  const email   = document.getElementById('globalEmail').value.trim();
   const comment = document.getElementById('comment_'+ id).value.trim();
-  if (!name)  { document.getElementById('name_' + id).focus();  return; }
-  if (!email || !email.includes('@')) { document.getElementById('email_' + id).focus(); return; }
+  if (!email || !email.includes('@')) {
+    document.getElementById('globalEmail').classList.add('invalid');
+    document.getElementById('globalEmail').focus();
+    return;
+  }
+  document.getElementById('globalEmail').classList.remove('invalid');
   const repo   = document.getElementById('meta_repo_'    + id).value;
   const source = document.getElementById('meta_source_'  + id).value;
   const target = document.getElementById('meta_target_'  + id).value;
@@ -566,8 +146,9 @@ function submitVote(id) {
   const coch   = document.getElementById('meta_cochange_'+ id).value;
   const dist   = document.getElementById('meta_distance_'+ id).value;
   const key = 'vote_' + repo + '__' + id;
+  localStorage.setItem('globalEmail', email);
   localStorage.setItem(key, JSON.stringify({
-    Vote: vote, Name: name, Email: email, Comment: comment,
+    Vote: vote, Email: email, Comment: comment,
     Repository: repo, Source: source, Target: target,
     Rank: rank, Score: score, CoChange: coch, Distance: dist,
     Timestamp: new Date().toISOString()
@@ -593,7 +174,7 @@ function updateProgress() {
 }
 
 function exportCSV() {
-  const rows = [['Repository','Source','Target','Rank','Score','CoChange','Distance','Vote','Name','Email','Comment','Timestamp']];
+  const rows = [['Repository','Source','Target','Rank','Score','CoChange','Distance','Vote','Email','Comment','Timestamp']];
   document.querySelectorAll('.card').forEach(card => {
     const id = card.dataset.cardid;
     const saved = localStorage.getItem('vote_' + REPO + '__' + id);
@@ -601,7 +182,7 @@ function exportCSV() {
     rows.push([
       card.dataset.repo||REPO, card.dataset.source||'', card.dataset.target||'',
       card.dataset.rank||'', card.dataset.score||'', card.dataset.cochange||'',
-      card.dataset.distance||'', v.Vote||'', v.Name||'', v.Email||'',
+      card.dataset.distance||'', v.Vote||'', v.Email||'',
       v.Comment||'', v.Timestamp||''
     ]);
   });
@@ -613,6 +194,9 @@ function exportCSV() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // restore global email
+  const savedEmail = localStorage.getItem('globalEmail') || '';
+  if (savedEmail) document.getElementById('globalEmail').value = savedEmail;
   // restore saved votes UI
   document.querySelectorAll('.validation-section').forEach(sec => {
     const id = sec.id.replace('validation_', '');
@@ -625,8 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('submitBtn_' + id).disabled = false;
       document.getElementById('vote_' + id).value = v.Vote;
     }
-    if (v.Name)    document.getElementById('name_'   + id).value = v.Name;
-    if (v.Email)   document.getElementById('email_'  + id).value = v.Email;
     if (v.Comment) document.getElementById('comment_'+ id).value = v.Comment;
   });
   updateProgress();
