@@ -91,9 +91,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </div>
 <div class="container">
   <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
-  <div class="progress-label" id="progressLabel">0 / 1 validated</div>
+  <div class="progress-label" id="progressLabel">0 / 36 validated</div>
   <div class="cards-list" style="margin-top:16px;">
-<div class="card" data-cardid="pf4j_pf4j__88_0" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.PluginWrapper" data-score="1.0" data-cochange="NONE" data-distance="0" data-rank="1"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.PluginWrapper">PluginWrapper</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">1.0</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">0</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><span class="none-text">Path: NONE — no path between source and target</span></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.PluginWrapper</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_0">
+<div class="card" data-cardid="pf4j_pf4j__88_0" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.AbstractPluginManager" data-score="1.3851" data-cochange="7" data-distance="1" data-rank="1"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.AbstractPluginManager">AbstractPluginManager</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">1.3851</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">7</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractPluginManager</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.AbstractPluginManager</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_0">
 <h4>📋 Validation — Is this propagation correct?</h4>
 <div class="vote-buttons">
 <button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_0','correct',this)">✅ Correct</button>
@@ -108,18 +108,753 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <input type="hidden" id="vote_pf4j_pf4j__88_0" value="">
 <input type="hidden" id="meta_repo_pf4j_pf4j__88_0" value="pf4j_pf4j">
 <input type="hidden" id="meta_source_pf4j_pf4j__88_0" value="org.pf4j.PluginWrapper">
-<input type="hidden" id="meta_target_pf4j_pf4j__88_0" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_0" value="org.pf4j.AbstractPluginManager">
 <input type="hidden" id="meta_rank_pf4j_pf4j__88_0" value="1">
-<input type="hidden" id="meta_score_pf4j_pf4j__88_0" value="1.0">
-<input type="hidden" id="meta_cochange_pf4j_pf4j__88_0" value="NONE">
-<input type="hidden" id="meta_distance_pf4j_pf4j__88_0" value="0">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_0" value="1.3851">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_0" value="7">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_0" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_1" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/org/pf4j/VersionManager.java" data-score="0.9591" data-cochange="—" data-distance="2" data-rank="3"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/org/pf4j/VersionManager.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.9591</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractPluginManager → pf4j/src/main/java/org/pf4j/VersionManager.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/org/pf4j/VersionManager.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_1">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_1','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_1','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_1','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_1" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_1" onclick="submitVote('pf4j_pf4j__88_1')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_1" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_1" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_1" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_1" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_1" value="pf4j/src/main/java/org/pf4j/VersionManager.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_1" value="3">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_1" value="0.9591">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_1" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_1" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_2" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/org/pf4j/PluginRepository.java" data-score="0.9174" data-cochange="—" data-distance="2" data-rank="4"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/org/pf4j/PluginRepository.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#4</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.9174</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractPluginManager → pf4j/src/main/java/org/pf4j/PluginRepository.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/org/pf4j/PluginRepository.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_2">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_2','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_2','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_2','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_2" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_2" onclick="submitVote('pf4j_pf4j__88_2')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_2" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_2" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_2" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_2" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_2" value="pf4j/src/main/java/org/pf4j/PluginRepository.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_2" value="4">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_2" value="0.9174">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_2" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_2" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_3" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/org/pf4j/PluginException.java" data-score="0.8757" data-cochange="—" data-distance="2" data-rank="5"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/org/pf4j/PluginException.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#5</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8757</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractPluginManager → pf4j/src/main/java/org/pf4j/PluginException.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/org/pf4j/PluginException.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_3">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_3','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_3','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_3','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_3" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_3" onclick="submitVote('pf4j_pf4j__88_3')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_3" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_3" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_3" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_3" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_3" value="pf4j/src/main/java/org/pf4j/PluginException.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_3" value="5">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_3" value="0.8757">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_3" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_3" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_4" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/org/pf4j/PluginStatusProvider.java" data-score="0.8757" data-cochange="—" data-distance="2" data-rank="6"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/org/pf4j/PluginStatusProvider.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#6</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8757</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractPluginManager → pf4j/src/main/java/org/pf4j/PluginStatusProvider.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/org/pf4j/PluginStatusProvider.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_4">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_4','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_4','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_4','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_4" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_4" onclick="submitVote('pf4j_pf4j__88_4')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_4" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_4" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_4" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_4" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_4" value="pf4j/src/main/java/org/pf4j/PluginStatusProvider.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_4" value="6">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_4" value="0.8757">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_4" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_4" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_5" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/plugin/PluginZip.java" data-score="0.8757" data-cochange="—" data-distance="2" data-rank="7"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/plugin/PluginZip.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#7</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8757</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ManifestPluginDescriptorFinder → pf4j/src/test/java/org/pf4j/plugin/PluginZip.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/plugin/PluginZip.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_5">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_5','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_5','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_5','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_5" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_5" onclick="submitVote('pf4j_pf4j__88_5')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_5" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_5" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_5" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_5" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_5" value="pf4j/src/test/java/org/pf4j/plugin/PluginZip.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_5" value="7">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_5" value="0.8757">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_5" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_5" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_6" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/plugin/PluginJar.java" data-score="0.8757" data-cochange="—" data-distance="2" data-rank="8"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/plugin/PluginJar.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#8</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8757</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ManifestPluginDescriptorFinder → pf4j/src/test/java/org/pf4j/plugin/PluginJar.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/plugin/PluginJar.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_6">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_6','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_6','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_6','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_6" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_6" onclick="submitVote('pf4j_pf4j__88_6')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_6" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_6" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_6" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_6" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_6" value="pf4j/src/test/java/org/pf4j/plugin/PluginJar.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_6" value="8">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_6" value="0.8757">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_6" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_6" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_7" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java-templates/org/pf4j/Pf4jInfo.java" data-score="0.8757" data-cochange="—" data-distance="2" data-rank="9"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java-templates/org/pf4j/Pf4jInfo.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#9</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8757</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractPluginManager → pf4j/src/main/java-templates/org/pf4j/Pf4jInfo.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java-templates/org/pf4j/Pf4jInfo.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_7">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_7','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_7','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_7','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_7" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_7" onclick="submitVote('pf4j_pf4j__88_7')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_7" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_7" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_7" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_7" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_7" value="pf4j/src/main/java-templates/org/pf4j/Pf4jInfo.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_7" value="9">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_7" value="0.8757">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_7" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_7" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_8" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/org/pf4j/PluginState.java" data-score="0.8750" data-cochange="1" data-distance="1" data-rank="10"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/org/pf4j/PluginState.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#10</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8750</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → pf4j/src/main/java/org/pf4j/PluginState.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/org/pf4j/PluginState.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_8">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_8','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_8','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_8','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_8" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_8" onclick="submitVote('pf4j_pf4j__88_8')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_8" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_8" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_8" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_8" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_8" value="pf4j/src/main/java/org/pf4j/PluginState.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_8" value="10">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_8" value="0.8750">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_8" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_8" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_9" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/org/pf4j/RuntimeMode.java" data-score="0.8750" data-cochange="1" data-distance="1" data-rank="11"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/org/pf4j/RuntimeMode.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#11</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.8750</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → pf4j/src/main/java/org/pf4j/RuntimeMode.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/org/pf4j/RuntimeMode.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_9">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_9','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_9','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_9','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_9" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_9" onclick="submitVote('pf4j_pf4j__88_9')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_9" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_9" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_9" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_9" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_9" value="pf4j/src/main/java/org/pf4j/RuntimeMode.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_9" value="11">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_9" value="0.8750">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_9" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_9" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_10" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.DefaultPluginManagerTest" data-score="0.7588" data-cochange="1" data-distance="1" data-rank="12"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.DefaultPluginManagerTest">DefaultPluginManagerTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#12</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.7588</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.DefaultPluginManagerTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.DefaultPluginManagerTest</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_10">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_10','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_10','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_10','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_10" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_10" onclick="submitVote('pf4j_pf4j__88_10')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_10" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_10" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_10" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_10" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_10" value="org.pf4j.DefaultPluginManagerTest">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_10" value="12">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_10" value="0.7588">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_10" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_10" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_11" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.AbstractPluginManagerTest" data-score="0.5308" data-cochange="1" data-distance="1" data-rank="13"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.AbstractPluginManagerTest">AbstractPluginManagerTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#13</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5308</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractPluginManagerTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.AbstractPluginManagerTest</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_11">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_11','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_11','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_11','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_11" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_11" onclick="submitVote('pf4j_pf4j__88_11')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_11" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_11" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_11" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_11" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_11" value="org.pf4j.AbstractPluginManagerTest">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_11" value="13">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_11" value="0.5308">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_11" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_11" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_12" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.AbstractExtensionFinder" data-score="0.5072" data-cochange="1" data-distance="1" data-rank="14"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.AbstractExtensionFinder">AbstractExtensionFinder</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#14</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5072</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractExtensionFinder</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.AbstractExtensionFinder</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_12">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_12','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_12','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_12','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_12" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_12" onclick="submitVote('pf4j_pf4j__88_12')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_12" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_12" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_12" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_12" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_12" value="org.pf4j.AbstractExtensionFinder">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_12" value="14">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_12" value="0.5072">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_12" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_12" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_13" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/module-info.java.new" data-score="0.4930" data-cochange="—" data-distance="2" data-rank="15"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/module-info.java.new">new</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#15</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4930</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ManifestPluginDescriptorFinder → pf4j/src/main/java/module-info.java.new</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/module-info.java.new</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_13">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_13','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_13','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_13','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_13" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_13" onclick="submitVote('pf4j_pf4j__88_13')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_13" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_13" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_13" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_13" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_13" value="pf4j/src/main/java/module-info.java.new">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_13" value="15">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_13" value="0.4930">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_13" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_13" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_14" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.DefaultPluginManager" data-score="0.4341" data-cochange="3" data-distance="1" data-rank="16"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.DefaultPluginManager">DefaultPluginManager</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#16</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4341</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">3</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.DefaultPluginManager</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_RETURN_TYPE</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.DefaultPluginManager</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_14">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_14','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_14','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_14','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_14" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_14" onclick="submitVote('pf4j_pf4j__88_14')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_14" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_14" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_14" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_14" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_14" value="org.pf4j.DefaultPluginManager">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_14" value="16">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_14" value="0.4341">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_14" value="3">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_14" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_15" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/plugin/ClassDataProvider.java" data-score="0.4290" data-cochange="—" data-distance="2" data-rank="17"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/plugin/ClassDataProvider.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#17</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4290</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.JarPluginManagerTest → pf4j/src/test/java/org/pf4j/plugin/ClassDataProvider.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/plugin/ClassDataProvider.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_15">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_15','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_15','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_15','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_15" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_15" onclick="submitVote('pf4j_pf4j__88_15')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_15" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_15" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_15" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_15" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_15" value="pf4j/src/test/java/org/pf4j/plugin/ClassDataProvider.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_15" value="17">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_15" value="0.4290">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_15" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_15" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_16" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/plugin/DefaultClassDataProvider.java" data-score="0.4290" data-cochange="—" data-distance="2" data-rank="18"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/plugin/DefaultClassDataProvider.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#18</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4290</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.JarPluginManagerTest → pf4j/src/test/java/org/pf4j/plugin/DefaultClassDataProvider.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/plugin/DefaultClassDataProvider.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_16">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_16','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_16','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_16','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_16" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_16" onclick="submitVote('pf4j_pf4j__88_16')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_16" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_16" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_16" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_16" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_16" value="pf4j/src/test/java/org/pf4j/plugin/DefaultClassDataProvider.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_16" value="18">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_16" value="0.4290">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_16" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_16" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_17" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/plugin/FailTestExtension.java" data-score="0.4290" data-cochange="—" data-distance="2" data-rank="19"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/plugin/FailTestExtension.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#19</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4290</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.JarPluginManagerTest → pf4j/src/test/java/org/pf4j/plugin/FailTestExtension.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/plugin/FailTestExtension.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_17">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_17','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_17','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_17','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_17" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_17" onclick="submitVote('pf4j_pf4j__88_17')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_17" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_17" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_17" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_17" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_17" value="pf4j/src/test/java/org/pf4j/plugin/FailTestExtension.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_17" value="19">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_17" value="0.4290">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_17" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_17" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_18" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/plugin/TestExtension.java" data-score="0.4290" data-cochange="—" data-distance="2" data-rank="20"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/plugin/TestExtension.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#20</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4290</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.JarPluginManagerTest → pf4j/src/test/java/org/pf4j/plugin/TestExtension.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/plugin/TestExtension.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_18">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_18','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_18','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_18','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_18" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_18" onclick="submitVote('pf4j_pf4j__88_18')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_18" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_18" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_18" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_18" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_18" value="pf4j/src/test/java/org/pf4j/plugin/TestExtension.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_18" value="20">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_18" value="0.4290">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_18" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_18" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_19" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/plugin/TestExtensionPoint.java" data-score="0.4290" data-cochange="—" data-distance="2" data-rank="21"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/plugin/TestExtensionPoint.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#21</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4290</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.JarPluginManagerTest → pf4j/src/test/java/org/pf4j/plugin/TestExtensionPoint.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/plugin/TestExtensionPoint.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_19">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_19','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_19','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_19','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_19" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_19" onclick="submitVote('pf4j_pf4j__88_19')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_19" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_19" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_19" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_19" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_19" value="pf4j/src/test/java/org/pf4j/plugin/TestExtensionPoint.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_19" value="21">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_19" value="0.4290">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_19" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_19" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_20" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.PluginManager" data-score="0.4014" data-cochange="2" data-distance="1" data-rank="22"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.PluginManager">PluginManager</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#22</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4014</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">2</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.PluginManager</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_RETURN_STATEMENT</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">METHOD_RETURN_TYPE</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.PluginManager</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_20">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_20','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_20','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_20','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_20" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_20" onclick="submitVote('pf4j_pf4j__88_20')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_20" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_20" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_20" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_20" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_20" value="org.pf4j.PluginManager">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_20" value="22">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_20" value="0.4014">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_20" value="2">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_20" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_21" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.processor.ExtensionAnnotationProcessor" data-score="0.3273" data-cochange="1" data-distance="1" data-rank="23"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.processor.ExtensionAnnotationProcessor">ExtensionAnnotationProcessor</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#23</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.3273</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.processor.ExtensionAnnotationProcessor</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.processor.ExtensionAnnotationProcessor</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_21">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_21','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_21','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_21','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_21" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_21" onclick="submitVote('pf4j_pf4j__88_21')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_21" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_21" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_21" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_21" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_21" value="org.pf4j.processor.ExtensionAnnotationProcessor">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_21" value="23">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_21" value="0.3273">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_21" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_21" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_22" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/org/pf4j/Extension.java" data-score="0.3018" data-cochange="—" data-distance="2" data-rank="24"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/org/pf4j/Extension.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#24</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.3018</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractExtensionFinder → pf4j/src/main/java/org/pf4j/Extension.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/org/pf4j/Extension.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_22">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_22','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_22','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_22','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_22" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_22" onclick="submitVote('pf4j_pf4j__88_22')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_22" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_22" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_22" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_22" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_22" value="pf4j/src/main/java/org/pf4j/Extension.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_22" value="24">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_22" value="0.3018">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_22" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_22" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_23" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.PluginClassLoaderTest" data-score="0.2663" data-cochange="—" data-distance="2" data-rank="25"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.PluginClassLoaderTest">PluginClassLoaderTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#25</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.2663</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.DefaultPluginManagerTest → org.pf4j.PluginClassLoaderTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.PluginClassLoaderTest</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_23">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_23','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_23','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_23','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_23" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_23" onclick="submitVote('pf4j_pf4j__88_23')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_23" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_23" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_23" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_23" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_23" value="org.pf4j.PluginClassLoaderTest">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_23" value="25">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_23" value="0.2663">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_23" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_23" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_24" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.SecurePluginManagerWrapperTest" data-score="0.2168" data-cochange="1" data-distance="1" data-rank="26"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.SecurePluginManagerWrapperTest">SecurePluginManagerWrapperTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#26</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.2168</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.SecurePluginManagerWrapperTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.SecurePluginManagerWrapperTest</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_24">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_24','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_24','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_24','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_24" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_24" onclick="submitVote('pf4j_pf4j__88_24')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_24" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_24" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_24" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_24" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_24" value="org.pf4j.SecurePluginManagerWrapperTest">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_24" value="26">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_24" value="0.2168">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_24" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_24" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_25" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/main/java/module-info.java" data-score="0.1947" data-cochange="—" data-distance="2" data-rank="27"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/main/java/module-info.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#27</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1947</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ServiceProviderExtensionFinder → pf4j/src/main/java/module-info.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">PARAMETERIZED_TYPE</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/main/java/module-info.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_25">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_25','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_25','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_25','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_25" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_25" onclick="submitVote('pf4j_pf4j__88_25')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_25" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_25" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_25" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_25" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_25" value="pf4j/src/main/java/module-info.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_25" value="27">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_25" value="0.1947">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_25" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_25" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_26" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.AbstractExtensionFinderTest" data-score="0.1682" data-cochange="1" data-distance="1" data-rank="28"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.AbstractExtensionFinderTest">AbstractExtensionFinderTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#28</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1682</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractExtensionFinderTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.AbstractExtensionFinderTest</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_26">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_26','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_26','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_26','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_26" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_26" onclick="submitVote('pf4j_pf4j__88_26')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_26" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_26" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_26" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_26" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_26" value="org.pf4j.AbstractExtensionFinderTest">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_26" value="28">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_26" value="0.1682">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_26" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_26" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_27" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="demo/gradle/app/src/main/java/org/pf4j/demo/Boot.java" data-score="0.1431" data-cochange="—" data-distance="2" data-rank="29"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="demo/gradle/app/src/main/java/org/pf4j/demo/Boot.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#29</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1431</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.PluginClassLoader → demo/gradle/app/src/main/java/org/pf4j/demo/Boot.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>demo/gradle/app/src/main/java/org/pf4j/demo/Boot.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_27">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_27','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_27','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_27','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_27" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_27" onclick="submitVote('pf4j_pf4j__88_27')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_27" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_27" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_27" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_27" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_27" value="demo/gradle/app/src/main/java/org/pf4j/demo/Boot.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_27" value="29">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_27" value="0.1431">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_27" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_27" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_28" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginClassLoader.java" data-score="0.1431" data-cochange="—" data-distance="2" data-rank="30"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginClassLoader.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#30</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1431</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.PluginClassLoader → demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginClassLoader.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginClassLoader.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_28">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_28','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_28','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_28','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_28" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_28" onclick="submitVote('pf4j_pf4j__88_28')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_28" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_28" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_28" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_28" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_28" value="demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginClassLoader.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_28" value="30">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_28" value="0.1431">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_28" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_28" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_29" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginLoader.java" data-score="0.1431" data-cochange="—" data-distance="2" data-rank="31"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginLoader.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#31</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1431</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.PluginClassLoader → demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginLoader.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginLoader.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_29">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_29','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_29','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_29','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_29" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_29" onclick="submitVote('pf4j_pf4j__88_29')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_29" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_29" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_29" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_29" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_29" value="demo/maven/app/src/main/java/org/pf4j/demo/DemoPluginLoader.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_29" value="31">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_29" value="0.1431">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_29" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_29" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_30" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.DependencyResolver" data-score="0.1301" data-cochange="—" data-distance="2" data-rank="32"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.DependencyResolver">DependencyResolver</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#32</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1301</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.AbstractExtensionFinder → org.pf4j.DependencyResolver</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.DependencyResolver</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_30">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_30','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_30','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_30','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_30" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_30" onclick="submitVote('pf4j_pf4j__88_30')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_30" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_30" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_30" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_30" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_30" value="org.pf4j.DependencyResolver">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_30" value="32">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_30" value="0.1301">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_30" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_30" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_31" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/test/ManifestUtils.java" data-score="0.1280" data-cochange="—" data-distance="3" data-rank="33"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/test/ManifestUtils.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#33</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1280</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ManifestPluginDescriptorFinder → org.pf4j.CompoundPluginDescriptorFinderTest → pf4j/src/test/java/org/pf4j/test/ManifestUtils.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/test/ManifestUtils.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_31">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_31','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_31','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_31','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_31" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_31" onclick="submitVote('pf4j_pf4j__88_31')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_31" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_31" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_31" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_31" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_31" value="pf4j/src/test/java/org/pf4j/test/ManifestUtils.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_31" value="33">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_31" value="0.1280">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_31" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_31" value="3">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_32" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="pf4j/src/test/java/org/pf4j/test/PropertiesUtils.java" data-score="0.1280" data-cochange="—" data-distance="3" data-rank="34"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="pf4j/src/test/java/org/pf4j/test/PropertiesUtils.java">java</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#34</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1280</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ManifestPluginDescriptorFinder → org.pf4j.CompoundPluginDescriptorFinderTest → pf4j/src/test/java/org/pf4j/test/PropertiesUtils.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>pf4j/src/test/java/org/pf4j/test/PropertiesUtils.java</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_32">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_32','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_32','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_32','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_32" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_32" onclick="submitVote('pf4j_pf4j__88_32')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_32" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_32" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_32" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_32" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_32" value="pf4j/src/test/java/org/pf4j/test/PropertiesUtils.java">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_32" value="34">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_32" value="0.1280">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_32" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_32" value="3">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_33" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.PropertiesPluginDescriptorFinderTest" data-score="0.1201" data-cochange="—" data-distance="2" data-rank="35"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.PropertiesPluginDescriptorFinderTest">PropertiesPluginDescriptorFinderTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#35</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1201</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ManifestPluginDescriptorFinder → org.pf4j.PropertiesPluginDescriptorFinderTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.PropertiesPluginDescriptorFinderTest</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_33">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_33','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_33','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_33','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_33" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_33" onclick="submitVote('pf4j_pf4j__88_33')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_33" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_33" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_33" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_33" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_33" value="org.pf4j.PropertiesPluginDescriptorFinderTest">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_33" value="35">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_33" value="0.1201">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_33" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_33" value="2">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_34" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.JarPluginManagerTest" data-score="0.1122" data-cochange="1" data-distance="1" data-rank="36"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.JarPluginManagerTest">JarPluginManagerTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#36</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1122</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.JarPluginManagerTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.JarPluginManagerTest</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_34">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_34','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_34','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_34','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_34" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_34" onclick="submitVote('pf4j_pf4j__88_34')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_34" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_34" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_34" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_34" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_34" value="org.pf4j.JarPluginManagerTest">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_34" value="36">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_34" value="0.1122">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_34" value="1">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_34" value="1">
+</div></div></div>
+<div class="card" data-cardid="pf4j_pf4j__88_35" data-repo="pf4j_pf4j" data-source="org.pf4j.PluginWrapper" data-target="org.pf4j.util.FileUtils" data-score="0.1037" data-cochange="—" data-distance="2" data-rank="37"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="org.pf4j.PluginWrapper">PluginWrapper</span><span class="arrow-icon">→</span><span class="class-badge target" title="org.pf4j.util.FileUtils">FileUtils</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#37</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1037</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">org.pf4j.PluginWrapper → org.pf4j.ManifestPluginDescriptorFinder → org.pf4j.util.FileUtils</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>org.pf4j.PluginWrapper</code></div><div><strong>Target:</strong> <code>org.pf4j.util.FileUtils</code></div></div><div class="validation-section" id="validation_pf4j_pf4j__88_35">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('pf4j_pf4j__88_35','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('pf4j_pf4j__88_35','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('pf4j_pf4j__88_35','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_pf4j_pf4j__88_35" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_pf4j_pf4j__88_35" onclick="submitVote('pf4j_pf4j__88_35')" disabled>Submit</button>
+<span class="submit-status" id="status_pf4j_pf4j__88_35" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_pf4j_pf4j__88_35" value="">
+<input type="hidden" id="meta_repo_pf4j_pf4j__88_35" value="pf4j_pf4j">
+<input type="hidden" id="meta_source_pf4j_pf4j__88_35" value="org.pf4j.PluginWrapper">
+<input type="hidden" id="meta_target_pf4j_pf4j__88_35" value="org.pf4j.util.FileUtils">
+<input type="hidden" id="meta_rank_pf4j_pf4j__88_35" value="37">
+<input type="hidden" id="meta_score_pf4j_pf4j__88_35" value="0.1037">
+<input type="hidden" id="meta_cochange_pf4j_pf4j__88_35" value="—">
+<input type="hidden" id="meta_distance_pf4j_pf4j__88_35" value="2">
 </div></div></div>
   </div>
 </div>
 <script>
 const REPO = 'pf4j_pf4j';
 const SRC  = 'org.pf4j.PluginWrapper';
-const TOTAL_CARDS = 1;
+const TOTAL_CARDS = 36;
 
 function selectVote(id, vote, btn) {
   document.querySelectorAll('#validation_' + id + ' .vote-btn').forEach(b => b.classList.remove('selected'));
