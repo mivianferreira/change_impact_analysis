@@ -340,23 +340,38 @@ def parse_and_split(html_file):
     before_blocks = raw[:src_block_starts[0]] if src_block_starts else raw[:general_start]
     after_blocks  = raw[general_start:]
 
-    # Parse each src-block
-    single_block_re = re.compile(
+    # Parse each src-block by position (avoids nested-div truncation)
+    # Build list of (start, end) for each src-block
+    block_boundaries = []
+    for i, start in enumerate(src_block_starts):
+        end = src_block_starts[i + 1] if i + 1 < len(src_block_starts) else general_start
+        block_boundaries.append((start, end))
+
+    # Regex to extract header fields from a single block string
+    header_re = re.compile(
         r'<div class="src-block" id="src_(\d+)">\s*'
         r'<button class="src-header"[^>]*>\s*'
         r'<span class="src-name">(.*?)</span>(.*?)</button>\s*'
-        r'<div class="src-body"[^>]*>(.*?)</div>\s*</div>',
+        r'<div class="src-body"[^>]*>(.*)',   # greedy: rest of block is body
         re.DOTALL
     )
 
     new_blocks_html = []
     detail_pages_created = []
 
-    for m in single_block_re.finditer(blocks_region):
+    for start, end in block_boundaries:
+        block_text = raw[start:end]
+        m = header_re.search(block_text)
+        if not m:
+            continue
+        # body_html = everything after <div class="src-body"...> up to end of block
+        # strip the trailing </div></div> (closes src-body and src-block)
+        body_raw = m.group(4)
+        # Remove the two trailing closing divs (closes src-body and src-block)
+        body_html = re.sub(r'\s*</div>\s*</div>\s*$', '', body_raw, count=1)
         idx       = m.group(1)
         src_name  = m.group(2).strip()
         meta_html = m.group(3)   # badges etc inside the button (includes old chevron)
-        body_html = m.group(4)
         # Extract only the badge spans (strip old chevron)
         badges_html = re.sub(r'<span class="chevron"[^>]*>.*?</span>', '', meta_html, flags=re.DOTALL).strip()
 
