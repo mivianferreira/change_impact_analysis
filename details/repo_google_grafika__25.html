@@ -91,9 +91,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </div>
 <div class="container">
   <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
-  <div class="progress-label" id="progressLabel">0 / 1 validated</div>
+  <div class="progress-label" id="progressLabel">0 / 10 validated</div>
   <div class="cards-list" style="margin-top:16px;">
-<div class="card" data-cardid="google_grafika__25_0" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.gles.WindowSurface" data-score="1.0" data-cochange="NONE" data-distance="0" data-rank="1"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.gles.WindowSurface">WindowSurface</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">1.0</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">0</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><span class="none-text">Path: NONE — no path between source and target</span></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.gles.WindowSurface</code></div></div><div class="validation-section" id="validation_google_grafika__25_0">
+<div class="card" data-cardid="google_grafika__25_0" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.RecordFBOActivity$RenderThread" data-score="0.5493" data-cochange="1" data-distance="1" data-rank="2"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.RecordFBOActivity$RenderThread">RecordFBOActivity$RenderThread</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#2</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.5493</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.RecordFBOActivity$RenderThread</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.RecordFBOActivity$RenderThread</code></div></div><div class="validation-section" id="validation_google_grafika__25_0">
 <h4>📋 Validation — Is this propagation correct?</h4>
 <div class="vote-buttons">
 <button class="vote-btn correct" onclick="selectVote('google_grafika__25_0','correct',this)">✅ Correct</button>
@@ -108,18 +108,207 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <input type="hidden" id="vote_google_grafika__25_0" value="">
 <input type="hidden" id="meta_repo_google_grafika__25_0" value="google_grafika">
 <input type="hidden" id="meta_source_google_grafika__25_0" value="com.android.grafika.gles.WindowSurface">
-<input type="hidden" id="meta_target_google_grafika__25_0" value="com.android.grafika.gles.WindowSurface">
-<input type="hidden" id="meta_rank_google_grafika__25_0" value="1">
-<input type="hidden" id="meta_score_google_grafika__25_0" value="1.0">
-<input type="hidden" id="meta_cochange_google_grafika__25_0" value="NONE">
-<input type="hidden" id="meta_distance_google_grafika__25_0" value="0">
+<input type="hidden" id="meta_target_google_grafika__25_0" value="com.android.grafika.RecordFBOActivity$RenderThread">
+<input type="hidden" id="meta_rank_google_grafika__25_0" value="2">
+<input type="hidden" id="meta_score_google_grafika__25_0" value="0.5493">
+<input type="hidden" id="meta_cochange_google_grafika__25_0" value="1">
+<input type="hidden" id="meta_distance_google_grafika__25_0" value="1">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_1" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.PlayMovieSurfaceActivity" data-score="0.4145" data-cochange="1" data-distance="1" data-rank="3"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.PlayMovieSurfaceActivity">PlayMovieSurfaceActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.4145</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.PlayMovieSurfaceActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.PlayMovieSurfaceActivity</code></div></div><div class="validation-section" id="validation_google_grafika__25_1">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_1','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_1','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_1','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_1" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_1" onclick="submitVote('google_grafika__25_1')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_1" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_1" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_1" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_1" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_1" value="com.android.grafika.PlayMovieSurfaceActivity">
+<input type="hidden" id="meta_rank_google_grafika__25_1" value="3">
+<input type="hidden" id="meta_score_google_grafika__25_1" value="0.4145">
+<input type="hidden" id="meta_cochange_google_grafika__25_1" value="1">
+<input type="hidden" id="meta_distance_google_grafika__25_1" value="1">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_2" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.TextureFromCameraActivity$RenderThread" data-score="0.3788" data-cochange="1" data-distance="1" data-rank="4"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.TextureFromCameraActivity$RenderThread">TextureFromCameraActivity$RenderThread</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#4</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.3788</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.TextureFromCameraActivity$RenderThread</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.TextureFromCameraActivity$RenderThread</code></div></div><div class="validation-section" id="validation_google_grafika__25_2">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_2','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_2','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_2','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_2" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_2" onclick="submitVote('google_grafika__25_2')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_2" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_2" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_2" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_2" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_2" value="com.android.grafika.TextureFromCameraActivity$RenderThread">
+<input type="hidden" id="meta_rank_google_grafika__25_2" value="4">
+<input type="hidden" id="meta_score_google_grafika__25_2" value="0.3788">
+<input type="hidden" id="meta_cochange_google_grafika__25_2" value="1">
+<input type="hidden" id="meta_distance_google_grafika__25_2" value="1">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_3" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.ContinuousCaptureActivity" data-score="0.3517" data-cochange="1" data-distance="1" data-rank="5"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.ContinuousCaptureActivity">ContinuousCaptureActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#5</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.3517</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.ContinuousCaptureActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.ContinuousCaptureActivity</code></div></div><div class="validation-section" id="validation_google_grafika__25_3">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_3','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_3','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_3','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_3" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_3" onclick="submitVote('google_grafika__25_3')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_3" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_3" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_3" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_3" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_3" value="com.android.grafika.ContinuousCaptureActivity">
+<input type="hidden" id="meta_rank_google_grafika__25_3" value="5">
+<input type="hidden" id="meta_score_google_grafika__25_3" value="0.3517">
+<input type="hidden" id="meta_cochange_google_grafika__25_3" value="1">
+<input type="hidden" id="meta_distance_google_grafika__25_3" value="1">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_4" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="app/src/main/java/com/android/grafika/CameraPermissionHelper.java" data-score="0.2521" data-cochange="—" data-distance="2" data-rank="6"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="app/src/main/java/com/android/grafika/CameraPermissionHelper.java">CameraPermissionHelper</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#6</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.2521</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.ContinuousCaptureActivity → app/src/main/java/com/android/grafika/CameraPermissionHelper.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>app/src/main/java/com/android/grafika/CameraPermissionHelper.java</code></div></div><div class="validation-section" id="validation_google_grafika__25_4">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_4','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_4','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_4','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_4" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_4" onclick="submitVote('google_grafika__25_4')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_4" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_4" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_4" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_4" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_4" value="app/src/main/java/com/android/grafika/CameraPermissionHelper.java">
+<input type="hidden" id="meta_rank_google_grafika__25_4" value="6">
+<input type="hidden" id="meta_score_google_grafika__25_4" value="0.2521">
+<input type="hidden" id="meta_cochange_google_grafika__25_4" value="—">
+<input type="hidden" id="meta_distance_google_grafika__25_4" value="2">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_5" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.HardwareScalerActivity$RenderThread" data-score="0.1658" data-cochange="1" data-distance="1" data-rank="7"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.HardwareScalerActivity$RenderThread">HardwareScalerActivity$RenderThread</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#7</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1658</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.HardwareScalerActivity$RenderThread</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.HardwareScalerActivity$RenderThread</code></div></div><div class="validation-section" id="validation_google_grafika__25_5">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_5','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_5','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_5','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_5" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_5" onclick="submitVote('google_grafika__25_5')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_5" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_5" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_5" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_5" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_5" value="com.android.grafika.HardwareScalerActivity$RenderThread">
+<input type="hidden" id="meta_rank_google_grafika__25_5" value="7">
+<input type="hidden" id="meta_score_google_grafika__25_5" value="0.1658">
+<input type="hidden" id="meta_cochange_google_grafika__25_5" value="1">
+<input type="hidden" id="meta_distance_google_grafika__25_5" value="1">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_6" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.PlayMovieActivity" data-score="0.1292" data-cochange="—" data-distance="2" data-rank="8"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.PlayMovieActivity">PlayMovieActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#8</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1292</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.PlayMovieSurfaceActivity → com.android.grafika.PlayMovieActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.PlayMovieActivity</code></div></div><div class="validation-section" id="validation_google_grafika__25_6">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_6','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_6','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_6','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_6" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_6" onclick="submitVote('google_grafika__25_6')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_6" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_6" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_6" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_6" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_6" value="com.android.grafika.PlayMovieActivity">
+<input type="hidden" id="meta_rank_google_grafika__25_6" value="8">
+<input type="hidden" id="meta_score_google_grafika__25_6" value="0.1292">
+<input type="hidden" id="meta_cochange_google_grafika__25_6" value="—">
+<input type="hidden" id="meta_distance_google_grafika__25_6" value="2">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_7" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.MultiSurfaceActivity" data-score="0.1243" data-cochange="1" data-distance="1" data-rank="9"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.MultiSurfaceActivity">MultiSurfaceActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#9</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1243</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.MultiSurfaceActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.MultiSurfaceActivity</code></div></div><div class="validation-section" id="validation_google_grafika__25_7">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_7','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_7','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_7','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_7" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_7" onclick="submitVote('google_grafika__25_7')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_7" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_7" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_7" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_7" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_7" value="com.android.grafika.MultiSurfaceActivity">
+<input type="hidden" id="meta_rank_google_grafika__25_7" value="9">
+<input type="hidden" id="meta_score_google_grafika__25_7" value="0.1243">
+<input type="hidden" id="meta_cochange_google_grafika__25_7" value="1">
+<input type="hidden" id="meta_distance_google_grafika__25_7" value="1">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_8" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.RecordFBOActivity" data-score="0.1242" data-cochange="—" data-distance="2" data-rank="10"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.RecordFBOActivity">RecordFBOActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#10</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1242</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.GeneratedMovie → com.android.grafika.RecordFBOActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.RecordFBOActivity</code></div></div><div class="validation-section" id="validation_google_grafika__25_8">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_8','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_8','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_8','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_8" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_8" onclick="submitVote('google_grafika__25_8')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_8" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_8" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_8" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_8" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_8" value="com.android.grafika.RecordFBOActivity">
+<input type="hidden" id="meta_rank_google_grafika__25_8" value="10">
+<input type="hidden" id="meta_score_google_grafika__25_8" value="0.1242">
+<input type="hidden" id="meta_cochange_google_grafika__25_8" value="—">
+<input type="hidden" id="meta_distance_google_grafika__25_8" value="2">
+</div></div></div>
+<div class="card" data-cardid="google_grafika__25_9" data-repo="google_grafika" data-source="com.android.grafika.gles.WindowSurface" data-target="com.android.grafika.ScreenRecordActivity" data-score="0.1102" data-cochange="—" data-distance="2" data-rank="11"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.android.grafika.gles.WindowSurface">WindowSurface</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.android.grafika.ScreenRecordActivity">ScreenRecordActivity</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#11</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1102</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.android.grafika.gles.WindowSurface → com.android.grafika.PlayMovieSurfaceActivity → com.android.grafika.ScreenRecordActivity</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">INHERITANCE</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.android.grafika.gles.WindowSurface</code></div><div><strong>Target:</strong> <code>com.android.grafika.ScreenRecordActivity</code></div></div><div class="validation-section" id="validation_google_grafika__25_9">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('google_grafika__25_9','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('google_grafika__25_9','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('google_grafika__25_9','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_google_grafika__25_9" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_google_grafika__25_9" onclick="submitVote('google_grafika__25_9')" disabled>Submit</button>
+<span class="submit-status" id="status_google_grafika__25_9" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_google_grafika__25_9" value="">
+<input type="hidden" id="meta_repo_google_grafika__25_9" value="google_grafika">
+<input type="hidden" id="meta_source_google_grafika__25_9" value="com.android.grafika.gles.WindowSurface">
+<input type="hidden" id="meta_target_google_grafika__25_9" value="com.android.grafika.ScreenRecordActivity">
+<input type="hidden" id="meta_rank_google_grafika__25_9" value="11">
+<input type="hidden" id="meta_score_google_grafika__25_9" value="0.1102">
+<input type="hidden" id="meta_cochange_google_grafika__25_9" value="—">
+<input type="hidden" id="meta_distance_google_grafika__25_9" value="2">
 </div></div></div>
   </div>
 </div>
 <script>
 const REPO = 'google_grafika';
 const SRC  = 'com.android.grafika.gles.WindowSurface';
-const TOTAL_CARDS = 1;
+const TOTAL_CARDS = 10;
 
 function selectVote(id, vote, btn) {
   document.querySelectorAll('#validation_' + id + ' .vote-btn').forEach(b => b.classList.remove('selected'));

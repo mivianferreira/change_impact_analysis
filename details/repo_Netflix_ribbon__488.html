@@ -91,9 +91,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </div>
 <div class="container">
   <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
-  <div class="progress-label" id="progressLabel">0 / 1 validated</div>
+  <div class="progress-label" id="progressLabel">0 / 33 validated</div>
   <div class="cards-list" style="margin-top:16px;">
-<div class="card" data-cardid="Netflix_ribbon__488_0" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-score="1.0" data-cochange="NONE" data-distance="0" data-rank="1"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">1.0</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">0</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><span class="none-text">Path: NONE — no path between source and target</span></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_0">
+<div class="card" data-cardid="Netflix_ribbon__488_0" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest" data-score="0.2765" data-cochange="1" data-distance="1" data-rank="2"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest">EurekaDynamicServerListLoadBalancerTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#2</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.2765</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_0">
 <h4>📋 Validation — Is this propagation correct?</h4>
 <div class="vote-buttons">
 <button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_0','correct',this)">✅ Correct</button>
@@ -108,18 +108,690 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <input type="hidden" id="vote_Netflix_ribbon__488_0" value="">
 <input type="hidden" id="meta_repo_Netflix_ribbon__488_0" value="Netflix_ribbon">
 <input type="hidden" id="meta_source_Netflix_ribbon__488_0" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
-<input type="hidden" id="meta_target_Netflix_ribbon__488_0" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
-<input type="hidden" id="meta_rank_Netflix_ribbon__488_0" value="1">
-<input type="hidden" id="meta_score_Netflix_ribbon__488_0" value="1.0">
-<input type="hidden" id="meta_cochange_Netflix_ribbon__488_0" value="NONE">
-<input type="hidden" id="meta_distance_Netflix_ribbon__488_0" value="0">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_0" value="com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_0" value="2">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_0" value="0.2765">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_0" value="1">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_0" value="1">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_1" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.loadbalancer.BaseLoadBalancer" data-score="0.2102" data-cochange="—" data-distance="2" data-rank="3"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.loadbalancer.BaseLoadBalancer">BaseLoadBalancer</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.2102</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.loadbalancer.BaseLoadBalancer</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.loadbalancer.BaseLoadBalancer</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_1">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_1','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_1','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_1','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_1" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_1" onclick="submitVote('Netflix_ribbon__488_1')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_1" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_1" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_1" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_1" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_1" value="com.netflix.loadbalancer.BaseLoadBalancer">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_1" value="3">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_1" value="0.2102">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_1" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_1" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_2" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.niws.client.http.RestClient" data-score="0.1779" data-cochange="—" data-distance="3" data-rank="4"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.niws.client.http.RestClient">RestClient</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#4</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1779</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList → com.netflix.niws.client.http.RestClient</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.niws.client.http.RestClient</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_2">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_2','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_2','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_2','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_2" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_2" onclick="submitVote('Netflix_ribbon__488_2')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_2" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_2" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_2" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_2" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_2" value="com.netflix.niws.client.http.RestClient">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_2" value="4">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_2" value="0.1779">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_2" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_2" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_3" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java" data-score="0.1594" data-cochange="—" data-distance="2" data-rank="5"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java">BaseLoadBalancer</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#5</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1594</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_3">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_3','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_3','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_3','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_3" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_3" onclick="submitVote('Netflix_ribbon__488_3')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_3" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_3" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_3" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_3" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_3" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_3" value="5">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_3" value="0.1594">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_3" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_3" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_4" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.loadbalancer.DynamicServerListLoadBalancer" data-score="0.1508" data-cochange="—" data-distance="2" data-rank="6"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.loadbalancer.DynamicServerListLoadBalancer">DynamicServerListLoadBalancer</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#6</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1508</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.loadbalancer.DynamicServerListLoadBalancer</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_PARAMETER_TYPE</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.loadbalancer.DynamicServerListLoadBalancer</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_4">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_4','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_4','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_4','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_4" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_4" onclick="submitVote('Netflix_ribbon__488_4')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_4" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_4" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_4" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_4" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_4" value="com.netflix.loadbalancer.DynamicServerListLoadBalancer">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_4" value="6">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_4" value="0.1508">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_4" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_4" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_5" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.loadbalancer.LoadBalancerContext" data-score="0.1439" data-cochange="—" data-distance="3" data-rank="7"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.loadbalancer.LoadBalancerContext">LoadBalancerContext</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#7</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1439</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.LBBuilderTest → com.netflix.loadbalancer.LoadBalancerContext</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.loadbalancer.LoadBalancerContext</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_5">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_5','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_5','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_5','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_5" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_5" onclick="submitVote('Netflix_ribbon__488_5')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_5" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_5" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_5" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_5" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_5" value="com.netflix.loadbalancer.LoadBalancerContext">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_5" value="7">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_5" value="0.1439">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_5" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_5" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_6" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/ClientFactory.java" data-score="0.1392" data-cochange="—" data-distance="3" data-rank="8"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/ClientFactory.java">ClientFactory</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#8</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1392</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList → ribbon-core/src/main/java/com/netflix/client/ClientFactory.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/ClientFactory.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_6">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_6','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_6','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_6','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_6" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_6" onclick="submitVote('Netflix_ribbon__488_6')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_6" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_6" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_6" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_6" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_6" value="ribbon-core/src/main/java/com/netflix/client/ClientFactory.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_6" value="8">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_6" value="0.1392">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_6" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_6" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_7" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.loadbalancer.LoadBalancerStats" data-score="0.1349" data-cochange="—" data-distance="3" data-rank="9"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.loadbalancer.LoadBalancerStats">LoadBalancerStats</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#9</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1349</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.LBBuilderTest → com.netflix.loadbalancer.LoadBalancerStats</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.loadbalancer.LoadBalancerStats</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_7">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_7','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_7','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_7','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_7" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_7" onclick="submitVote('Netflix_ribbon__488_7')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_7" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_7" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_7" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_7" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_7" value="com.netflix.loadbalancer.LoadBalancerStats">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_7" value="9">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_7" value="0.1349">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_7" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_7" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_8" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-loadbalancer/src/main/java/com/netflix/client/PrimeConnections.java" data-score="0.1343" data-cochange="—" data-distance="3" data-rank="10"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/client/PrimeConnections.java">PrimeConnections</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#10</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1343</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java → ribbon-loadbalancer/src/main/java/com/netflix/client/PrimeConnections.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/client/PrimeConnections.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_8">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_8','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_8','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_8','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_8" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_8" onclick="submitVote('Netflix_ribbon__488_8')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_8" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_8" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_8" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_8" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_8" value="ribbon-loadbalancer/src/main/java/com/netflix/client/PrimeConnections.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_8" value="10">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_8" value="0.1343">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_8" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_8" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_9" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/PrimeConnections.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="11"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/PrimeConnections.java">PrimeConnections</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#11</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-core/src/main/java/com/netflix/client/PrimeConnections.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/PrimeConnections.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_9">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_9','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_9','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_9','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_9" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_9" onclick="submitVote('Netflix_ribbon__488_9')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_9" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_9" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_9" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_9" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_9" value="ribbon-core/src/main/java/com/netflix/client/PrimeConnections.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_9" value="11">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_9" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_9" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_9" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_10" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/loadbalancer/ConfigurationBasedServerList.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="12"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/loadbalancer/ConfigurationBasedServerList.java">ConfigurationBasedServerList</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#12</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-core/src/main/java/com/netflix/loadbalancer/ConfigurationBasedServerList.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/loadbalancer/ConfigurationBasedServerList.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_10">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_10','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_10','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_10','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_10" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_10" onclick="submitVote('Netflix_ribbon__488_10')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_10" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_10" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_10" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_10" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_10" value="ribbon-core/src/main/java/com/netflix/loadbalancer/ConfigurationBasedServerList.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_10" value="12">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_10" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_10" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_10" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_11" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/test/java/com/netflix/loadbalancer/ZoneAwareNIWSDiscoveryLoadBalancerTest.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="13"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/test/java/com/netflix/loadbalancer/ZoneAwareNIWSDiscoveryLoadBalancerTest.java">ZoneAwareNIWSDiscoveryLoadBalancerTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#13</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-core/src/test/java/com/netflix/loadbalancer/ZoneAwareNIWSDiscoveryLoadBalancerTest.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/test/java/com/netflix/loadbalancer/ZoneAwareNIWSDiscoveryLoadBalancerTest.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_11">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_11','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_11','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_11','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_11" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_11" onclick="submitVote('Netflix_ribbon__488_11')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_11" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_11" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_11" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_11" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_11" value="ribbon-core/src/test/java/com/netflix/loadbalancer/ZoneAwareNIWSDiscoveryLoadBalancerTest.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_11" value="13">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_11" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_11" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_11" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_12" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-eureka/src/main/java/com/netflix/niws/client/DefaultNIWSServerListFilter.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="14"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-eureka/src/main/java/com/netflix/niws/client/DefaultNIWSServerListFilter.java">DefaultNIWSServerListFilter</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#14</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList → ribbon-eureka/src/main/java/com/netflix/niws/client/DefaultNIWSServerListFilter.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-eureka/src/main/java/com/netflix/niws/client/DefaultNIWSServerListFilter.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_12">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_12','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_12','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_12','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_12" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_12" onclick="submitVote('Netflix_ribbon__488_12')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_12" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_12" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_12" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_12" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_12" value="ribbon-eureka/src/main/java/com/netflix/niws/client/DefaultNIWSServerListFilter.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_12" value="14">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_12" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_12" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_12" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_13" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-eureka/src/main/java/com/netflix/niws/client/DiscoveryEnabledNIWSServerList.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="15"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-eureka/src/main/java/com/netflix/niws/client/DiscoveryEnabledNIWSServerList.java">DiscoveryEnabledNIWSServerList</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#15</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList → ribbon-eureka/src/main/java/com/netflix/niws/client/DiscoveryEnabledNIWSServerList.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-eureka/src/main/java/com/netflix/niws/client/DiscoveryEnabledNIWSServerList.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_13">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_13','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_13','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_13','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_13" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_13" onclick="submitVote('Netflix_ribbon__488_13')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_13" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_13" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_13" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_13" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_13" value="ribbon-eureka/src/main/java/com/netflix/niws/client/DiscoveryEnabledNIWSServerList.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_13" value="15">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_13" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_13" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_13" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_14" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/ClientSslSocketFactoryException.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="16"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/ClientSslSocketFactoryException.java">ClientSslSocketFactoryException</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#16</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-core/src/main/java/com/netflix/client/ClientSslSocketFactoryException.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/ClientSslSocketFactoryException.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_14">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_14','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_14','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_14','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_14" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_14" onclick="submitVote('Netflix_ribbon__488_14')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_14" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_14" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_14" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_14" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_14" value="ribbon-core/src/main/java/com/netflix/client/ClientSslSocketFactoryException.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_14" value="16">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_14" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_14" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_14" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_15" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/loadbalancer/Server.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="17"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/loadbalancer/Server.java">Server</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#17</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-core/src/main/java/com/netflix/loadbalancer/Server.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/loadbalancer/Server.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_15">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_15','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_15','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_15','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_15" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_15" onclick="submitVote('Netflix_ribbon__488_15')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_15" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_15" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_15" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_15" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_15" value="ribbon-core/src/main/java/com/netflix/loadbalancer/Server.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_15" value="17">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_15" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_15" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_15" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_16" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-httpclient/src/main/java/com/netflix/niws/cert/AbstractSslContextFactory.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="18"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-httpclient/src/main/java/com/netflix/niws/cert/AbstractSslContextFactory.java">AbstractSslContextFactory</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#18</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-httpclient/src/main/java/com/netflix/niws/cert/AbstractSslContextFactory.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-httpclient/src/main/java/com/netflix/niws/cert/AbstractSslContextFactory.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_16">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_16','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_16','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_16','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_16" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_16" onclick="submitVote('Netflix_ribbon__488_16')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_16" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_16" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_16" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_16" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_16" value="ribbon-httpclient/src/main/java/com/netflix/niws/cert/AbstractSslContextFactory.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_16" value="18">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_16" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_16" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_16" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_17" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-httpclient/src/main/java/com/netflix/niws/client/ClientSslSocketFactoryException.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="19"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-httpclient/src/main/java/com/netflix/niws/client/ClientSslSocketFactoryException.java">ClientSslSocketFactoryException</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#19</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-httpclient/src/main/java/com/netflix/niws/client/ClientSslSocketFactoryException.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-httpclient/src/main/java/com/netflix/niws/client/ClientSslSocketFactoryException.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_17">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_17','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_17','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_17','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_17" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_17" onclick="submitVote('Netflix_ribbon__488_17')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_17" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_17" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_17" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_17" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_17" value="ribbon-httpclient/src/main/java/com/netflix/niws/client/ClientSslSocketFactoryException.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_17" value="19">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_17" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_17" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_17" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_18" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-httpclient/src/main/java/com/netflix/niws/client/URLSslContextFactory.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="20"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-httpclient/src/main/java/com/netflix/niws/client/URLSslContextFactory.java">URLSslContextFactory</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#20</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList → ribbon-httpclient/src/main/java/com/netflix/niws/client/URLSslContextFactory.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-httpclient/src/main/java/com/netflix/niws/client/URLSslContextFactory.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_18">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_18','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_18','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_18','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_18" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_18" onclick="submitVote('Netflix_ribbon__488_18')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_18" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_18" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_18" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_18" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_18" value="ribbon-httpclient/src/main/java/com/netflix/niws/client/URLSslContextFactory.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_18" value="20">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_18" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_18" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_18" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_19" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/IResponse.java" data-score="0.1329" data-cochange="—" data-distance="3" data-rank="21"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/IResponse.java">IResponse</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#21</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1329</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-core/src/main/java/com/netflix/client/IResponse.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/IResponse.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_19">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_19','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_19','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_19','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_19" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_19" onclick="submitVote('Netflix_ribbon__488_19')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_19" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_19" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_19" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_19" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_19" value="ribbon-core/src/main/java/com/netflix/client/IResponse.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_19" value="21">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_19" value="0.1329">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_19" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_19" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_20" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/DynamicServerListLoadBalancer.java" data-score="0.1248" data-cochange="—" data-distance="3" data-rank="22"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/DynamicServerListLoadBalancer.java">DynamicServerListLoadBalancer</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#22</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1248</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.LBBuilderTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/DynamicServerListLoadBalancer.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/DynamicServerListLoadBalancer.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_20">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_20','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_20','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_20','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_20" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_20" onclick="submitVote('Netflix_ribbon__488_20')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_20" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_20" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_20" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_20" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_20" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/DynamicServerListLoadBalancer.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_20" value="22">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_20" value="0.1248">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_20" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_20" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_21" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/ZoneAwareLoadBalancer.java" data-score="0.1248" data-cochange="—" data-distance="3" data-rank="23"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/ZoneAwareLoadBalancer.java">ZoneAwareLoadBalancer</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#23</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1248</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.LBBuilderTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/ZoneAwareLoadBalancer.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/ZoneAwareLoadBalancer.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_21">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_21','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_21','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_21','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_21" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_21" onclick="submitVote('Netflix_ribbon__488_21')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_21" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_21" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_21" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_21" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_21" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/ZoneAwareLoadBalancer.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_21" value="23">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_21" value="0.1248">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_21" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_21" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_22" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/test/java/com/netflix/loadbalancer/DynamicServerListLoadBalancerTest.java" data-score="0.1089" data-cochange="—" data-distance="3" data-rank="24"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/test/java/com/netflix/loadbalancer/DynamicServerListLoadBalancerTest.java">DynamicServerListLoadBalancerTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#24</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1089</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.DiscoveryEnabledLoadBalancerSupportsPortOverrideTest → ribbon-core/src/test/java/com/netflix/loadbalancer/DynamicServerListLoadBalancerTest.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/test/java/com/netflix/loadbalancer/DynamicServerListLoadBalancerTest.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_22">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_22','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_22','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_22','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_22" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_22" onclick="submitVote('Netflix_ribbon__488_22')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_22" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_22" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_22" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_22" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_22" value="ribbon-core/src/test/java/com/netflix/loadbalancer/DynamicServerListLoadBalancerTest.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_22" value="24">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_22" value="0.1089">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_22" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_22" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_23" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/Server.java" data-score="0.1056" data-cochange="—" data-distance="3" data-rank="25"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/Server.java">Server</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#25</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1056</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/Server.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/Server.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_23">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_23','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_23','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_23','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_23" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_23" onclick="submitVote('Netflix_ribbon__488_23')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_23" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_23" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_23" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_23" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_23" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/Server.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_23" value="25">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_23" value="0.1056">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_23" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_23" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_24" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/IClientConfigAware.java" data-score="0.1056" data-cochange="—" data-distance="3" data-rank="26"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/IClientConfigAware.java">IClientConfigAware</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#26</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1056</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java → ribbon-core/src/main/java/com/netflix/client/IClientConfigAware.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/IClientConfigAware.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_24">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_24','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_24','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_24','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_24" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_24" onclick="submitVote('Netflix_ribbon__488_24')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_24" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_24" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_24" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_24" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_24" value="ribbon-core/src/main/java/com/netflix/client/IClientConfigAware.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_24" value="26">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_24" value="0.1056">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_24" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_24" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_25" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/RandomRule.java" data-score="0.1056" data-cochange="—" data-distance="3" data-rank="27"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/RandomRule.java">RandomRule</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#27</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1056</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/RandomRule.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/RandomRule.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_25">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_25','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_25','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_25','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_25" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_25" onclick="submitVote('Netflix_ribbon__488_25')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_25" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_25" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_25" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_25" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_25" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/RandomRule.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_25" value="27">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_25" value="0.1056">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_25" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_25" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_26" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java" data-score="0.1056" data-cochange="—" data-distance="3" data-rank="28"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java">DefaultClientConfigImpl</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#28</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1056</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.LBBuilderTest → ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_26">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_26','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_26','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_26','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_26" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_26" onclick="submitVote('Netflix_ribbon__488_26')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_26" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_26" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_26" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_26" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_26" value="ribbon-archaius/src/main/java/com/netflix/client/config/DefaultClientConfigImpl.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_26" value="28">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_26" value="0.1056">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_26" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_26" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_27" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon/src/test/java/com/netflix/ribbon/http/TemplateBuilderTest.java" data-score="0.1008" data-cochange="—" data-distance="3" data-rank="29"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon/src/test/java/com/netflix/ribbon/http/TemplateBuilderTest.java">TemplateBuilderTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#29</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1008</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/BaseLoadBalancer.java → ribbon/src/test/java/com/netflix/ribbon/http/TemplateBuilderTest.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon/src/test/java/com/netflix/ribbon/http/TemplateBuilderTest.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_27">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_27','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_27','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_27','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_27" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_27" onclick="submitVote('Netflix_ribbon__488_27')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_27" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_27" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_27" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_27" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_27" value="ribbon/src/test/java/com/netflix/ribbon/http/TemplateBuilderTest.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_27" value="29">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_27" value="0.1008">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_27" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_27" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_28" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerExecutor.java" data-score="0.1008" data-cochange="—" data-distance="3" data-rank="30"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerExecutor.java">LoadBalancerExecutor</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#30</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1008</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.LBBuilderTest → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerExecutor.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerExecutor.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_28">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_28','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_28','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_28','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_28" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_28" onclick="submitVote('Netflix_ribbon__488_28')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_28" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_28" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_28" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_28" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_28" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/LoadBalancerExecutor.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_28" value="30">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_28" value="0.1008">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_28" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_28" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_29" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/config/ClientConfigBuilder.java" data-score="0.1008" data-cochange="—" data-distance="3" data-rank="31"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/config/ClientConfigBuilder.java">ClientConfigBuilder</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#31</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1008</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.LBBuilderTest → ribbon-core/src/main/java/com/netflix/client/config/ClientConfigBuilder.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/config/ClientConfigBuilder.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_29">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_29','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_29','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_29','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_29" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_29" onclick="submitVote('Netflix_ribbon__488_29')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_29" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_29" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_29" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_29" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_29" value="ribbon-core/src/main/java/com/netflix/client/config/ClientConfigBuilder.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_29" value="31">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_29" value="0.1008">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_29" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_29" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_30" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="com.netflix.client.config.ReloadableClientConfig" data-score="0.1003" data-cochange="—" data-distance="2" data-rank="32"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.client.config.ReloadableClientConfig">ReloadableClientConfig</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#32</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1003</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.ReloadableClientConfig</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_OBJECT_PARAMETER</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>com.netflix.client.config.ReloadableClientConfig</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_30">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_30','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_30','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_30','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_30" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_30" onclick="submitVote('Netflix_ribbon__488_30')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_30" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_30" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_30" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_30" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_30" value="com.netflix.client.config.ReloadableClientConfig">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_30" value="32">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_30" value="0.1003">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_30" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_30" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_31" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/LoadBalancerContext.java" data-score="0.1002" data-cochange="—" data-distance="3" data-rank="33"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/LoadBalancerContext.java">LoadBalancerContext</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#33</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1002</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.niws.loadbalancer.DiscoveryEnabledNIWSServerList → ribbon-core/src/main/java/com/netflix/client/LoadBalancerContext.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/LoadBalancerContext.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_31">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_31','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_31','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_31','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_31" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_31" onclick="submitVote('Netflix_ribbon__488_31')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_31" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_31" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_31" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_31" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_31" value="ribbon-core/src/main/java/com/netflix/client/LoadBalancerContext.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_31" value="33">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_31" value="0.1002">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_31" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_31" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__488_32" data-repo="Netflix_ribbon" data-source="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater" data-target="ribbon-core/src/main/java/com/netflix/client/config/IClientConfigKey.java" data-score="0.1002" data-cochange="—" data-distance="3" data-rank="34"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">EurekaNotificationServerListUpdater</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/config/IClientConfigKey.java">IClientConfigKey</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#34</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1002</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater → com.netflix.loadbalancer.EurekaDynamicServerListLoadBalancerTest → com.netflix.client.config.DefaultClientConfigImpl → ribbon-core/src/main/java/com/netflix/client/config/IClientConfigKey.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">OBJECT_PARAMETER_COUPLING</span><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/config/IClientConfigKey.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__488_32">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__488_32','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__488_32','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__488_32','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__488_32" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__488_32" onclick="submitVote('Netflix_ribbon__488_32')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__488_32" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__488_32" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__488_32" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__488_32" value="com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater">
+<input type="hidden" id="meta_target_Netflix_ribbon__488_32" value="ribbon-core/src/main/java/com/netflix/client/config/IClientConfigKey.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__488_32" value="34">
+<input type="hidden" id="meta_score_Netflix_ribbon__488_32" value="0.1002">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__488_32" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__488_32" value="3">
 </div></div></div>
   </div>
 </div>
 <script>
 const REPO = 'Netflix_ribbon';
 const SRC  = 'com.netflix.niws.loadbalancer.EurekaNotificationServerListUpdater';
-const TOTAL_CARDS = 1;
+const TOTAL_CARDS = 33;
 
 function selectVote(id, vote, btn) {
   document.querySelectorAll('#validation_' + id + ' .vote-btn').forEach(b => b.classList.remove('selected'));

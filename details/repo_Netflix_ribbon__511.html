@@ -91,9 +91,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </div>
 <div class="container">
   <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
-  <div class="progress-label" id="progressLabel">0 / 1 validated</div>
+  <div class="progress-label" id="progressLabel">0 / 11 validated</div>
   <div class="cards-list" style="margin-top:16px;">
-<div class="card" data-cardid="Netflix_ribbon__511_0" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-score="1.0" data-cochange="NONE" data-distance="0" data-rank="1"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">1.0</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">0</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><span class="none-text">Path: NONE — no path between source and target</span></div><div class="coupling-section"><h4>Coupling Types on Path</h4><span class="none-text">NONE</span></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_0">
+<div class="card" data-cardid="Netflix_ribbon__511_0" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="com.netflix.loadbalancer.reactive.LoadBalancerCommand" data-score="0.1993" data-cochange="1" data-distance="1" data-rank="2"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand">LoadBalancerCommand</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#2</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1993</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_0">
 <h4>📋 Validation — Is this propagation correct?</h4>
 <div class="vote-buttons">
 <button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_0','correct',this)">✅ Correct</button>
@@ -108,18 +108,228 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <input type="hidden" id="vote_Netflix_ribbon__511_0" value="">
 <input type="hidden" id="meta_repo_Netflix_ribbon__511_0" value="Netflix_ribbon">
 <input type="hidden" id="meta_source_Netflix_ribbon__511_0" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
-<input type="hidden" id="meta_target_Netflix_ribbon__511_0" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
-<input type="hidden" id="meta_rank_Netflix_ribbon__511_0" value="1">
-<input type="hidden" id="meta_score_Netflix_ribbon__511_0" value="1.0">
-<input type="hidden" id="meta_cochange_Netflix_ribbon__511_0" value="NONE">
-<input type="hidden" id="meta_distance_Netflix_ribbon__511_0" value="0">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_0" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_0" value="2">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_0" value="0.1993">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_0" value="1">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_0" value="1">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_1" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandBuilder.java" data-score="0.1553" data-cochange="—" data-distance="2" data-rank="3"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandBuilder.java">CommandBuilder</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1553</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandBuilder.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandBuilder.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_1">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_1','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_1','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_1','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_1" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_1" onclick="submitVote('Netflix_ribbon__511_1')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_1" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_1" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_1" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_1" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_1" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandBuilder.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_1" value="3">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_1" value="0.1553">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_1" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_1" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_2" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservableCommand.java" data-score="0.1482" data-cochange="—" data-distance="2" data-rank="4"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservableCommand.java">LoadBalancerObservableCommand</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#4</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1482</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservableCommand.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservableCommand.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_2">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_2','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_2','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_2','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_2" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_2" onclick="submitVote('Netflix_ribbon__511_2')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_2" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_2" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_2" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_2" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_2" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservableCommand.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_2" value="4">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_2" value="0.1482">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_2" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_2" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_3" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerRetrySameServerCommand.java" data-score="0.1482" data-cochange="—" data-distance="2" data-rank="5"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerRetrySameServerCommand.java">LoadBalancerRetrySameServerCommand</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#5</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1482</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerRetrySameServerCommand.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerRetrySameServerCommand.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_3">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_3','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_3','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_3','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_3" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_3" onclick="submitVote('Netflix_ribbon__511_3')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_3" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_3" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_3" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_3" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_3" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerRetrySameServerCommand.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_3" value="5">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_3" value="0.1482">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_3" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_3" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_4" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandToObservableConverter.java" data-score="0.1260" data-cochange="—" data-distance="2" data-rank="6"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandToObservableConverter.java">CommandToObservableConverter</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#6</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1260</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandToObservableConverter.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandToObservableConverter.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_4">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_4','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_4','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_4','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_4" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_4" onclick="submitVote('Netflix_ribbon__511_4')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_4" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_4" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_4" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_4" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_4" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandToObservableConverter.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_4" value="6">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_4" value="0.1260">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_4" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_4" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_5" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservable.java" data-score="0.1260" data-cochange="—" data-distance="2" data-rank="7"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservable.java">LoadBalancerObservable</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#7</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1260</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservable.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservable.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_5">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_5','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_5','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_5','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_5" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_5" onclick="submitVote('Netflix_ribbon__511_5')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_5" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_5" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_5" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_5" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_5" value="ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/LoadBalancerObservable.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_5" value="7">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_5" value="0.1260">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_5" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_5" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_6" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-core/src/main/java/com/netflix/client/Utils.java" data-score="0.1260" data-cochange="—" data-distance="2" data-rank="8"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-core/src/main/java/com/netflix/client/Utils.java">Utils</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#8</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1260</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → ribbon-core/src/main/java/com/netflix/client/Utils.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-core/src/main/java/com/netflix/client/Utils.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_6">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_6','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_6','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_6','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_6" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_6" onclick="submitVote('Netflix_ribbon__511_6')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_6" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_6" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_6" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_6" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_6" value="ribbon-core/src/main/java/com/netflix/client/Utils.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_6" value="8">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_6" value="0.1260">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_6" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_6" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_7" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="com.netflix.ribbon.transport.netty.http.LoadBalancingHttpClient" data-score="0.1107" data-cochange="—" data-distance="2" data-rank="9"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.ribbon.transport.netty.http.LoadBalancingHttpClient">LoadBalancingHttpClient</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#9</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1107</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → com.netflix.ribbon.transport.netty.http.LoadBalancingHttpClient</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span><span class="coupling-tag">PARAMETERIZED_TYPE</span><span class="coupling-tag">VARIABLE_FIELD_DECLARATION</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>com.netflix.ribbon.transport.netty.http.LoadBalancingHttpClient</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_7">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_7','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_7','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_7','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_7" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_7" onclick="submitVote('Netflix_ribbon__511_7')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_7" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_7" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_7" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_7" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_7" value="com.netflix.ribbon.transport.netty.http.LoadBalancingHttpClient">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_7" value="9">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_7" value="0.1107">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_7" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_7" value="2">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_8" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-transport/src/main/java/com/netflix/client/netty/http/NettyHttpClient.java" data-score="0.1028" data-cochange="—" data-distance="3" data-rank="10"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-transport/src/main/java/com/netflix/client/netty/http/NettyHttpClient.java">NettyHttpClient</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#10</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1028</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → com.netflix.client.config.DefaultClientConfigImpl → ribbon-transport/src/main/java/com/netflix/client/netty/http/NettyHttpClient.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-transport/src/main/java/com/netflix/client/netty/http/NettyHttpClient.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_8">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_8','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_8','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_8','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_8" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_8" onclick="submitVote('Netflix_ribbon__511_8')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_8" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_8" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_8" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_8" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_8" value="ribbon-transport/src/main/java/com/netflix/client/netty/http/NettyHttpClient.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_8" value="10">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_8" value="0.1028">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_8" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_8" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_9" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="ribbon-transport/src/test/java/com/netflix/client/netty/http/TestExecutionListener.java" data-score="0.1028" data-cochange="—" data-distance="3" data-rank="11"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="ribbon-transport/src/test/java/com/netflix/client/netty/http/TestExecutionListener.java">TestExecutionListener</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#11</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1028</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → ribbon-loadbalancer/src/main/java/com/netflix/loadbalancer/reactive/CommandBuilder.java → ribbon-transport/src/test/java/com/netflix/client/netty/http/TestExecutionListener.java</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>ribbon-transport/src/test/java/com/netflix/client/netty/http/TestExecutionListener.java</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_9">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_9','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_9','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_9','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_9" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_9" onclick="submitVote('Netflix_ribbon__511_9')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_9" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_9" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_9" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_9" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_9" value="ribbon-transport/src/test/java/com/netflix/client/netty/http/TestExecutionListener.java">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_9" value="11">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_9" value="0.1028">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_9" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_9" value="3">
+</div></div></div>
+<div class="card" data-cardid="Netflix_ribbon__511_10" data-repo="Netflix_ribbon" data-source="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext" data-target="com.netflix.ribbon.transport.netty.http.NettyClientTest" data-score="0.1006" data-cochange="—" data-distance="2" data-rank="12"><div class="card-header" onclick="this.parentElement.classList.toggle('open')"><div class="source-target"><span class="class-badge source" title="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">LoadBalancerCommand$ExecutionInfoContext</span><span class="arrow-icon">→</span><span class="class-badge target" title="com.netflix.ribbon.transport.netty.http.NettyClientTest">NettyClientTest</span></div><div class="metrics-mini"><div class="metric-pill rank-m"><span class="val">#12</span><span class="lbl">Rank</span></div><div class="metric-pill score"><span class="val">0.1006</span><span class="lbl">Score</span></div><div class="metric-pill cochange"><span class="val">—</span><span class="lbl">Co-change</span></div><div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div></div><span class="toggle-icon">▼</span></div><div class="card-body"><div class="path-section"><h4>Propagation Path</h4><div class="path-text">com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext → com.netflix.loadbalancer.reactive.LoadBalancerCommand → com.netflix.ribbon.transport.netty.http.NettyClientTest</div></div><div class="coupling-section"><h4>Coupling Types on Path</h4><div class="coupling-tags"><span class="coupling-tag">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-tag">VARIABLE_DECLARATION_STATEMENT</span><span class="coupling-tag">ATOMIC_PARAMETER_COUPLING</span></div></div><div class="meta-small"><div><strong>Source:</strong> <code>com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext</code></div><div><strong>Target:</strong> <code>com.netflix.ribbon.transport.netty.http.NettyClientTest</code></div></div><div class="validation-section" id="validation_Netflix_ribbon__511_10">
+<h4>📋 Validation — Is this propagation correct?</h4>
+<div class="vote-buttons">
+<button class="vote-btn correct" onclick="selectVote('Netflix_ribbon__511_10','correct',this)">✅ Correct</button>
+<button class="vote-btn incorrect" onclick="selectVote('Netflix_ribbon__511_10','incorrect',this)">❌ Incorrect</button>
+<button class="vote-btn unsure" onclick="selectVote('Netflix_ribbon__511_10','unsure',this)">❓ Unsure</button>
+</div>
+<textarea class="validation-textarea" id="comment_Netflix_ribbon__511_10" placeholder="Optional comment..."></textarea>
+<div class="submit-row">
+<button class="submit-btn" id="submitBtn_Netflix_ribbon__511_10" onclick="submitVote('Netflix_ribbon__511_10')" disabled>Submit</button>
+<span class="submit-status" id="status_Netflix_ribbon__511_10" style="display:none"></span>
+</div>
+<input type="hidden" id="vote_Netflix_ribbon__511_10" value="">
+<input type="hidden" id="meta_repo_Netflix_ribbon__511_10" value="Netflix_ribbon">
+<input type="hidden" id="meta_source_Netflix_ribbon__511_10" value="com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext">
+<input type="hidden" id="meta_target_Netflix_ribbon__511_10" value="com.netflix.ribbon.transport.netty.http.NettyClientTest">
+<input type="hidden" id="meta_rank_Netflix_ribbon__511_10" value="12">
+<input type="hidden" id="meta_score_Netflix_ribbon__511_10" value="0.1006">
+<input type="hidden" id="meta_cochange_Netflix_ribbon__511_10" value="—">
+<input type="hidden" id="meta_distance_Netflix_ribbon__511_10" value="2">
 </div></div></div>
   </div>
 </div>
 <script>
 const REPO = 'Netflix_ribbon';
 const SRC  = 'com.netflix.loadbalancer.reactive.LoadBalancerCommand$ExecutionInfoContext';
-const TOTAL_CARDS = 1;
+const TOTAL_CARDS = 11;
 
 function selectVote(id, vote, btn) {
   document.querySelectorAll('#validation_' + id + ' .vote-btn').forEach(b => b.classList.remove('selected'));
