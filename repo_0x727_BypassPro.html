@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCPA — 0x727/BypassPro</title>
+<style>
+:root {
+  --bg: #0d1117; --surface: #161b22; --surface2: #21262d;
+  --border: #30363d; --text: #e6edf3; --text2: #8b949e;
+  --accent: #58a6ff; --green: #3fb950; --orange: #e3b341; --red: #f85149;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.5; }
+
+/* ── Header ── */
+.page-header {
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: 20px 32px; position: sticky; top: 0; z-index: 100;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+}
+.header-title { flex: 1; min-width: 200px; }
+.header-title .back { color: var(--text2); font-size: 12px; text-decoration: none; display: block; margin-bottom: 2px; }
+.header-title .back:hover { color: var(--accent); }
+.header-title h1 { color: var(--accent); font-size: 20px; }
+.header-title .algo { color: var(--text2); font-size: 12px; }
+.header-email { display: flex; flex-direction: column; gap: 4px; min-width: 260px; }
+.header-email label { font-size: 12px; color: var(--text2); }
+.header-email label span { color: var(--red); } 
+.header-email input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; color: var(--text); font-size: 13px; width: 100%; }
+.header-email input:focus { outline: none; border-color: var(--accent); }
+.header-email input.invalid { border-color: var(--red); }
+.header-actions { display: flex; gap: 10px; align-items: center; }
+.btn { padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; font-size: 13px; white-space: nowrap; }
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #0d1117; font-weight: 600; }
+.btn-primary:hover { background: #79c0ff; border-color: #79c0ff; color: #0d1117; }
+
+/* ── Communities panel ── */
+.communities-panel {
+  display: none; background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: 16px 32px;
+}
+.communities-panel.open { display: block; }
+.communities-panel h3 { color: var(--text2); font-size: 13px; margin-bottom: 12px; }
+.comm-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.comm-chip {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 12px; font-size: 12px;
+}
+.comm-chip .cid { color: var(--accent); font-weight: 600; }
+.comm-chip .cdata { color: var(--text2); }
+
+/* ── Main content ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 28px 32px; }
+.summary-bar { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+.summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; text-align: center; flex: 1; min-width: 120px; }
+.summary-card .val { font-size: 22px; font-weight: 700; color: var(--accent); }
+.summary-card .lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+/* ── Source class accordion ── */
+.src-block { margin-bottom: 10px; }
+.src-header {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 20px; display: flex; align-items: center;
+  gap: 12px; cursor: pointer; text-align: left; color: var(--text);
+  transition: border-color .2s;
+}
+.src-header:hover { border-color: var(--accent); }
+.src-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-color: var(--accent); }
+.src-name { font-size: 14px; font-weight: 600; flex: 1; word-break: break-all; }
+.src-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-size: 11px; color: var(--text2); white-space: nowrap; }
+.chevron { color: var(--text2); font-size: 12px; transition: transform .2s; flex-shrink: 0; }
+.chevron.open { transform: rotate(90deg); }
+.src-body {
+  background: var(--surface); border: 1px solid var(--accent);
+  border-top: none; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
+  padding: 16px 20px;
+}
+
+/* ── Analysis textarea inside accordion ── */
+.analysis-row { margin-bottom: 14px; }
+.analysis-row label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+.analysis-field {
+  width: 100%; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 13px;
+  resize: vertical; font-family: inherit;
+}
+.analysis-field:focus { outline: none; border-color: var(--accent); }
+
+/* ── Affected classes table ── */
+.affected-table { width: 100%; border-collapse: collapse; font-size: 12px; border-radius: 8px; overflow: hidden; }
+.affected-table thead tr { background: var(--surface2); color: var(--text2); }
+.affected-table th, .affected-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.affected-table tr:last-child td { border-bottom: none; }
+.affected-table tbody tr:hover td { background: var(--surface2); }
+.rank { color: var(--text2); width: 40px; text-align: center; }
+.score { text-align: right; color: var(--green); font-weight: 600; }
+.cochange, .dist { text-align: center; }
+.path { color: var(--accent); font-size: 11px; }
+.coupling { color: var(--text2); font-size: 10px; font-style: italic; margin-top: 2px; }
+.no-affected { color: var(--text2); font-size: 13px; padding: 8px 0; }
+
+/* ── General analysis section ── */
+.general-section {
+  margin-top: 32px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 24px;
+}
+.general-section h2 { font-size: 16px; color: var(--accent); margin-bottom: 16px; }
+.general-section textarea {
+  width: 100%; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 6px; padding: 12px; color: var(--text); font-size: 14px;
+  resize: vertical; font-family: inherit; min-height: 100px;
+}
+.general-section textarea:focus { outline: none; border-color: var(--accent); }
+.submit-row { margin-top: 16px; display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
+.submit-status { font-size: 13px; color: var(--green); display: none; }
+</style>
+</head>
+<body>
+
+<!-- ── Sticky Header ── -->
+<div class="page-header">
+  <div class="header-title">
+    <a class="back" href="index.html">← Back to repository list</a>
+    <h1>📊 0x727/BypassPro</h1>
+    <div class="algo">Link Communities &nbsp;·&nbsp; 42 source classes analysed</div>
+  </div>
+  <div class="header-email">
+    <label>Email <span>*</span> (required)</label>
+    <input type="email" id="userEmail" placeholder="your@email.com"
+      oninput="saveEmail(this.value)" />
+  </div>
+  <div class="header-actions">
+    <button class="btn" onclick="toggleCommunities()">🔗 Show Communities</button>
+    <button class="btn btn-primary" onclick="submitAll()">✅ Submit All</button>
+  </div>
+</div>
+
+<!-- ── Communities panel ── -->
+<div class="communities-panel" id="commPanel">
+  <h3>Communities in this repository</h3>
+  <div class="comm-grid" id="commGrid"></div>
+</div>
+
+<!-- ── Main content ── -->
+<div class="container">
+
+  <!-- Summary bar -->
+  <div class="summary-bar">
+    <div class="summary-card"><div class="val">42</div><div class="lbl">Source Classes</div></div>
+    <div class="summary-card"><div class="val">109</div><div class="lbl">Total Affected</div></div>
+    <div class="summary-card"><div class="val">2.43</div><div class="lbl">Max Impact Score</div></div>
+    <div class="summary-card"><div class="val">70.0</div><div class="lbl">Cumulative Score</div></div>
+  </div>
+
+  <!-- Source class accordion -->
+    <div class="src-block" id="src_0">
+      <button class="src-header" onclick="toggleBlock(0)">
+        <span class="src-name">burp.BurpExtender</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.4325</span>
+          <span class="badge">Affected 4</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 1</span>
+        </span>
+        <span class="chevron" id="chev_0">▶</span>
+      </button>
+      <div class="src-body" id="body_0" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.BurpExtender</strong></label>
+          <textarea class="analysis-field" id="analysis_0" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.BurpExtender', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.8307</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.BurpExtender → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_PARAMETER_TYPE, METHOD_INVOCATION_OBJECT_PARAMETER, METHOD_INVOCATION_ATOMIC_PARAMETER, VARIABLE_FIELD_DECLARATION</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">Main.BypassMain</td>
+                <td class="score">0.3507</td>
+                <td class="cochange">2</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.BurpExtender → Main.BypassMain</span><br><span class="coupling">VARIABLE_DECLARATION_STATEMENT, ATOMIC_PARAMETER_COUPLING</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#4</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.2511</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.BurpExtender → burp.IExtensionHelpers</span><br><span class="coupling">VARIABLE_FIELD_DECLARATION</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_1">
+      <button class="src-header" onclick="toggleBlock(1)">
+        <span class="src-name">Main.Utils</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.4287</span>
+          <span class="badge">Affected 4</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 1</span>
+        </span>
+        <span class="chevron" id="chev_1">▶</span>
+      </button>
+      <div class="src-body" id="body_1" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.Utils</strong></label>
+          <textarea class="analysis-field" id="analysis_1" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.Utils', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7624</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.Utils → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_PARAMETER_TYPE, METHOD_INVOCATION_ATOMIC_PARAMETER, VARIABLE_FIELD_DECLARATION</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">Main.BypassMain</td>
+                <td class="score">0.3733</td>
+                <td class="cochange">2</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.Utils → Main.BypassMain</span><br><span class="coupling">—</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#4</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.2929</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.Utils → burp.IExtensionHelpers</span><br><span class="coupling">VARIABLE_FIELD_DECLARATION</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_2">
+      <button class="src-header" onclick="toggleBlock(2)">
+        <span class="src-name">Main.BypassMain$Run_request</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.2774</span>
+          <span class="badge">Affected 4</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 1</span>
+        </span>
+        <span class="chevron" id="chev_2">▶</span>
+      </button>
+      <div class="src-body" id="body_2" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.BypassMain$Run_request</strong></label>
+          <textarea class="analysis-field" id="analysis_2" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.BypassMain$Run_request', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7411</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.BypassMain$Run_request → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_INVOCATION_OBJECT_PARAMETER</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">Main.BypassMain</td>
+                <td class="score">0.2786</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.BypassMain$Run_request → Main.BypassMain</span><br><span class="coupling">METHOD_INVOCATION_OBJECT_PARAMETER, METHOD_INVOCATION_ATOMIC_PARAMETER</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#4</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.2577</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.BypassMain$Run_request → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_INVOCATION_OBJECT_PARAMETER</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_3">
+      <button class="src-header" onclick="toggleBlock(3)">
+        <span class="src-name">Main.MainPanel</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.1390</span>
+          <span class="badge">Affected 4</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_3">▶</span>
+      </button>
+      <div class="src-body" id="body_3" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.MainPanel</strong></label>
+          <textarea class="analysis-field" id="analysis_3" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.MainPanel', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.6975</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.MainPanel → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_INVOCATION_OBJECT_PARAMETER</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">Main.BypassMain</td>
+                <td class="score">0.3152</td>
+                <td class="cochange">2</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.MainPanel → Main.BypassMain</span><br><span class="coupling">—</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#4</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1262</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">Main.MainPanel → Main.Utils → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_PARAMETER_TYPE, METHOD_INVOCATION_OBJECT_PARAMETER, VARIABLE_FIELD_DECLARATION</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_4">
+      <button class="src-header" onclick="toggleBlock(4)">
+        <span class="src-name">burp.IContextMenuFactory</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.1253</span>
+          <span class="badge">Affected 4</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_4">▶</span>
+      </button>
+      <div class="src-body" id="body_4" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IContextMenuFactory</strong></label>
+          <textarea class="analysis-field" id="analysis_4" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IContextMenuFactory', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7397</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IContextMenuFactory → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">Main.BypassMain</td>
+                <td class="score">0.2517</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IContextMenuFactory → Main.BypassMain</span><br><span class="coupling">INTERFACE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#4</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1339</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IContextMenuFactory → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_5">
+      <button class="src-header" onclick="toggleBlock(5)">
+        <span class="src-name">burp.IProxyListener</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.1253</span>
+          <span class="badge">Affected 4</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_5">▶</span>
+      </button>
+      <div class="src-body" id="body_5" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IProxyListener</strong></label>
+          <textarea class="analysis-field" id="analysis_5" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IProxyListener', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7397</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IProxyListener → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">Main.BypassMain</td>
+                <td class="score">0.2517</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IProxyListener → Main.BypassMain</span><br><span class="coupling">INTERFACE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#4</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1339</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IProxyListener → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_6">
+      <button class="src-header" onclick="toggleBlock(6)">
+        <span class="src-name">burp.IIntruderPayloadProcessor</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.0920</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_6">▶</span>
+      </button>
+      <div class="src-body" id="body_6" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IIntruderPayloadProcessor</strong></label>
+          <textarea class="analysis-field" id="analysis_6" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IIntruderPayloadProcessor', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.9246</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IIntruderPayloadProcessor → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1673</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IIntruderPayloadProcessor → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_7">
+      <button class="src-header" onclick="toggleBlock(7)">
+        <span class="src-name">burp.IHttpRequestResponse</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.0493</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 1</span>
+        </span>
+        <span class="chevron" id="chev_7">▶</span>
+      </button>
+      <div class="src-body" id="body_7" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IHttpRequestResponse</strong></label>
+          <textarea class="analysis-field" id="analysis_7" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IHttpRequestResponse', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7452</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IHttpRequestResponse → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.3041</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IHttpRequestResponse → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_8">
+      <button class="src-header" onclick="toggleBlock(8)">
+        <span class="src-name">burp.ITempFile</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.0300</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_8">▶</span>
+      </button>
+      <div class="src-body" id="body_8" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.ITempFile</strong></label>
+          <textarea class="analysis-field" id="analysis_8" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.ITempFile', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.8722</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.ITempFile → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1578</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.ITempFile → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_9">
+      <button class="src-header" onclick="toggleBlock(9)">
+        <span class="src-name">burp.ITextEditor</span>
+        <span class="src-meta">
+          <span class="badge">Score 2.0300</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_9">▶</span>
+      </button>
+      <div class="src-body" id="body_9" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.ITextEditor</strong></label>
+          <textarea class="analysis-field" id="analysis_9" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.ITextEditor', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.8722</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.ITextEditor → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1578</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.ITextEditor → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_10">
+      <button class="src-header" onclick="toggleBlock(10)">
+        <span class="src-name">burp.IHttpListener</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.9282</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_10">▶</span>
+      </button>
+      <div class="src-body" id="body_10" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IHttpListener</strong></label>
+          <textarea class="analysis-field" id="analysis_10" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IHttpListener', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7859</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IHttpListener → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1422</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IHttpListener → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_11">
+      <button class="src-header" onclick="toggleBlock(11)">
+        <span class="src-name">burp.IScannerListener</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.9282</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_11">▶</span>
+      </button>
+      <div class="src-body" id="body_11" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IScannerListener</strong></label>
+          <textarea class="analysis-field" id="analysis_11" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IScannerListener', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7859</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IScannerListener → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1422</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IScannerListener → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_12">
+      <button class="src-header" onclick="toggleBlock(12)">
+        <span class="src-name">burp.ISessionHandlingAction</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.9282</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_12">▶</span>
+      </button>
+      <div class="src-body" id="body_12" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.ISessionHandlingAction</strong></label>
+          <textarea class="analysis-field" id="analysis_12" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.ISessionHandlingAction', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7859</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.ISessionHandlingAction → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1422</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.ISessionHandlingAction → burp.IHttpRequestResponse → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_13">
+      <button class="src-header" onclick="toggleBlock(13)">
+        <span class="src-name">burp.IScanIssue</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8801</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_13">▶</span>
+      </button>
+      <div class="src-body" id="body_13" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IScanIssue</strong></label>
+          <textarea class="analysis-field" id="analysis_13" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IScanIssue', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7452</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IScanIssue → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1349</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IScanIssue → burp.IHttpRequestResponse → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_14">
+      <button class="src-header" onclick="toggleBlock(14)">
+        <span class="src-name">burp.IBurpExtender</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8800</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_14">▶</span>
+      </button>
+      <div class="src-body" id="body_14" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IBurpExtender</strong></label>
+          <textarea class="analysis-field" id="analysis_14" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IBurpExtender', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7451</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IBurpExtender → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1348</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IBurpExtender → burp.BurpExtender → burp.IExtensionHelpers</span><br><span class="coupling">INTERFACE, VARIABLE_FIELD_DECLARATION</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_15">
+      <button class="src-header" onclick="toggleBlock(15)">
+        <span class="src-name">burp.IMenuItemHandler</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8800</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_15">▶</span>
+      </button>
+      <div class="src-body" id="body_15" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IMenuItemHandler</strong></label>
+          <textarea class="analysis-field" id="analysis_15" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IMenuItemHandler', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7451</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IMenuItemHandler → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1348</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IMenuItemHandler → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_16">
+      <button class="src-header" onclick="toggleBlock(16)">
+        <span class="src-name">burp.IHttpRequestResponseWithMarkers</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8755</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_16">▶</span>
+      </button>
+      <div class="src-body" id="body_16" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IHttpRequestResponseWithMarkers</strong></label>
+          <textarea class="analysis-field" id="analysis_16" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IHttpRequestResponseWithMarkers', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7414</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IHttpRequestResponseWithMarkers → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1342</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IHttpRequestResponseWithMarkers → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_17">
+      <button class="src-header" onclick="toggleBlock(17)">
+        <span class="src-name">burp.IScanQueueItem</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8755</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_17">▶</span>
+      </button>
+      <div class="src-body" id="body_17" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IScanQueueItem</strong></label>
+          <textarea class="analysis-field" id="analysis_17" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IScanQueueItem', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7414</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IScanQueueItem → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1342</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IScanQueueItem → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_18">
+      <button class="src-header" onclick="toggleBlock(18)">
+        <span class="src-name">burp.IIntruderPayloadGeneratorFactory</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8736</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_18">▶</span>
+      </button>
+      <div class="src-body" id="body_18" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IIntruderPayloadGeneratorFactory</strong></label>
+          <textarea class="analysis-field" id="analysis_18" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IIntruderPayloadGeneratorFactory', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7397</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IIntruderPayloadGeneratorFactory → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1339</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IIntruderPayloadGeneratorFactory → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_19">
+      <button class="src-header" onclick="toggleBlock(19)">
+        <span class="src-name">burp.IMessageEditorTabFactory</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8736</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_19">▶</span>
+      </button>
+      <div class="src-body" id="body_19" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IMessageEditorTabFactory</strong></label>
+          <textarea class="analysis-field" id="analysis_19" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IMessageEditorTabFactory', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7397</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IMessageEditorTabFactory → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1339</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IMessageEditorTabFactory → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_20">
+      <button class="src-header" onclick="toggleBlock(20)">
+        <span class="src-name">burp.IScannerInsertionPointProvider</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8736</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_20">▶</span>
+      </button>
+      <div class="src-body" id="body_20" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IScannerInsertionPointProvider</strong></label>
+          <textarea class="analysis-field" id="analysis_20" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IScannerInsertionPointProvider', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7397</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IScannerInsertionPointProvider → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1339</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IScannerInsertionPointProvider → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_21">
+      <button class="src-header" onclick="toggleBlock(21)">
+        <span class="src-name">burp.IScannerCheck</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8463</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_21">▶</span>
+      </button>
+      <div class="src-body" id="body_21" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IScannerCheck</strong></label>
+          <textarea class="analysis-field" id="analysis_21" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IScannerCheck', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7166</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IScannerCheck → burp.IBurpExtenderCallbacks</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1297</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IScannerCheck → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">PARAMETERIZED_TYPE, METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_22">
+      <button class="src-header" onclick="toggleBlock(22)">
+        <span class="src-name">burp.IMessageEditorController</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8282</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_22">▶</span>
+      </button>
+      <div class="src-body" id="body_22" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IMessageEditorController</strong></label>
+          <textarea class="analysis-field" id="analysis_22" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IMessageEditorController', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.7013</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IMessageEditorController → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_PARAMETER_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1269</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IMessageEditorController → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_PARAMETER_TYPE, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_23">
+      <button class="src-header" onclick="toggleBlock(23)">
+        <span class="src-name">burp.IHttpRequestResponsePersisted</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8240</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_23">▶</span>
+      </button>
+      <div class="src-body" id="body_23" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IHttpRequestResponsePersisted</strong></label>
+          <textarea class="analysis-field" id="analysis_23" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IHttpRequestResponsePersisted', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.6977</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IHttpRequestResponsePersisted → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1263</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IHttpRequestResponsePersisted → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_24">
+      <button class="src-header" onclick="toggleBlock(24)">
+        <span class="src-name">burp.IMessageEditor</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.8240</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_24">▶</span>
+      </button>
+      <div class="src-body" id="body_24" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IMessageEditor</strong></label>
+          <textarea class="analysis-field" id="analysis_24" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IMessageEditor', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.6977</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IMessageEditor → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1263</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IMessageEditor → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_25">
+      <button class="src-header" onclick="toggleBlock(25)">
+        <span class="src-name">Main.BypassTable</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.7980</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 7</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_25">▶</span>
+      </button>
+      <div class="src-body" id="body_25" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.BypassTable</strong></label>
+          <textarea class="analysis-field" id="analysis_25" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.BypassTable', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.6757</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.BypassTable → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_INVOCATION_OBJECT_PARAMETER</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.1223</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">Main.BypassTable → burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_INVOCATION_OBJECT_PARAMETER, METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_26">
+      <button class="src-header" onclick="toggleBlock(26)">
+        <span class="src-name">burp.IExtensionHelpers</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.6629</span>
+          <span class="badge">Affected 2</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 1</span>
+        </span>
+        <span class="chevron" id="chev_26">▶</span>
+      </button>
+      <div class="src-body" id="body_26" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IExtensionHelpers</strong></label>
+          <textarea class="analysis-field" id="analysis_26" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IExtensionHelpers', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.6629</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IExtensionHelpers → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_27">
+      <button class="src-header" onclick="toggleBlock(27)">
+        <span class="src-name">burp.IRequestInfo</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.4029</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_27">▶</span>
+      </button>
+      <div class="src-body" id="body_27" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IRequestInfo</strong></label>
+          <textarea class="analysis-field" id="analysis_27" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IRequestInfo', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.2577</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IRequestInfo → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.1452</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IRequestInfo → Main.BypassMain$Run_request → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_INVOCATION_ATOMIC_PARAMETER, METHOD_INVOCATION_OBJECT_PARAMETER</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_28">
+      <button class="src-header" onclick="toggleBlock(28)">
+        <span class="src-name">burp.IResponseInfo</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.4029</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_28">▶</span>
+      </button>
+      <div class="src-body" id="body_28" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IResponseInfo</strong></label>
+          <textarea class="analysis-field" id="analysis_28" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IResponseInfo', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.2577</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IResponseInfo → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.1452</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IResponseInfo → Main.BypassMain$Run_request → burp.IBurpExtenderCallbacks</span><br><span class="coupling">VARIABLE_DECLARATION_STATEMENT, METHOD_INVOCATION_ATOMIC_PARAMETER, METHOD_INVOCATION_OBJECT_PARAMETER</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_29">
+      <button class="src-header" onclick="toggleBlock(29)">
+        <span class="src-name">Main.BaseRequest</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.3523</span>
+          <span class="badge">Affected 2</span>
+          <span class="badge">Communities 3</span>
+          <span class="badge">Waves 1</span>
+        </span>
+        <span class="chevron" id="chev_29">▶</span>
+      </button>
+      <div class="src-body" id="body_29" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.BaseRequest</strong></label>
+          <textarea class="analysis-field" id="analysis_29" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.BaseRequest', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">Main.BypassMain</td>
+                <td class="score">0.3523</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">Main.BaseRequest → Main.BypassMain</span><br><span class="coupling">PARAMETERIZED_TYPE, OBJECT_PARAMETER_COUPLING</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_30">
+      <button class="src-header" onclick="toggleBlock(30)">
+        <span class="src-name">burp.IScannerInsertionPoint</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.3285</span>
+          <span class="badge">Affected 3</span>
+          <span class="badge">Communities 6</span>
+          <span class="badge">Waves 2</span>
+        </span>
+        <span class="chevron" id="chev_30">▶</span>
+      </button>
+      <div class="src-body" id="body_30" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IScannerInsertionPoint</strong></label>
+          <textarea class="analysis-field" id="analysis_30" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IScannerInsertionPoint', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.2101</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IScannerInsertionPoint → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              <tr>
+                <td class="rank">#3</td>
+                <td class="vname">burp.IBurpExtenderCallbacks</td>
+                <td class="score">0.1184</td>
+                <td class="cochange">—</td>
+                <td class="dist">2</td>
+                <td class="path-cell"><span class="path">burp.IScannerInsertionPoint → burp.IScannerCheck → burp.IBurpExtenderCallbacks</span><br><span class="coupling">METHOD_PARAMETER_TYPE, PARAMETERIZED_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_31">
+      <button class="src-header" onclick="toggleBlock(31)">
+        <span class="src-name">burp.IBurpExtenderCallbacks</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.2129</span>
+          <span class="badge">Affected 2</span>
+          <span class="badge">Communities 5</span>
+          <span class="badge">Waves 1</span>
+        </span>
+        <span class="chevron" id="chev_31">▶</span>
+      </button>
+      <div class="src-body" id="body_31" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IBurpExtenderCallbacks</strong></label>
+          <textarea class="analysis-field" id="analysis_31" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IBurpExtenderCallbacks', this.value)"></textarea>
+        </div>
+            <table class="affected-table">
+              <thead><tr>
+                <th>Rank</th><th>Affected Class</th><th>Score</th>
+                <th>Co-Change</th><th>Distance</th><th>Path / Coupling Types</th>
+              </tr></thead>
+              <tbody>
+              <tr>
+                <td class="rank">#2</td>
+                <td class="vname">burp.IExtensionHelpers</td>
+                <td class="score">0.2129</td>
+                <td class="cochange">1</td>
+                <td class="dist">1</td>
+                <td class="path-cell"><span class="path">burp.IBurpExtenderCallbacks → burp.IExtensionHelpers</span><br><span class="coupling">METHOD_RETURN_TYPE</span></td>
+              </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="src-block" id="src_32">
+      <button class="src-header" onclick="toggleBlock(32)">
+        <span class="src-name">Main.Bypass</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 4</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_32">▶</span>
+      </button>
+      <div class="src-body" id="body_32" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.Bypass</strong></label>
+          <textarea class="analysis-field" id="analysis_32" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.Bypass', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_33">
+      <button class="src-header" onclick="toggleBlock(33)">
+        <span class="src-name">Main.BypassMain</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 3</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_33">▶</span>
+      </button>
+      <div class="src-body" id="body_33" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.BypassMain</strong></label>
+          <textarea class="analysis-field" id="analysis_33" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.BypassMain', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_34">
+      <button class="src-header" onclick="toggleBlock(34)">
+        <span class="src-name">Main.BypassTableModel</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 4</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_34">▶</span>
+      </button>
+      <div class="src-body" id="body_34" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.BypassTableModel</strong></label>
+          <textarea class="analysis-field" id="analysis_34" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.BypassTableModel', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_35">
+      <button class="src-header" onclick="toggleBlock(35)">
+        <span class="src-name">Main.DiffPage</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 1</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_35">▶</span>
+      </button>
+      <div class="src-body" id="body_35" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.DiffPage</strong></label>
+          <textarea class="analysis-field" id="analysis_35" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.DiffPage', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_36">
+      <button class="src-header" onclick="toggleBlock(36)">
+        <span class="src-name">Main.URLParamEncoder</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 0</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_36">▶</span>
+      </button>
+      <div class="src-body" id="body_36" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>Main.URLParamEncoder</strong></label>
+          <textarea class="analysis-field" id="analysis_36" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('Main.URLParamEncoder', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_37">
+      <button class="src-header" onclick="toggleBlock(37)">
+        <span class="src-name">burp.IContextMenuInvocation</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 4</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_37">▶</span>
+      </button>
+      <div class="src-body" id="body_37" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IContextMenuInvocation</strong></label>
+          <textarea class="analysis-field" id="analysis_37" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IContextMenuInvocation', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_38">
+      <button class="src-header" onclick="toggleBlock(38)">
+        <span class="src-name">burp.IInterceptedProxyMessage</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 3</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_38">▶</span>
+      </button>
+      <div class="src-body" id="body_38" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IInterceptedProxyMessage</strong></label>
+          <textarea class="analysis-field" id="analysis_38" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IInterceptedProxyMessage', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_39">
+      <button class="src-header" onclick="toggleBlock(39)">
+        <span class="src-name">burp.IIntruderAttack</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 1</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_39">▶</span>
+      </button>
+      <div class="src-body" id="body_39" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IIntruderAttack</strong></label>
+          <textarea class="analysis-field" id="analysis_39" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IIntruderAttack', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_40">
+      <button class="src-header" onclick="toggleBlock(40)">
+        <span class="src-name">burp.IIntruderPayloadGenerator</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 1</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_40">▶</span>
+      </button>
+      <div class="src-body" id="body_40" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IIntruderPayloadGenerator</strong></label>
+          <textarea class="analysis-field" id="analysis_40" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IIntruderPayloadGenerator', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+    <div class="src-block" id="src_41">
+      <button class="src-header" onclick="toggleBlock(41)">
+        <span class="src-name">burp.IMessageEditorTab</span>
+        <span class="src-meta">
+          <span class="badge">Score 1.0000</span>
+          <span class="badge">Affected 1</span>
+          <span class="badge">Communities 1</span>
+          <span class="badge">Waves 0</span>
+        </span>
+        <span class="chevron" id="chev_41">▶</span>
+      </button>
+      <div class="src-body" id="body_41" style="display:none">
+        <div class="analysis-row">
+          <label>Analysis of <strong>burp.IMessageEditorTab</strong></label>
+          <textarea class="analysis-field" id="analysis_41" rows="3"
+            placeholder="Enter your analysis for this class..."
+            oninput="saveAnalysis('burp.IMessageEditorTab', this.value)"></textarea>
+        </div>
+            <p class="no-affected">No propagated classes (source only).</p>
+      </div>
+    </div>
+
+  <!-- General analysis -->
+  <div class="general-section">
+    <h2>📝 General Analysis</h2>
+    <textarea id="generalAnalysis" rows="5"
+      placeholder="Write your overall analysis of this repository's change propagation results..."
+      oninput="localStorage.setItem('general_0x727_BypassPro', this.value)"></textarea>
+    <div class="submit-row">
+      <span class="submit-status" id="submitStatus">✓ Saved successfully!</span>
+      <button class="btn" onclick="exportCSV()">📥 Export CSV</button>
+      <button class="btn btn-primary" onclick="submitAll()">✅ Submit All</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const REPO = '0x727_BypassPro';
+
+// ── Restore saved state ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const email = localStorage.getItem('email_' + REPO) || '';
+  if (email) document.getElementById('userEmail').value = email;
+  const gen = localStorage.getItem('general_' + REPO) || '';
+  if (gen) document.getElementById('generalAnalysis').value = gen;
+  // Restore per-class analysis
+  document.querySelectorAll('.analysis-field').forEach(ta => {
+    const key = ta.id.replace('analysis_', '');
+    const saved = localStorage.getItem('cls_analysis_' + REPO + '__' + key);
+    if (saved) ta.value = saved;
+  });
+});
+
+function saveEmail(v) {
+  localStorage.setItem('email_' + REPO, v);
+  document.getElementById('userEmail').classList.remove('invalid');
+}
+
+function saveAnalysis(srcKey, value) {
+  localStorage.setItem('cls_analysis_' + REPO + '__' + srcKey, value);
+}
+
+// ── Accordion ────────────────────────────────────────────────────────────────
+function toggleBlock(idx) {
+  const body = document.getElementById('body_' + idx);
+  const chev = document.getElementById('chev_' + idx);
+  const hdr  = body.previousElementSibling;
+  const open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  chev.classList.toggle('open', !open);
+  hdr.classList.toggle('open', !open);
+}
+
+// ── Communities panel ────────────────────────────────────────────────────────
+const COMMUNITIES = [{"id": 1, "affected": 3, "total": 28, "avg_score": 0.6939}, {"id": 2, "affected": 2, "total": 14, "avg_score": 0.3009}, {"id": 3, "affected": 1, "total": 13, "avg_score": 0.2511}, {"id": 4, "affected": 3, "total": 8, "avg_score": 0.5339}, {"id": 5, "affected": 2, "total": 7, "avg_score": 0.6754}, {"id": 8, "affected": 1, "total": 4, "avg_score": 0.2511}, {"id": 12, "affected": 1, "total": 2, "avg_score": 1.0}, {"id": 17, "affected": 1, "total": 2, "avg_score": 1.0}, {"id": 6, "affected": 1, "total": 5, "avg_score": 1.0}, {"id": 15, "affected": 1, "total": 2, "avg_score": 1.0}, {"id": 16, "affected": 1, "total": 2, "avg_score": 1.0}, {"id": 10, "affected": 1, "total": 2, "avg_score": 1.0}, {"id": 11, "affected": 1, "total": 2, "avg_score": 1.0}, {"id": 9, "affected": 1, "total": 3, "avg_score": 1.0}, {"id": 7, "affected": 1, "total": 5, "avg_score": 1.0}, {"id": 13, "affected": 1, "total": 2, "avg_score": 1.0}, {"id": 14, "affected": 1, "total": 2, "avg_score": 1.0}];
+
+function toggleCommunities() {
+  const panel = document.getElementById('commPanel');
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open') && !document.getElementById('commGrid').children.length) {
+    renderCommunities();
+  }
+}
+
+function renderCommunities() {
+  // Aggregate unique communities
+  const map = {};
+  COMMUNITIES.forEach(c => {
+    if (!map[c.id]) map[c.id] = { id: c.id, affected: 0, total: c.total, scores: [] };
+    map[c.id].affected = Math.max(map[c.id].affected, c.affected);
+    map[c.id].scores.push(c.avg_score);
+  });
+  const grid = document.getElementById('commGrid');
+  Object.values(map).sort((a,b) => a.id - b.id).forEach(c => {
+    const avg = c.scores.reduce((s,x) => s+x, 0) / c.scores.length;
+    const chip = document.createElement('div');
+    chip.className = 'comm-chip';
+    chip.innerHTML = `<span class="cid">C${c.id}</span> <span class="cdata">${c.affected}/${c.total} classes &nbsp;·&nbsp; avg ${avg.toFixed(3)}</span>`;
+    grid.appendChild(chip);
+  });
+}
+
+// ── Submit / Export ──────────────────────────────────────────────────────────
+function submitAll() {
+  const email = document.getElementById('userEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('userEmail').classList.add('invalid');
+    document.getElementById('userEmail').focus();
+    alert('Please fill in a valid email before submitting.');
+    return;
+  }
+  const general = document.getElementById('generalAnalysis').value;
+  const ts = new Date().toISOString();
+  // Save general record
+  localStorage.setItem('ocpa_vote_' + REPO + '__general', JSON.stringify({
+    Email: email, Repository: REPO, Type: 'general',
+    Comment: general, Timestamp: ts
+  }));
+  // Save per-class analyses
+  document.querySelectorAll('.src-block').forEach((block, idx) => {
+    const srcName = block.querySelector('.src-name').textContent;
+    const analysis = document.getElementById('analysis_' + idx)?.value || '';
+    if (analysis.trim()) {
+      localStorage.setItem('ocpa_vote_' + REPO + '__cls__' + idx, JSON.stringify({
+        Email: email, Repository: REPO, Source_Class: srcName,
+        Type: 'class', Comment: analysis, Timestamp: ts
+      }));
+    }
+  });
+  const status = document.getElementById('submitStatus');
+  status.style.display = 'inline';
+  setTimeout(() => { status.style.display = 'none'; }, 3000);
+}
+
+function exportCSV() {
+  const email = document.getElementById('userEmail').value.trim();
+  const rows = [['Repository','Email','Source_Vertex','Affected_Class','Rank','Score','CoChange','Distance','Path','Coupling_Types','Class_Analysis']];
+  document.querySelectorAll('.src-block').forEach((block, idx) => {
+    const srcName = block.querySelector('.src-name').textContent;
+    const analysis = document.getElementById('analysis_' + idx)?.value || '';
+    const trs = block.querySelectorAll('.affected-table tbody tr');
+    if (trs.length === 0) {
+      rows.push([REPO, email, srcName, '', '', '', '', '', '', '', analysis]);
+    } else {
+      trs.forEach((tr, ri) => {
+        const cells = tr.querySelectorAll('td');
+        const path = cells[5]?.querySelector('.path')?.textContent || '';
+        const coupling = cells[5]?.querySelector('.coupling')?.textContent || '';
+        rows.push([REPO, email, srcName,
+          cells[1]?.textContent||'', cells[0]?.textContent||'',
+          cells[2]?.textContent||'', cells[3]?.textContent||'',
+          cells[4]?.textContent||'', path, coupling,
+          ri === 0 ? analysis : ''
+        ]);
+      });
+    }
+  });
+  const gen = document.getElementById('generalAnalysis').value;
+  rows.push([REPO, email, 'GENERAL_ANALYSIS', '', '', '', '', '', '', '', gen]);
+  const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('
+');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ocpa_0x727_BypassPro.csv';
+  a.click();
+}
+</script>
+</body>
+</html>
