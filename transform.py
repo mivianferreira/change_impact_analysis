@@ -427,7 +427,12 @@ def parse_and_split(html_file):
         detail_pages_created.append(detail_fname)
 
         # Build new lightweight src-block (no table, just link to detail page)
-        n_affected = len(rows)
+        # Prefer count from rows (original HTML); fall back to badge "Affected N"
+        if rows:
+            n_affected = len(rows)
+        else:
+            badge_m = re.search(r'Affected\s+(\d+)', badges_html)
+            n_affected = int(badge_m.group(1)) if badge_m else len(cards)
         detail_link = f'details/{detail_fname}'
         new_body = f'''      <div class="src-body" id="body_{idx}" style="display:none">
         {analysis_block}
