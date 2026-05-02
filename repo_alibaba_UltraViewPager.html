@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OCPA — alibaba/UltraViewPager</title>
 <style>
+
 :root {
   --bg: #0d1117; --surface: #161b22; --surface2: #21262d;
   --border: #30363d; --text: #e6edf3; --text2: #8b949e;
@@ -13,12 +14,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.5; }
 
-/* ── Header ── */
-.page-header {
-  background: var(--surface); border-bottom: 1px solid var(--border);
-  padding: 20px 32px; position: sticky; top: 0; z-index: 100;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
-}
+/* ── Sticky page header ── */
+.page-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 20px 32px; position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .header-title { flex: 1; min-width: 200px; }
 .header-title .back { color: var(--text2); font-size: 12px; text-decoration: none; display: block; margin-bottom: 2px; }
 .header-title .back:hover { color: var(--accent); }
@@ -26,7 +23,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .header-title .algo { color: var(--text2); font-size: 12px; }
 .header-email { display: flex; flex-direction: column; gap: 4px; min-width: 260px; }
 .header-email label { font-size: 12px; color: var(--text2); }
-.header-email label span { color: var(--red); } 
+.header-email label span { color: var(--red); }
 .header-email input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; color: var(--text); font-size: 13px; width: 100%; }
 .header-email input:focus { outline: none; border-color: var(--accent); }
 .header-email input.invalid { border-color: var(--red); }
@@ -37,21 +34,15 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .btn-primary:hover { background: #79c0ff; border-color: #79c0ff; color: #0d1117; }
 
 /* ── Communities panel ── */
-.communities-panel {
-  display: none; background: var(--surface); border-bottom: 1px solid var(--border);
-  padding: 16px 32px;
-}
+.communities-panel { display: none; background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 32px; }
 .communities-panel.open { display: block; }
 .communities-panel h3 { color: var(--text2); font-size: 13px; margin-bottom: 12px; }
 .comm-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-.comm-chip {
-  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
-  padding: 6px 12px; font-size: 12px;
-}
+.comm-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 12px; }
 .comm-chip .cid { color: var(--accent); font-weight: 600; }
 .comm-chip .cdata { color: var(--text2); }
 
-/* ── Main content ── */
+/* ── Main container ── */
 .container { max-width: 1100px; margin: 0 auto; padding: 28px 32px; }
 .summary-bar { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
 .summary-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; text-align: center; flex: 1; min-width: 120px; }
@@ -60,12 +51,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
 /* ── Source class accordion ── */
 .src-block { margin-bottom: 10px; }
-.src-header {
-  width: 100%; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px 20px; display: flex; align-items: center;
-  gap: 12px; cursor: pointer; text-align: left; color: var(--text);
-  transition: border-color .2s;
-}
+.src-header { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; cursor: pointer; text-align: left; color: var(--text); transition: border-color .2s; }
 .src-header:hover { border-color: var(--accent); }
 .src-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-color: var(--accent); }
 .src-name { font-size: 14px; font-weight: 600; flex: 1; word-break: break-all; }
@@ -73,56 +59,29 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 .badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-size: 11px; color: var(--text2); white-space: nowrap; }
 .chevron { color: var(--text2); font-size: 12px; transition: transform .2s; flex-shrink: 0; }
 .chevron.open { transform: rotate(90deg); }
-.src-body {
-  background: var(--surface); border: 1px solid var(--accent);
-  border-top: none; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;
-  padding: 16px 20px;
-}
-
-/* ── Analysis textarea inside accordion ── */
+.src-body { background: var(--surface); border: 1px solid var(--accent); border-top: none; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding: 16px 20px; }
 .analysis-row { margin-bottom: 14px; }
 .analysis-row label { display: block; font-size: 12px; color: var(--text2); margin-bottom: 6px; }
-.analysis-field {
-  width: 100%; background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 13px;
-  resize: vertical; font-family: inherit;
-}
+.analysis-field { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 13px; resize: vertical; font-family: inherit; }
 .analysis-field:focus { outline: none; border-color: var(--accent); }
-
-/* ── Affected classes table ── */
-.affected-table { width: 100%; border-collapse: collapse; font-size: 12px; border-radius: 8px; overflow: hidden; }
-.affected-table thead tr { background: var(--surface2); color: var(--text2); }
-.affected-table th, .affected-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-.affected-table tr:last-child td { border-bottom: none; }
-.affected-table tbody tr:hover td { background: var(--surface2); }
-.rank { color: var(--text2); width: 40px; text-align: center; }
-.score { text-align: right; color: var(--green); font-weight: 600; }
-.cochange, .dist { text-align: center; }
-.path { color: var(--accent); font-size: 11px; }
-.coupling { color: var(--text2); font-size: 10px; font-style: italic; margin-top: 2px; }
-.no-affected { color: var(--text2); font-size: 13px; padding: 8px 0; }
+.detail-link { display: inline-block; margin-top: 8px; padding: 8px 18px; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; color: var(--accent); font-size: 13px; text-decoration: none; font-weight: 600; }
+.detail-link:hover { border-color: var(--accent); background: #1f3a5f; }
+.progress-note { font-size: 11px; color: var(--text2); margin-top: 4px; }
 
 /* ── General analysis section ── */
-.general-section {
-  margin-top: 32px; background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px; padding: 24px;
-}
+.general-section { margin-top: 32px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
 .general-section h2 { font-size: 16px; color: var(--accent); margin-bottom: 16px; }
-.general-section textarea {
-  width: 100%; background: var(--surface2); border: 1px solid var(--border);
-  border-radius: 6px; padding: 12px; color: var(--text); font-size: 14px;
-  resize: vertical; font-family: inherit; min-height: 100px;
-}
+.general-section textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 12px; color: var(--text); font-size: 14px; resize: vertical; font-family: inherit; min-height: 100px; }
 .general-section textarea:focus { outline: none; border-color: var(--accent); }
 .submit-row { margin-top: 16px; display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
-.submit-status { font-size: 13px; color: var(--green); display: none; }
+.submit-status-msg { font-size: 13px; color: var(--green); }
 
-.detail-link {
-  display:inline-block; margin-top:8px; padding:8px 18px;
-  background:var(--surface2); border:1px solid var(--border); border-radius:7px;
-  color:var(--accent); font-size:13px; text-decoration:none; font-weight:600;
+@media (max-width: 768px) {
+  .page-header { padding: 12px 16px; }
+  .container { padding: 16px; }
+  .src-meta { display: none; }
 }
-.detail-link:hover { border-color:var(--accent); background:#1f3a5f; }
+
 </style>
 </head>
 <body>
@@ -132,7 +91,7 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
   <div class="header-title">
     <a class="back" href="index.html">← Back to repository list</a>
     <h1>📊 alibaba/UltraViewPager</h1>
-    <div class="algo">Link Communities &nbsp;·&nbsp; 19 source classes analysed</div>
+    <div class="algo">Link Communities &nbsp;·&nbsp; 16 source classes analysed</div>
   </div>
   <div class="header-email">
     <label>Email <span>*</span> (required)</label>
@@ -156,479 +115,441 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 
   <!-- Summary bar -->
   <div class="summary-bar">
-    <div class="summary-card"><div class="val">19</div><div class="lbl">Source Classes</div></div>
-    <div class="summary-card"><div class="val">83</div><div class="lbl">Total Affected</div></div>
-    <div class="summary-card"><div class="val">4.47</div><div class="lbl">Max Impact Score</div></div>
-    <div class="summary-card"><div class="val">46.0</div><div class="lbl">Cumulative Score</div></div>
+    <div class="summary-card"><div class="val">16</div><div class="lbl">Source Classes</div></div>
+    <div class="summary-card"><div class="val">172</div><div class="lbl">Total Affected</div></div>
+    <div class="summary-card"><div class="val">119.17</div><div class="lbl">Max Impact Score</div></div>
+    <div class="summary-card"><div class="val">897.9</div><div class="lbl">Cumulative Score</div></div>
   </div>
 
   <!-- Source class accordion -->
-        <div class="src-block" id="src_0">
-      <button class="src-header" onclick="toggleBlock(0)">
-        <span class="src-name">com.tmall.ultraviewpager.TimerHandler</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 4.4702</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 1</span>
-        </span></span>
-        <span class="chevron" id="chev_0">▶</span>
-      </button>
-      <div class="src-body" id="body_0" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.TimerHandler</strong></label>
-          <textarea class="analysis-field" id="analysis_0" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.TimerHandler', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__0.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  <div class="src-block" id="src_0">
+    <button class="src-header" onclick="toggleBlock(0)">
+      <span class="src-name">com.tmall.ultraviewpager.TimerHandler</span>
+      <span class="src-meta">
+        <span class="badge">Score 119.1734</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 2</span>
+      </span>
+      <span class="chevron" id="chev_0">▶</span>
+    </button>
+    <div class="src-body" id="body_0" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.TimerHandler</strong></label>
+        <textarea class="analysis-field" id="analysis_0" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.TimerHandler', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_TimerHandler"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_TimerHandler.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_1">
-      <button class="src-header" onclick="toggleBlock(1)">
-        <span class="src-name">com.tmall.ultraviewpager.IUltraViewPagerFeature</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 3.8610</span>
-          <span class="badge">Affected 5</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 1</span>
-        </span></span>
-        <span class="chevron" id="chev_1">▶</span>
-      </button>
-      <div class="src-body" id="body_1" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.IUltraViewPagerFeature</strong></label>
-          <textarea class="analysis-field" id="analysis_1" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.IUltraViewPagerFeature', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__1.html" target="_blank">
-          📋 View 4 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_1">
+    <button class="src-header" onclick="toggleBlock(1)">
+      <span class="src-name">com.tmall.ultraviewpager.transformer.UltraVerticalTransformer</span>
+      <span class="src-meta">
+        <span class="badge">Score 99.6349</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 3</span>
+      </span>
+      <span class="chevron" id="chev_1">▶</span>
+    </button>
+    <div class="src-body" id="body_1" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.transformer.UltraVerticalTransformer</strong></label>
+        <textarea class="analysis-field" id="analysis_1" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.transformer.UltraVerticalTransformer', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_transformer_UltraVerticalTransformer"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_transformer_UltraVerticalTransformer.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_2">
-      <button class="src-header" onclick="toggleBlock(2)">
-        <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerAdapter</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 3.8201</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 1</span>
-        </span></span>
-        <span class="chevron" id="chev_2">▶</span>
-      </button>
-      <div class="src-body" id="body_2" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerAdapter</strong></label>
-          <textarea class="analysis-field" id="analysis_2" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerAdapter', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__2.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_2">
+    <button class="src-header" onclick="toggleBlock(2)">
+      <span class="src-name">com.tmall.ultraviewpager.UltraViewPager</span>
+      <span class="src-meta">
+        <span class="badge">Score 88.2102</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 2</span>
+      </span>
+      <span class="chevron" id="chev_2">▶</span>
+    </button>
+    <div class="src-body" id="body_2" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPager</strong></label>
+        <textarea class="analysis-field" id="analysis_2" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPager', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_UltraViewPager"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_UltraViewPager.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_3">
-      <button class="src-header" onclick="toggleBlock(3)">
-        <span class="src-name">com.tmall.ultraviewpager.sample.PagerActivity</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 3.5804</span>
-          <span class="badge">Affected 5</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 1</span>
-        </span></span>
-        <span class="chevron" id="chev_3">▶</span>
-      </button>
-      <div class="src-body" id="body_3" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.sample.PagerActivity</strong></label>
-          <textarea class="analysis-field" id="analysis_3" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.sample.PagerActivity', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__3.html" target="_blank">
-          📋 View 4 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_3">
+    <button class="src-header" onclick="toggleBlock(3)">
+      <span class="src-name">com.tmall.ultraviewpager.IUltraViewPagerFeature</span>
+      <span class="src-meta">
+        <span class="badge">Score 80.1759</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 2</span>
+      </span>
+      <span class="chevron" id="chev_3">▶</span>
+    </button>
+    <div class="src-body" id="body_3" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.IUltraViewPagerFeature</strong></label>
+        <textarea class="analysis-field" id="analysis_3" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.IUltraViewPagerFeature', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_IUltraViewPagerFeature"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_IUltraViewPagerFeature.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_4">
-      <button class="src-header" onclick="toggleBlock(4)">
-        <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerView</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 3.4890</span>
-          <span class="badge">Affected 5</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 1</span>
-        </span></span>
-        <span class="chevron" id="chev_4">▶</span>
-      </button>
-      <div class="src-body" id="body_4" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerView</strong></label>
-          <textarea class="analysis-field" id="analysis_4" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerView', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__4.html" target="_blank">
-          📋 View 4 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_4">
+    <button class="src-header" onclick="toggleBlock(4)">
+      <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerView</span>
+      <span class="src-meta">
+        <span class="badge">Score 76.7986</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 2</span>
+      </span>
+      <span class="chevron" id="chev_4">▶</span>
+    </button>
+    <div class="src-body" id="body_4" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerView</strong></label>
+        <textarea class="analysis-field" id="analysis_4" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerView', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_UltraViewPagerView"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_UltraViewPagerView.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_5">
-      <button class="src-header" onclick="toggleBlock(5)">
-        <span class="src-name">com.tmall.ultraviewpager.IUltraIndicatorBuilder</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 3.3744</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 5</span>
-          <span class="badge">Waves 2</span>
-        </span></span>
-        <span class="chevron" id="chev_5">▶</span>
-      </button>
-      <div class="src-body" id="body_5" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.IUltraIndicatorBuilder</strong></label>
-          <textarea class="analysis-field" id="analysis_5" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.IUltraIndicatorBuilder', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__5.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_5">
+    <button class="src-header" onclick="toggleBlock(5)">
+      <span class="src-name">com.tmall.ultraviewpager.sample.UltraPagerAdapter</span>
+      <span class="src-meta">
+        <span class="badge">Score 63.5516</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 3</span>
+      </span>
+      <span class="chevron" id="chev_5">▶</span>
+    </button>
+    <div class="src-body" id="body_5" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.sample.UltraPagerAdapter</strong></label>
+        <textarea class="analysis-field" id="analysis_5" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.sample.UltraPagerAdapter', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_sample_UltraPagerAdapter"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_sample_UltraPagerAdapter.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_6">
-      <button class="src-header" onclick="toggleBlock(6)">
-        <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerIndicator</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 3.0922</span>
-          <span class="badge">Affected 5</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 1</span>
-        </span></span>
-        <span class="chevron" id="chev_6">▶</span>
-      </button>
-      <div class="src-body" id="body_6" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerIndicator</strong></label>
-          <textarea class="analysis-field" id="analysis_6" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerIndicator', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__6.html" target="_blank">
-          📋 View 4 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_6">
+    <button class="src-header" onclick="toggleBlock(6)">
+      <span class="src-name">com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer</span>
+      <span class="src-meta">
+        <span class="badge">Score 63.5516</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 3</span>
+      </span>
+      <span class="chevron" id="chev_6">▶</span>
+    </button>
+    <div class="src-body" id="body_6" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer</strong></label>
+        <textarea class="analysis-field" id="analysis_6" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_transformer_UltraDepthScaleTransformer"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_transformer_UltraDepthScaleTransformer.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_7">
-      <button class="src-header" onclick="toggleBlock(7)">
-        <span class="src-name">com.tmall.ultraviewpager.UltraViewPager</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 2.6260</span>
-          <span class="badge">Affected 5</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 1</span>
-        </span></span>
-        <span class="chevron" id="chev_7">▶</span>
-      </button>
-      <div class="src-body" id="body_7" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPager</strong></label>
-          <textarea class="analysis-field" id="analysis_7" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPager', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__7.html" target="_blank">
-          📋 View 4 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_7">
+    <button class="src-header" onclick="toggleBlock(7)">
+      <span class="src-name">com.tmall.ultraviewpager.transformer.UltraScaleTransformer</span>
+      <span class="src-meta">
+        <span class="badge">Score 63.5516</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 3</span>
+      </span>
+      <span class="chevron" id="chev_7">▶</span>
+    </button>
+    <div class="src-body" id="body_7" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.transformer.UltraScaleTransformer</strong></label>
+        <textarea class="analysis-field" id="analysis_7" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.transformer.UltraScaleTransformer', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_transformer_UltraScaleTransformer"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_transformer_UltraScaleTransformer.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_8">
-      <button class="src-header" onclick="toggleBlock(8)">
-        <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerIndicator$UltraViewPagerIndicatorListener</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 2.5692</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 5</span>
-          <span class="badge">Waves 2</span>
-        </span></span>
-        <span class="chevron" id="chev_8">▶</span>
-      </button>
-      <div class="src-body" id="body_8" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerIndicator$UltraViewPagerIndicatorListener</strong></label>
-          <textarea class="analysis-field" id="analysis_8" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerIndicator$UltraViewPagerIndicatorListener', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__8.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_8">
+    <button class="src-header" onclick="toggleBlock(8)">
+      <span class="src-name">com.tmall.ultraviewpager.sample.UPVDemoActivity</span>
+      <span class="src-meta">
+        <span class="badge">Score 57.1683</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 3</span>
+      </span>
+      <span class="chevron" id="chev_8">▶</span>
+    </button>
+    <div class="src-body" id="body_8" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.sample.UPVDemoActivity</strong></label>
+        <textarea class="analysis-field" id="analysis_8" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.sample.UPVDemoActivity', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_sample_UPVDemoActivity"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_sample_UPVDemoActivity.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_9">
-      <button class="src-header" onclick="toggleBlock(9)">
-        <span class="src-name">com.tmall.ultraviewpager.transformer.UltraVerticalTransformer</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 2.2275</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 2</span>
-        </span></span>
-        <span class="chevron" id="chev_9">▶</span>
-      </button>
-      <div class="src-body" id="body_9" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.transformer.UltraVerticalTransformer</strong></label>
-          <textarea class="analysis-field" id="analysis_9" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.transformer.UltraVerticalTransformer', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__9.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_9">
+    <button class="src-header" onclick="toggleBlock(9)">
+      <span class="src-name">com.tmall.ultraviewpager.IUltraIndicatorBuilder</span>
+      <span class="src-meta">
+        <span class="badge">Score 52.4430</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 3</span>
+      </span>
+      <span class="chevron" id="chev_9">▶</span>
+    </button>
+    <div class="src-body" id="body_9" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.IUltraIndicatorBuilder</strong></label>
+        <textarea class="analysis-field" id="analysis_9" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.IUltraIndicatorBuilder', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_IUltraIndicatorBuilder"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_IUltraIndicatorBuilder.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_10">
-      <button class="src-header" onclick="toggleBlock(10)">
-        <span class="src-name">com.tmall.ultraviewpager.sample.UltraPagerAdapter</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 2.0025</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 2</span>
-        </span></span>
-        <span class="chevron" id="chev_10">▶</span>
-      </button>
-      <div class="src-body" id="body_10" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.sample.UltraPagerAdapter</strong></label>
-          <textarea class="analysis-field" id="analysis_10" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.sample.UltraPagerAdapter', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__10.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_10">
+    <button class="src-header" onclick="toggleBlock(10)">
+      <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerAdapter</span>
+      <span class="src-meta">
+        <span class="badge">Score 52.2886</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 2</span>
+      </span>
+      <span class="chevron" id="chev_10">▶</span>
+    </button>
+    <div class="src-body" id="body_10" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerAdapter</strong></label>
+        <textarea class="analysis-field" id="analysis_10" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerAdapter', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_UltraViewPagerAdapter"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_UltraViewPagerAdapter.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_11">
-      <button class="src-header" onclick="toggleBlock(11)">
-        <span class="src-name">com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 2.0025</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 2</span>
-        </span></span>
-        <span class="chevron" id="chev_11">▶</span>
-      </button>
-      <div class="src-body" id="body_11" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer</strong></label>
-          <textarea class="analysis-field" id="analysis_11" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.transformer.UltraDepthScaleTransformer', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__11.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_11">
+    <button class="src-header" onclick="toggleBlock(11)">
+      <span class="src-name">com.tmall.ultraviewpager.sample.PagerActivity</span>
+      <span class="src-meta">
+        <span class="badge">Score 48.9654</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 2</span>
+      </span>
+      <span class="chevron" id="chev_11">▶</span>
+    </button>
+    <div class="src-body" id="body_11" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.sample.PagerActivity</strong></label>
+        <textarea class="analysis-field" id="analysis_11" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.sample.PagerActivity', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_sample_PagerActivity"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_sample_PagerActivity.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_12">
-      <button class="src-header" onclick="toggleBlock(12)">
-        <span class="src-name">com.tmall.ultraviewpager.transformer.UltraScaleTransformer</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 2.0025</span>
-          <span class="badge">Affected 6</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 2</span>
-        </span></span>
-        <span class="chevron" id="chev_12">▶</span>
-      </button>
-      <div class="src-body" id="body_12" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.transformer.UltraScaleTransformer</strong></label>
-          <textarea class="analysis-field" id="analysis_12" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.transformer.UltraScaleTransformer', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__12.html" target="_blank">
-          📋 View 5 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_12">
+    <button class="src-header" onclick="toggleBlock(12)">
+      <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerIndicator</span>
+      <span class="src-meta">
+        <span class="badge">Score 29.3653</span>
+        <span class="badge">Affected 13</span>
+        <span class="badge">Communities 5</span>
+        <span class="badge">Waves 2</span>
+      </span>
+      <span class="chevron" id="chev_12">▶</span>
+    </button>
+    <div class="src-body" id="body_12" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerIndicator</strong></label>
+        <textarea class="analysis-field" id="analysis_12" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerIndicator', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_UltraViewPagerIndicator"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_UltraViewPagerIndicator.html">
+        📋 View 13 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_13">
-      <button class="src-header" onclick="toggleBlock(13)">
-        <span class="src-name">com.tmall.ultraviewpager.sample.UPVDemoActivity</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 1.8552</span>
-          <span class="badge">Affected 5</span>
-          <span class="badge">Communities 4</span>
-          <span class="badge">Waves 2</span>
-        </span></span>
-        <span class="chevron" id="chev_13">▶</span>
-      </button>
-      <div class="src-body" id="body_13" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.sample.UPVDemoActivity</strong></label>
-          <textarea class="analysis-field" id="analysis_13" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.sample.UPVDemoActivity', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__13.html" target="_blank">
-          📋 View 4 affected classes →
-        </a>
+  </div>
+  <div class="src-block" id="src_13">
+    <button class="src-header" onclick="toggleBlock(13)">
+      <span class="src-name">ApplicationTest</span>
+      <span class="src-meta">
+        <span class="badge">Score 1.0000</span>
+        <span class="badge">Affected 1</span>
+        <span class="badge">Communities 0</span>
+        <span class="badge">Waves 0</span>
+      </span>
+      <span class="chevron" id="chev_13">▶</span>
+    </button>
+    <div class="src-body" id="body_13" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>ApplicationTest</strong></label>
+        <textarea class="analysis-field" id="analysis_13" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('ApplicationTest', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_ApplicationTest"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__ApplicationTest.html">
+        📋 View 1 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_14">
-      <button class="src-header" onclick="toggleBlock(14)">
-        <span class="src-name">ApplicationTest</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 1.0000</span>
-          <span class="badge">Affected 1</span>
-          <span class="badge">Communities 0</span>
-          <span class="badge">Waves 0</span>
-        </span></span>
-        <span class="chevron" id="chev_14">▶</span>
-      </button>
-      <div class="src-body" id="body_14" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>ApplicationTest</strong></label>
-          <textarea class="analysis-field" id="analysis_14" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('ApplicationTest', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__14.html" target="_blank">
-          📋 View 1 affected class →
-        </a>
+  </div>
+  <div class="src-block" id="src_14">
+    <button class="src-header" onclick="toggleBlock(14)">
+      <span class="src-name">com.tmall.ultraviewpager.ApplicationTest</span>
+      <span class="src-meta">
+        <span class="badge">Score 1.0000</span>
+        <span class="badge">Affected 1</span>
+        <span class="badge">Communities 0</span>
+        <span class="badge">Waves 0</span>
+      </span>
+      <span class="chevron" id="chev_14">▶</span>
+    </button>
+    <div class="src-body" id="body_14" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.ApplicationTest</strong></label>
+        <textarea class="analysis-field" id="analysis_14" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.ApplicationTest', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_ApplicationTest"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_ApplicationTest.html">
+        📋 View 1 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_15">
-      <button class="src-header" onclick="toggleBlock(15)">
-        <span class="src-name">com.tmall.ultraviewpager.ApplicationTest</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 1.0000</span>
-          <span class="badge">Affected 1</span>
-          <span class="badge">Communities 0</span>
-          <span class="badge">Waves 0</span>
-        </span></span>
-        <span class="chevron" id="chev_15">▶</span>
-      </button>
-      <div class="src-body" id="body_15" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.ApplicationTest</strong></label>
-          <textarea class="analysis-field" id="analysis_15" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.ApplicationTest', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__15.html" target="_blank">
-          📋 View 1 affected class →
-        </a>
+  </div>
+  <div class="src-block" id="src_15">
+    <button class="src-header" onclick="toggleBlock(15)">
+      <span class="src-name">com.tmall.ultraviewpager.ExampleUnitTest</span>
+      <span class="src-meta">
+        <span class="badge">Score 1.0000</span>
+        <span class="badge">Affected 1</span>
+        <span class="badge">Communities 0</span>
+        <span class="badge">Waves 0</span>
+      </span>
+      <span class="chevron" id="chev_15">▶</span>
+    </button>
+    <div class="src-body" id="body_15" style="display:none">
+      <div class="analysis-row">
+        <label>Analysis of <strong>com.tmall.ultraviewpager.ExampleUnitTest</strong></label>
+        <textarea class="analysis-field" id="analysis_15" rows="3"
+          placeholder="Enter your analysis for this class…"
+          oninput="saveAnalysis('com.tmall.ultraviewpager.ExampleUnitTest', this.value)"></textarea>
       </div>
+      <div class="progress-note" id="prog_com_tmall_ultraviewpager_ExampleUnitTest"></div>
+      <a class="detail-link" href="repo_alibaba_UltraViewPager__com_tmall_ultraviewpager_ExampleUnitTest.html">
+        📋 View 1 affected classes →
+      </a>
     </div>
-    <div class="src-block" id="src_16">
-      <button class="src-header" onclick="toggleBlock(16)">
-        <span class="src-name">com.tmall.ultraviewpager.ExampleUnitTest</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 1.0000</span>
-          <span class="badge">Affected 1</span>
-          <span class="badge">Communities 0</span>
-          <span class="badge">Waves 0</span>
-        </span></span>
-        <span class="chevron" id="chev_16">▶</span>
-      </button>
-      <div class="src-body" id="body_16" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.ExampleUnitTest</strong></label>
-          <textarea class="analysis-field" id="analysis_16" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.ExampleUnitTest', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__16.html" target="_blank">
-          📋 View 1 affected class →
-        </a>
-      </div>
-    </div>
-    <div class="src-block" id="src_17">
-      <button class="src-header" onclick="toggleBlock(17)">
-        <span class="src-name">com.tmall.ultraviewpager.TimerHandler$TimerHandlerListener</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 1.0000</span>
-          <span class="badge">Affected 1</span>
-          <span class="badge">Communities 1</span>
-          <span class="badge">Waves 0</span>
-        </span></span>
-        <span class="chevron" id="chev_17">▶</span>
-      </button>
-      <div class="src-body" id="body_17" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.TimerHandler$TimerHandlerListener</strong></label>
-          <textarea class="analysis-field" id="analysis_17" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.TimerHandler$TimerHandlerListener', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__17.html" target="_blank">
-          📋 View 1 affected class →
-        </a>
-      </div>
-    </div>
-    <div class="src-block" id="src_18">
-      <button class="src-header" onclick="toggleBlock(18)">
-        <span class="src-name">com.tmall.ultraviewpager.UltraViewPagerAdapter$UltraViewPagerCenterListener</span>
-        <span class="src-meta"><span class="src-meta">
-          <span class="badge">Score 1.0000</span>
-          <span class="badge">Affected 1</span>
-          <span class="badge">Communities 1</span>
-          <span class="badge">Waves 0</span>
-        </span></span>
-        <span class="chevron" id="chev_18">▶</span>
-      </button>
-      <div class="src-body" id="body_18" style="display:none">
-        <div class="analysis-row">
-          <label>Analysis of <strong>com.tmall.ultraviewpager.UltraViewPagerAdapter$UltraViewPagerCenterListener</strong></label>
-          <textarea class="analysis-field" id="analysis_18" rows="3"
-            placeholder="Enter your analysis for this class..."
-            oninput="saveAnalysis('com.tmall.ultraviewpager.UltraViewPagerAdapter$UltraViewPagerCenterListener', this.value)"></textarea>
-        </div>
-        <a class="detail-link" href="details/repo_alibaba_UltraViewPager__18.html" target="_blank">
-          📋 View 1 affected class →
-        </a>
-      </div>
-    </div>
-<!-- General analysis -->
+  </div>
+
+  <!-- General analysis -->
   <div class="general-section">
     <h2>📝 General Analysis</h2>
-    <textarea id="generalAnalysis" rows="5"
-      placeholder="Write your overall analysis of this repository's change propagation results..."
-      oninput="localStorage.setItem('general_alibaba_UltraViewPager', this.value)"></textarea>
+    <textarea id="generalAnalysis"
+      placeholder="Enter your overall analysis and observations for this repository…"
+      oninput="localStorage.setItem('general_' + REPO, this.value)"></textarea>
     <div class="submit-row">
-      <span class="submit-status" id="submitStatus">✓ Saved successfully!</span>
       <button class="btn" onclick="exportCSV()">📥 Export CSV</button>
       <button class="btn btn-primary" onclick="submitAll()">✅ Submit All</button>
+      <span class="submit-status-msg" id="submitStatus" style="display:none"></span>
     </div>
   </div>
 
 </div>
 
 <script>
-const REPO = 'alibaba_UltraViewPager';
+const REPO       = 'alibaba_UltraViewPager';
+const COMMUNITIES = [{"id": 1, "total": 13, "affected": 13, "avg_score": 7.8574}, {"id": 2, "total": 8, "affected": 8, "avg_score": 9.2483}, {"id": 3, "total": 6, "affected": 6, "avg_score": 5.541}, {"id": 4, "total": 5, "affected": 5, "avg_score": 5.7475}, {"id": 5, "total": 2, "affected": 2, "avg_score": 7.7466}];
 
-// ── Restore saved state ──────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const email = localStorage.getItem('email_' + REPO) || '';
   if (email) document.getElementById('userEmail').value = email;
   const gen = localStorage.getItem('general_' + REPO) || '';
   if (gen) document.getElementById('generalAnalysis').value = gen;
-  // Restore per-class analysis
   document.querySelectorAll('.analysis-field').forEach(ta => {
-    const key = ta.id.replace('analysis_', '');
-    const saved = localStorage.getItem('cls_analysis_' + REPO + '__' + key);
+    const srcName = ta.closest('.src-block').querySelector('.src-name').textContent;
+    const saved   = localStorage.getItem('cls_analysis_' + REPO + '__' + srcName);
     if (saved) ta.value = saved;
+  });
+  document.querySelectorAll('.src-block').forEach(block => {
+    const srcName = block.querySelector('.src-name').textContent;
+    const safeKey = srcName.replace(/[^a-zA-Z0-9]/g, '_');
+    const prefix  = 'ocpa_vote_' + REPO + '__' + safeKey + '__';
+    let count = 0;
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && k.startsWith(prefix) && !k.endsWith('__comment')) count++;
+    }
+    const el = block.querySelector('.progress-note');
+    if (el && count > 0) {
+      el.textContent = count + ' validation' + (count > 1 ? 's' : '') + ' submitted';
+      el.style.color = 'var(--green)';
+    }
   });
 });
 
@@ -641,19 +562,15 @@ function saveAnalysis(srcKey, value) {
   localStorage.setItem('cls_analysis_' + REPO + '__' + srcKey, value);
 }
 
-// ── Accordion ────────────────────────────────────────────────────────────────
 function toggleBlock(idx) {
   const body = document.getElementById('body_' + idx);
   const chev = document.getElementById('chev_' + idx);
   const hdr  = body.previousElementSibling;
-  const open = body.style.display === 'block';
-  body.style.display = open ? 'none' : 'block';
-  chev.classList.toggle('open', !open);
-  hdr.classList.toggle('open', !open);
+  const open = body.style.display === "block";
+  body.style.display = open ? "none" : "block";
+  chev.classList.toggle("open", !open);
+  hdr.classList.toggle("open", !open);
 }
-
-// ── Communities panel ────────────────────────────────────────────────────────
-const COMMUNITIES = [{"id": 1, "affected": 5, "total": 13, "avg_score": 0.6407}, {"id": 2, "affected": 6, "total": 8, "avg_score": 0.745}, {"id": 3, "affected": 3, "total": 6, "avg_score": 0.6919}, {"id": 4, "affected": 1, "total": 5, "avg_score": 0.6258}, {"id": 5, "affected": 1, "total": 2, "avg_score": 1.0}];
 
 function toggleCommunities() {
   const panel = document.getElementById('commPanel');
@@ -664,7 +581,6 @@ function toggleCommunities() {
 }
 
 function renderCommunities() {
-  // Aggregate unique communities
   const map = {};
   COMMUNITIES.forEach(c => {
     if (!map[c.id]) map[c.id] = { id: c.id, affected: 0, total: c.total, scores: [] };
@@ -674,14 +590,13 @@ function renderCommunities() {
   const grid = document.getElementById('commGrid');
   Object.values(map).sort((a,b) => a.id - b.id).forEach(c => {
     const avg = c.scores.reduce((s,x) => s+x, 0) / c.scores.length;
-    const chip = document.createElement('div');
-    chip.className = 'comm-chip';
-    chip.innerHTML = `<span class="cid">C${c.id}</span> <span class="cdata">${c.affected}/${c.total} classes &nbsp;·&nbsp; avg ${avg.toFixed(3)}</span>`;
+    const chip = document.createElement("div");
+    chip.className = "comm-chip";
+    chip.innerHTML = '<span class="cid">C' + c.id + '</span> <span class="cdata">' + c.affected + '/' + c.total + ' classes &nbsp;·&nbsp; avg ' + avg.toFixed(3) + '</span>';
     grid.appendChild(chip);
   });
 }
 
-// ── Submit / Export ──────────────────────────────────────────────────────────
 function submitAll() {
   const email = document.getElementById('userEmail').value.trim();
   if (!email || !email.includes('@')) {
@@ -692,57 +607,41 @@ function submitAll() {
   }
   const general = document.getElementById('generalAnalysis').value;
   const ts = new Date().toISOString();
-  // Save general record
   localStorage.setItem('ocpa_vote_' + REPO + '__general', JSON.stringify({
-    Email: email, Repository: REPO, Type: 'general',
+    Email: email, Repository: REPO, Type: "general",
     Comment: general, Timestamp: ts
   }));
-  // Save per-class analyses
   document.querySelectorAll('.src-block').forEach((block, idx) => {
-    const srcName = block.querySelector('.src-name').textContent;
+    const srcName  = block.querySelector('.src-name').textContent;
     const analysis = document.getElementById('analysis_' + idx)?.value || '';
     if (analysis.trim()) {
       localStorage.setItem('ocpa_vote_' + REPO + '__cls__' + idx, JSON.stringify({
         Email: email, Repository: REPO, Source_Class: srcName,
-        Type: 'class', Comment: analysis, Timestamp: ts
+        Type: "class", Comment: analysis, Timestamp: ts
       }));
     }
   });
   const status = document.getElementById('submitStatus');
-  status.style.display = 'inline';
-  setTimeout(() => { status.style.display = 'none'; }, 3000);
+  status.textContent = '✓ Saved locally!';
+  status.style.display = "inline";
+  setTimeout(() => { status.style.display = "none"; }, 3000);
 }
 
 function exportCSV() {
   const email = document.getElementById('userEmail').value.trim();
-  const rows = [['Repository','Email','Source_Vertex','Affected_Class','Rank','Score','CoChange','Distance','Path','Coupling_Types','Class_Analysis']];
+  const rows  = [['Repository','Email','Source_Class','Analysis','Timestamp']];
   document.querySelectorAll('.src-block').forEach((block, idx) => {
-    const srcName = block.querySelector('.src-name').textContent;
+    const srcName  = block.querySelector('.src-name').textContent;
     const analysis = document.getElementById('analysis_' + idx)?.value || '';
-    const trs = block.querySelectorAll('.affected-table tbody tr');
-    if (trs.length === 0) {
-      rows.push([REPO, email, srcName, '', '', '', '', '', '', '', analysis]);
-    } else {
-      trs.forEach((tr, ri) => {
-        const cells = tr.querySelectorAll('td');
-        const path = cells[5]?.querySelector('.path')?.textContent || '';
-        const coupling = cells[5]?.querySelector('.coupling')?.textContent || '';
-        rows.push([REPO, email, srcName,
-          cells[1]?.textContent||'', cells[0]?.textContent||'',
-          cells[2]?.textContent||'', cells[3]?.textContent||'',
-          cells[4]?.textContent||'', path, coupling,
-          ri === 0 ? analysis : ''
-        ]);
-      });
-    }
+    rows.push([REPO, email, srcName, analysis, new Date().toISOString()]);
   });
   const gen = document.getElementById('generalAnalysis').value;
-  rows.push([REPO, email, 'GENERAL_ANALYSIS', '', '', '', '', '', '', '', gen]);
-  const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(',')).join('\n');
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'ocpa_alibaba_UltraViewPager.csv';
+  rows.push([REPO, email, 'GENERAL', gen, new Date().toISOString()]);
+  const csv  = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const a    = document.createElement("a");
+  a.href     = URL.createObjectURL(blob);
+  a.download = 'analysis_' + REPO + '.csv';
   a.click();
 }
 </script>

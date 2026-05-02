@@ -1,0 +1,3638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCPA — 0x727/BypassPro — burp.IMessageEditor</title>
+<style>
+
+:root {
+  --bg: #0d1117; --surface: #161b22; --surface2: #21262d;
+  --border: #30363d; --text: #e6edf3; --text2: #8b949e;
+  --accent: #58a6ff; --green: #3fb950; --orange: #d29922;
+  --red: #f85149; --purple: #bc8cff; --cyan: #39d2c0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; }
+
+/* ── Sticky page header (Page C) ── */
+.page-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 32px; position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.back-btn { color: var(--text2); font-size: 13px; text-decoration: none; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface2); white-space: nowrap; }
+.back-btn:hover { color: var(--accent); border-color: var(--accent); }
+.src-label { color: var(--text2); font-size: 12px; }
+.src-name-h { color: var(--text); font-weight: 700; font-size: 14px; }
+.header-email-wrap { display: flex; flex-direction: column; gap: 3px; }
+.header-email-wrap label { font-size: 11px; color: var(--text2); }
+.header-email-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; color: var(--text); font-size: 13px; width: 240px; font-family: inherit; }
+.header-email-input:focus { outline: none; border-color: var(--accent); }
+.header-email-input.invalid { border-color: var(--red); }
+.export-btn { padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; font-size: 12px; }
+.export-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Main container ── */
+.container { max-width: 900px; margin: 0 auto; padding: 24px 32px; }
+
+/* ── Progress bar ── */
+.progress-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
+.progress-bar .bar-track { flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.progress-bar .bar-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s; }
+.progress-bar .bar-label { font-size: 13px; color: var(--text2); white-space: nowrap; }
+
+/* ── Cards ── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.2s; }
+.card:hover { border-color: var(--accent); }
+.card-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border); cursor: pointer; }
+.card-header .source-target { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+.class-badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 12px; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.class-badge.source { border-color: var(--orange); color: var(--orange); }
+.class-badge.target { border-color: var(--green); color: var(--green); }
+.arrow-icon { color: var(--text2); font-size: 18px; flex-shrink: 0; }
+.metrics-mini { display: flex; gap: 16px; flex-shrink: 0; }
+.metric-pill { display: flex; flex-direction: column; align-items: center; }
+.metric-pill .val { font-weight: 700; font-size: 14px; }
+.metric-pill .lbl { font-size: 10px; color: var(--text2); text-transform: uppercase; }
+.metric-pill.score .val { color: var(--red); }
+.metric-pill.cochange .val { color: var(--cyan); }
+.metric-pill.dist .val { color: var(--purple); }
+.metric-pill.rank-m .val { color: var(--text2); }
+.card-body { padding: 20px; display: none; border-top: 1px solid var(--border); }
+.card.open .card-body { display: block; }
+
+/* ── Path diagram ── */
+.path-diagram { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding: 16px 0; }
+.path-node { display: flex; flex-direction: column; align-items: center; min-width: 80px; flex-shrink: 0; }
+.path-node .node-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; border: 2px solid var(--border); background: var(--surface2); }
+.path-node.first .node-circle { border-color: var(--orange); background: rgba(210,153,34,0.15); color: var(--orange); }
+.path-node.last .node-circle { border-color: var(--green); background: rgba(63,185,80,0.15); color: var(--green); }
+.path-node .node-label { font-size: 10px; color: var(--text2); text-align: center; margin-top: 4px; max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.path-edge { display: flex; flex-direction: column; align-items: center; min-width: 100px; flex-shrink: 0; padding-top: 10px; }
+.path-edge .edge-arrow { display: flex; align-items: center; color: var(--text2); font-size: 12px; white-space: nowrap; }
+.path-edge .edge-arrow .line { width: 40px; height: 2px; background: var(--border); }
+.path-edge .edge-arrow .tip { margin-left: -2px; }
+.path-edge .edge-tags { display: flex; flex-direction: column; align-items: center; gap: 3px; margin-top: 4px; }
+.edge-tag { font-size: 9px; padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+.edge-tag.cochange { background: rgba(57,210,192,0.15); color: var(--cyan); border: 1px solid rgba(57,210,192,0.3); }
+.edge-tag.coupling { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+.edge-tag.none { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+
+/* ── Coupling section ── */
+.coupling-section { margin-top: 16px; }
+.coupling-section h4 { font-size: 12px; color: var(--text2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.coupling-chip { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 12px; margin: 2px 4px 2px 0; background: rgba(188,140,255,0.12); color: var(--purple); border: 1px solid rgba(188,140,255,0.25); font-family: monospace; }
+.none-text { color: var(--text2); font-style: italic; font-size: 12px; }
+.toggle-icon { transition: transform 0.2s; color: var(--text2); font-size: 18px; margin-left: 12px; }
+.card.open .toggle-icon { transform: rotate(180deg); }
+
+/* ── Validation section ── */
+.validation-section { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border); }
+.validation-section h4 { font-size: 12px; color: var(--text2); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.vote-buttons { display: flex; gap: 8px; margin-bottom: 10px; }
+.vote-btn { padding: 8px 18px; border-radius: 8px; border: 2px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.vote-btn:hover { border-color: var(--accent); }
+.vote-btn.correct.selected { border-color: var(--green); background: rgba(63,185,80,0.15); color: var(--green); }
+.vote-btn.incorrect.selected { border-color: var(--red); background: rgba(248,81,73,0.15); color: var(--red); }
+.vote-btn.unsure.selected { border-color: var(--orange); background: rgba(210,153,34,0.15); color: var(--orange); }
+.validation-comment { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 8px 12px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 50px; margin-bottom: 10px; }
+.validation-comment::placeholder { color: var(--text2); }
+.submit-row { display: flex; align-items: center; gap: 12px; }
+.submit-btn { padding: 8px 24px; border-radius: 8px; border: none; background: var(--accent); color: #fff; cursor: pointer; font-size: 13px; font-weight: 600; transition: opacity 0.2s; }
+.submit-btn:hover { opacity: 0.85; }
+.submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.submit-status { font-size: 12px; color: var(--green); }
+.submit-status.error { color: var(--red); }
+.already-sent { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.25); color: var(--green); font-size: 13px; }
+
+@media (max-width: 768px) {
+  .metrics-mini { gap: 8px; }
+  .class-badge { max-width: 150px; font-size: 11px; }
+  .container { padding: 16px; }
+  .page-header { padding: 12px 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── Sticky Header ── -->
+<div class="page-header">
+  <a class="back-btn" href="repo_0x727_BypassPro.html">← Back to class list</a>
+  <div>
+    <div class="src-label">Source class &nbsp;·&nbsp; 0x727/BypassPro</div>
+    <div class="src-name-h">burp.IMessageEditor</div>
+  </div>
+  <div style="flex:1"></div>
+  <div class="header-email-wrap">
+    <label for="userEmail">✉️ Email <span style="color:var(--red)">*</span></label>
+    <input type="email" class="header-email-input" id="userEmail"
+      placeholder="your@email.com" oninput="saveEmail(this.value)">
+  </div>
+  <button onclick="exportCSV()" class="export-btn">📥 Export CSV</button>
+</div>
+
+<!-- ── Main content ── -->
+<div class="container">
+
+<div class="progress-bar">
+  <span class="bar-label">Validation progress:</span>
+  <div class="bar-track"><div class="bar-fill" id="progressFill" style="width:0%"></div></div>
+  <span class="bar-label" id="progressText">0 / 39</span>
+</div>
+
+<div id="cardsContainer">
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.BypassMain"
+     data-score="2.4356"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="1">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.BypassMain">BypassMain</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#1</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">2.4356</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.BypassMain">BY</div>
+        <div class="node-label" title="Main.BypassMain">BypassMain</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.BypassMain</code></div>
+    </div>
+    <div class="validation-section" id="validation_0">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(0,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(0,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(0,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_0"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(0, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_0"
+          onclick="submitVote(0)" disabled>Submit</button>
+        <span class="submit-status" id="status_0"></span>
+      </div>
+      <input type="hidden" id="vote_0"          value="">
+      <input type="hidden" id="meta_source_0"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_0"   value="Main.BypassMain">
+      <input type="hidden" id="meta_rank_0"     value="1">
+      <input type="hidden" id="meta_score_0"    value="2.4356">
+      <input type="hidden" id="meta_cochange_0" value="-1">
+      <input type="hidden" id="meta_distance_0" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.BaseRequest"
+     data-score="2.3475"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="2">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.BaseRequest">BaseRequest</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#2</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">2.3475</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="OBJECT_PARAMETER_COUPLING">Object Parameter Coupling</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.BypassMain">BY</div>
+        <div class="node-label" title="Main.BypassMain">BypassMain</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.BaseRequest">BA</div>
+        <div class="node-label" title="Main.BaseRequest">BaseRequest</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">OBJECT_PARAMETER_COUPLING</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.BaseRequest</code></div>
+    </div>
+    <div class="validation-section" id="validation_1">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(1,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(1,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(1,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_1"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(1, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_1"
+          onclick="submitVote(1)" disabled>Submit</button>
+        <span class="submit-status" id="status_1"></span>
+      </div>
+      <input type="hidden" id="vote_1"          value="">
+      <input type="hidden" id="meta_source_1"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_1"   value="Main.BaseRequest">
+      <input type="hidden" id="meta_rank_1"     value="2">
+      <input type="hidden" id="meta_score_1"    value="2.3475">
+      <input type="hidden" id="meta_cochange_1" value="-1">
+      <input type="hidden" id="meta_distance_1" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.Utils"
+     data-score="2.1552"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="3">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.Utils">Utils</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">2.1552</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_OBJECT_PARAMETER">Method Invocation Object Parameter</span>
+          <span class="edge-tag coupling" title="VARIABLE_FIELD_DECLARATION">Variable Field Declaration</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.Utils">UT</div>
+        <div class="node-label" title="Main.Utils">Utils</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span><span class="coupling-chip">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-chip">VARIABLE_FIELD_DECLARATION</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.Utils</code></div>
+    </div>
+    <div class="validation-section" id="validation_2">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(2,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(2,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(2,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_2"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(2, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_2"
+          onclick="submitVote(2)" disabled>Submit</button>
+        <span class="submit-status" id="status_2"></span>
+      </div>
+      <input type="hidden" id="vote_2"          value="">
+      <input type="hidden" id="meta_source_2"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_2"   value="Main.Utils">
+      <input type="hidden" id="meta_rank_2"     value="3">
+      <input type="hidden" id="meta_score_2"    value="2.1552">
+      <input type="hidden" id="meta_cochange_2" value="-1">
+      <input type="hidden" id="meta_distance_2" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IIntruderPayloadProcessor"
+     data-score="2.1449"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="4">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IIntruderPayloadProcessor">IIntruderPayloadProcessor</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#4</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">2.1449</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IIntruderPayloadProcessor">II</div>
+        <div class="node-label" title="burp.IIntruderPayloadProcessor">IIntruderPayloadProcessor</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IIntruderPayloadProcessor</code></div>
+    </div>
+    <div class="validation-section" id="validation_3">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(3,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(3,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(3,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_3"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(3, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_3"
+          onclick="submitVote(3)" disabled>Submit</button>
+        <span class="submit-status" id="status_3"></span>
+      </div>
+      <input type="hidden" id="vote_3"          value="">
+      <input type="hidden" id="meta_source_3"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_3"   value="burp.IIntruderPayloadProcessor">
+      <input type="hidden" id="meta_rank_3"     value="4">
+      <input type="hidden" id="meta_score_3"    value="2.1449">
+      <input type="hidden" id="meta_cochange_3" value="-1">
+      <input type="hidden" id="meta_distance_3" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IExtensionHelpers"
+     data-score="2.0063"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="5">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IExtensionHelpers">IExtensionHelpers</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#5</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">2.0063</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IExtensionHelpers">IE</div>
+        <div class="node-label" title="burp.IExtensionHelpers">IExtensionHelpers</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IExtensionHelpers</code></div>
+    </div>
+    <div class="validation-section" id="validation_4">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(4,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(4,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(4,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_4"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(4, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_4"
+          onclick="submitVote(4)" disabled>Submit</button>
+        <span class="submit-status" id="status_4"></span>
+      </div>
+      <input type="hidden" id="vote_4"          value="">
+      <input type="hidden" id="meta_source_4"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_4"   value="burp.IExtensionHelpers">
+      <input type="hidden" id="meta_rank_4"     value="5">
+      <input type="hidden" id="meta_score_4"    value="2.0063">
+      <input type="hidden" id="meta_cochange_4" value="-1">
+      <input type="hidden" id="meta_distance_4" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.ITempFile"
+     data-score="1.929"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="6">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.ITempFile">ITempFile</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#6</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.9290</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.ITempFile">IT</div>
+        <div class="node-label" title="burp.ITempFile">ITempFile</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.ITempFile</code></div>
+    </div>
+    <div class="validation-section" id="validation_5">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(5,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(5,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(5,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_5"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(5, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_5"
+          onclick="submitVote(5)" disabled>Submit</button>
+        <span class="submit-status" id="status_5"></span>
+      </div>
+      <input type="hidden" id="vote_5"          value="">
+      <input type="hidden" id="meta_source_5"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_5"   value="burp.ITempFile">
+      <input type="hidden" id="meta_rank_5"     value="6">
+      <input type="hidden" id="meta_score_5"    value="1.929">
+      <input type="hidden" id="meta_cochange_5" value="-1">
+      <input type="hidden" id="meta_distance_5" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.ITextEditor"
+     data-score="1.929"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="7">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.ITextEditor">ITextEditor</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#7</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.9290</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.ITextEditor">IT</div>
+        <div class="node-label" title="burp.ITextEditor">ITextEditor</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.ITextEditor</code></div>
+    </div>
+    <div class="validation-section" id="validation_6">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(6,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(6,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(6,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_6"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(6, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_6"
+          onclick="submitVote(6)" disabled>Submit</button>
+        <span class="submit-status" id="status_6"></span>
+      </div>
+      <input type="hidden" id="vote_6"          value="">
+      <input type="hidden" id="meta_source_6"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_6"   value="burp.ITextEditor">
+      <input type="hidden" id="meta_rank_6"     value="7">
+      <input type="hidden" id="meta_score_6"    value="1.929">
+      <input type="hidden" id="meta_cochange_6" value="-1">
+      <input type="hidden" id="meta_distance_6" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.BypassTable"
+     data-score="1.9277"
+     data-cochange="1"
+     data-distance="1"
+     data-rank="8">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.BypassTable">BypassTable</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#8</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.9277</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag cochange">co-change: 1</span>
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_OBJECT_PARAMETER">Method Invocation Object Parameter</span>
+          <span class="edge-tag coupling" title="VARIABLE_RETURN_STATEMENT">Variable Return Statement</span>
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="VARIABLE_FIELD_DECLARATION">Variable Field Declaration</span>
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.BypassTable">BY</div>
+        <div class="node-label" title="Main.BypassTable">BypassTable</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-chip">VARIABLE_RETURN_STATEMENT</span><span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">VARIABLE_FIELD_DECLARATION</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.BypassTable</code></div>
+    </div>
+    <div class="validation-section" id="validation_7">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(7,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(7,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(7,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_7"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(7, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_7"
+          onclick="submitVote(7)" disabled>Submit</button>
+        <span class="submit-status" id="status_7"></span>
+      </div>
+      <input type="hidden" id="vote_7"          value="">
+      <input type="hidden" id="meta_source_7"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_7"   value="Main.BypassTable">
+      <input type="hidden" id="meta_rank_7"     value="8">
+      <input type="hidden" id="meta_score_7"    value="1.9277">
+      <input type="hidden" id="meta_cochange_7" value="1">
+      <input type="hidden" id="meta_distance_7" value="1">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IResponseInfo"
+     data-score="1.9102"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="9">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IResponseInfo">IResponseInfo</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#9</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.9102</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="VARIABLE_DECLARATION_STATEMENT">Variable Declaration Statement</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.BypassMain">BY</div>
+        <div class="node-label" title="Main.BypassMain">BypassMain</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IResponseInfo">IR</div>
+        <div class="node-label" title="burp.IResponseInfo">IResponseInfo</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">VARIABLE_DECLARATION_STATEMENT</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IResponseInfo</code></div>
+    </div>
+    <div class="validation-section" id="validation_8">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(8,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(8,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(8,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_8"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(8, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_8"
+          onclick="submitVote(8)" disabled>Submit</button>
+        <span class="submit-status" id="status_8"></span>
+      </div>
+      <input type="hidden" id="vote_8"          value="">
+      <input type="hidden" id="meta_source_8"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_8"   value="burp.IResponseInfo">
+      <input type="hidden" id="meta_rank_8"     value="9">
+      <input type="hidden" id="meta_score_8"    value="1.9102">
+      <input type="hidden" id="meta_cochange_8" value="-1">
+      <input type="hidden" id="meta_distance_8" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IInterceptedProxyMessage"
+     data-score="1.9021"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="10">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IInterceptedProxyMessage">IInterceptedProxyMessage</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#10</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.9021</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.BypassMain">BY</div>
+        <div class="node-label" title="Main.BypassMain">BypassMain</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IInterceptedProxyMessage">II</div>
+        <div class="node-label" title="burp.IInterceptedProxyMessage">IInterceptedProxyMessage</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IInterceptedProxyMessage</code></div>
+    </div>
+    <div class="validation-section" id="validation_9">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(9,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(9,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(9,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_9"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(9, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_9"
+          onclick="submitVote(9)" disabled>Submit</button>
+        <span class="submit-status" id="status_9"></span>
+      </div>
+      <input type="hidden" id="vote_9"          value="">
+      <input type="hidden" id="meta_source_9"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_9"   value="burp.IInterceptedProxyMessage">
+      <input type="hidden" id="meta_rank_9"     value="10">
+      <input type="hidden" id="meta_score_9"    value="1.9021">
+      <input type="hidden" id="meta_cochange_9" value="-1">
+      <input type="hidden" id="meta_distance_9" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IContextMenuInvocation"
+     data-score="1.8839"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="11">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IContextMenuInvocation">IContextMenuInvocation</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#11</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.8839</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.BypassMain">BY</div>
+        <div class="node-label" title="Main.BypassMain">BypassMain</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IContextMenuInvocation">IC</div>
+        <div class="node-label" title="burp.IContextMenuInvocation">IContextMenuInvocation</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IContextMenuInvocation</code></div>
+    </div>
+    <div class="validation-section" id="validation_10">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(10,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(10,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(10,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_10"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(10, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_10"
+          onclick="submitVote(10)" disabled>Submit</button>
+        <span class="submit-status" id="status_10"></span>
+      </div>
+      <input type="hidden" id="vote_10"          value="">
+      <input type="hidden" id="meta_source_10"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_10"   value="burp.IContextMenuInvocation">
+      <input type="hidden" id="meta_rank_10"     value="11">
+      <input type="hidden" id="meta_score_10"    value="1.8839">
+      <input type="hidden" id="meta_cochange_10" value="-1">
+      <input type="hidden" id="meta_distance_10" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IHttpListener"
+     data-score="1.8232"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="12">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IHttpListener">IHttpListener</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#12</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.8232</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IHttpListener">IH</div>
+        <div class="node-label" title="burp.IHttpListener">IHttpListener</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IHttpListener</code></div>
+    </div>
+    <div class="validation-section" id="validation_11">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(11,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(11,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(11,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_11"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(11, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_11"
+          onclick="submitVote(11)" disabled>Submit</button>
+        <span class="submit-status" id="status_11"></span>
+      </div>
+      <input type="hidden" id="vote_11"          value="">
+      <input type="hidden" id="meta_source_11"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_11"   value="burp.IHttpListener">
+      <input type="hidden" id="meta_rank_11"     value="12">
+      <input type="hidden" id="meta_score_11"    value="1.8232">
+      <input type="hidden" id="meta_cochange_11" value="-1">
+      <input type="hidden" id="meta_distance_11" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IScannerListener"
+     data-score="1.8232"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="13">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IScannerListener">IScannerListener</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#13</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.8232</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IScannerListener">IS</div>
+        <div class="node-label" title="burp.IScannerListener">IScannerListener</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IScannerListener</code></div>
+    </div>
+    <div class="validation-section" id="validation_12">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(12,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(12,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(12,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_12"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(12, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_12"
+          onclick="submitVote(12)" disabled>Submit</button>
+        <span class="submit-status" id="status_12"></span>
+      </div>
+      <input type="hidden" id="vote_12"          value="">
+      <input type="hidden" id="meta_source_12"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_12"   value="burp.IScannerListener">
+      <input type="hidden" id="meta_rank_12"     value="13">
+      <input type="hidden" id="meta_score_12"    value="1.8232">
+      <input type="hidden" id="meta_cochange_12" value="-1">
+      <input type="hidden" id="meta_distance_12" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.ISessionHandlingAction"
+     data-score="1.8232"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="14">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.ISessionHandlingAction">ISessionHandlingAction</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#14</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.8232</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.ISessionHandlingAction">IS</div>
+        <div class="node-label" title="burp.ISessionHandlingAction">ISessionHandlingAction</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.ISessionHandlingAction</code></div>
+    </div>
+    <div class="validation-section" id="validation_13">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(13,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(13,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(13,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_13"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(13, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_13"
+          onclick="submitVote(13)" disabled>Submit</button>
+        <span class="submit-status" id="status_13"></span>
+      </div>
+      <input type="hidden" id="vote_13"          value="">
+      <input type="hidden" id="meta_source_13"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_13"   value="burp.ISessionHandlingAction">
+      <input type="hidden" id="meta_rank_13"     value="14">
+      <input type="hidden" id="meta_score_13"    value="1.8232">
+      <input type="hidden" id="meta_cochange_13" value="-1">
+      <input type="hidden" id="meta_distance_13" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IBurpExtenderCallbacks"
+     data-score="1.7658"
+     data-cochange="1"
+     data-distance="1"
+     data-rank="15">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#15</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7658</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag cochange">co-change: 1</span>
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IBurpExtenderCallbacks</code></div>
+    </div>
+    <div class="validation-section" id="validation_14">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(14,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(14,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(14,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_14"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(14, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_14"
+          onclick="submitVote(14)" disabled>Submit</button>
+        <span class="submit-status" id="status_14"></span>
+      </div>
+      <input type="hidden" id="vote_14"          value="">
+      <input type="hidden" id="meta_source_14"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_14"   value="burp.IBurpExtenderCallbacks">
+      <input type="hidden" id="meta_rank_14"     value="15">
+      <input type="hidden" id="meta_score_14"    value="1.7658">
+      <input type="hidden" id="meta_cochange_14" value="1">
+      <input type="hidden" id="meta_distance_14" value="1">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.DiffPage"
+     data-score="1.7522"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="16">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.DiffPage">DiffPage</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#16</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7522</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_OBJECT_PARAMETER">Method Invocation Object Parameter</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.BypassMain">BY</div>
+        <div class="node-label" title="Main.BypassMain">BypassMain</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.DiffPage">DI</div>
+        <div class="node-label" title="Main.DiffPage">DiffPage</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">METHOD_INVOCATION_OBJECT_PARAMETER</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.DiffPage</code></div>
+    </div>
+    <div class="validation-section" id="validation_15">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(15,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(15,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(15,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_15"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(15, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_15"
+          onclick="submitVote(15)" disabled>Submit</button>
+        <span class="submit-status" id="status_15"></span>
+      </div>
+      <input type="hidden" id="vote_15"          value="">
+      <input type="hidden" id="meta_source_15"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_15"   value="Main.DiffPage">
+      <input type="hidden" id="meta_rank_15"     value="16">
+      <input type="hidden" id="meta_score_15"    value="1.7522">
+      <input type="hidden" id="meta_cochange_15" value="-1">
+      <input type="hidden" id="meta_distance_15" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.BurpExtender"
+     data-score="1.7311"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="17">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.BurpExtender">BurpExtender</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#17</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7311</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="ATOMIC_PARAMETER_COUPLING">Atomic Parameter Coupling</span>
+          <span class="edge-tag coupling" title="VARIABLE_FIELD_DECLARATION">Variable Field Declaration</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.BurpExtender">BU</div>
+        <div class="node-label" title="burp.BurpExtender">BurpExtender</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">ATOMIC_PARAMETER_COUPLING</span><span class="coupling-chip">VARIABLE_FIELD_DECLARATION</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.BurpExtender</code></div>
+    </div>
+    <div class="validation-section" id="validation_16">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(16,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(16,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(16,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_16"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(16, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_16"
+          onclick="submitVote(16)" disabled>Submit</button>
+        <span class="submit-status" id="status_16"></span>
+      </div>
+      <input type="hidden" id="vote_16"          value="">
+      <input type="hidden" id="meta_source_16"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_16"   value="burp.BurpExtender">
+      <input type="hidden" id="meta_rank_16"     value="17">
+      <input type="hidden" id="meta_score_16"    value="1.7311">
+      <input type="hidden" id="meta_cochange_16" value="-1">
+      <input type="hidden" id="meta_distance_16" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IHttpRequestResponse"
+     data-score="1.729"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="18">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IHttpRequestResponse">IHttpRequestResponse</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#18</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7290</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IHttpRequestResponse">IH</div>
+        <div class="node-label" title="burp.IHttpRequestResponse">IHttpRequestResponse</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IHttpRequestResponse</code></div>
+    </div>
+    <div class="validation-section" id="validation_17">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(17,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(17,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(17,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_17"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(17, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_17"
+          onclick="submitVote(17)" disabled>Submit</button>
+        <span class="submit-status" id="status_17"></span>
+      </div>
+      <input type="hidden" id="vote_17"          value="">
+      <input type="hidden" id="meta_source_17"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_17"   value="burp.IHttpRequestResponse">
+      <input type="hidden" id="meta_rank_17"     value="18">
+      <input type="hidden" id="meta_score_17"    value="1.729">
+      <input type="hidden" id="meta_cochange_17" value="-1">
+      <input type="hidden" id="meta_distance_17" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IScanIssue"
+     data-score="1.729"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="19">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IScanIssue">IScanIssue</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#19</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7290</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IScanIssue">IS</div>
+        <div class="node-label" title="burp.IScanIssue">IScanIssue</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IScanIssue</code></div>
+    </div>
+    <div class="validation-section" id="validation_18">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(18,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(18,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(18,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_18"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(18, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_18"
+          onclick="submitVote(18)" disabled>Submit</button>
+        <span class="submit-status" id="status_18"></span>
+      </div>
+      <input type="hidden" id="vote_18"          value="">
+      <input type="hidden" id="meta_source_18"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_18"   value="burp.IScanIssue">
+      <input type="hidden" id="meta_rank_18"     value="19">
+      <input type="hidden" id="meta_score_18"    value="1.729">
+      <input type="hidden" id="meta_cochange_18" value="-1">
+      <input type="hidden" id="meta_distance_18" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IRequestInfo"
+     data-score="1.7205"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="20">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IRequestInfo">IRequestInfo</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#20</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7205</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.BypassMain">BY</div>
+        <div class="node-label" title="Main.BypassMain">BypassMain</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IRequestInfo">IR</div>
+        <div class="node-label" title="burp.IRequestInfo">IRequestInfo</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IRequestInfo</code></div>
+    </div>
+    <div class="validation-section" id="validation_19">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(19,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(19,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(19,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_19"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(19, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_19"
+          onclick="submitVote(19)" disabled>Submit</button>
+        <span class="submit-status" id="status_19"></span>
+      </div>
+      <input type="hidden" id="vote_19"          value="">
+      <input type="hidden" id="meta_source_19"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_19"   value="burp.IRequestInfo">
+      <input type="hidden" id="meta_rank_19"     value="20">
+      <input type="hidden" id="meta_score_19"    value="1.7205">
+      <input type="hidden" id="meta_cochange_19" value="-1">
+      <input type="hidden" id="meta_distance_19" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IContextMenuFactory"
+     data-score="1.7159"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="21">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IContextMenuFactory">IContextMenuFactory</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#21</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7159</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IContextMenuFactory">IC</div>
+        <div class="node-label" title="burp.IContextMenuFactory">IContextMenuFactory</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IContextMenuFactory</code></div>
+    </div>
+    <div class="validation-section" id="validation_20">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(20,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(20,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(20,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_20"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(20, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_20"
+          onclick="submitVote(20)" disabled>Submit</button>
+        <span class="submit-status" id="status_20"></span>
+      </div>
+      <input type="hidden" id="vote_20"          value="">
+      <input type="hidden" id="meta_source_20"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_20"   value="burp.IContextMenuFactory">
+      <input type="hidden" id="meta_rank_20"     value="21">
+      <input type="hidden" id="meta_score_20"    value="1.7159">
+      <input type="hidden" id="meta_cochange_20" value="-1">
+      <input type="hidden" id="meta_distance_20" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IIntruderPayloadGeneratorFactory"
+     data-score="1.7159"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="22">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IIntruderPayloadGeneratorFactory">IIntruderPayloadGeneratorFactory</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#22</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7159</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IIntruderPayloadGeneratorFactory">II</div>
+        <div class="node-label" title="burp.IIntruderPayloadGeneratorFactory">IIntruderPayloadGeneratorFactory</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IIntruderPayloadGeneratorFactory</code></div>
+    </div>
+    <div class="validation-section" id="validation_21">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(21,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(21,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(21,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_21"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(21, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_21"
+          onclick="submitVote(21)" disabled>Submit</button>
+        <span class="submit-status" id="status_21"></span>
+      </div>
+      <input type="hidden" id="vote_21"          value="">
+      <input type="hidden" id="meta_source_21"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_21"   value="burp.IIntruderPayloadGeneratorFactory">
+      <input type="hidden" id="meta_rank_21"     value="22">
+      <input type="hidden" id="meta_score_21"    value="1.7159">
+      <input type="hidden" id="meta_cochange_21" value="-1">
+      <input type="hidden" id="meta_distance_21" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IMessageEditorTabFactory"
+     data-score="1.7159"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="23">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IMessageEditorTabFactory">IMessageEditorTabFactory</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#23</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7159</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IMessageEditorTabFactory">IM</div>
+        <div class="node-label" title="burp.IMessageEditorTabFactory">IMessageEditorTabFactory</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IMessageEditorTabFactory</code></div>
+    </div>
+    <div class="validation-section" id="validation_22">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(22,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(22,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(22,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_22"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(22, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_22"
+          onclick="submitVote(22)" disabled>Submit</button>
+        <span class="submit-status" id="status_22"></span>
+      </div>
+      <input type="hidden" id="vote_22"          value="">
+      <input type="hidden" id="meta_source_22"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_22"   value="burp.IMessageEditorTabFactory">
+      <input type="hidden" id="meta_rank_22"     value="23">
+      <input type="hidden" id="meta_score_22"    value="1.7159">
+      <input type="hidden" id="meta_cochange_22" value="-1">
+      <input type="hidden" id="meta_distance_22" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IProxyListener"
+     data-score="1.7159"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="24">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IProxyListener">IProxyListener</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#24</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7159</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IProxyListener">IP</div>
+        <div class="node-label" title="burp.IProxyListener">IProxyListener</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IProxyListener</code></div>
+    </div>
+    <div class="validation-section" id="validation_23">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(23,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(23,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(23,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_23"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(23, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_23"
+          onclick="submitVote(23)" disabled>Submit</button>
+        <span class="submit-status" id="status_23"></span>
+      </div>
+      <input type="hidden" id="vote_23"          value="">
+      <input type="hidden" id="meta_source_23"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_23"   value="burp.IProxyListener">
+      <input type="hidden" id="meta_rank_23"     value="24">
+      <input type="hidden" id="meta_score_23"    value="1.7159">
+      <input type="hidden" id="meta_cochange_23" value="-1">
+      <input type="hidden" id="meta_distance_23" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IScannerInsertionPointProvider"
+     data-score="1.7159"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="25">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IScannerInsertionPointProvider">IScannerInsertionPointProvider</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#25</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.7159</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IScannerInsertionPointProvider">IS</div>
+        <div class="node-label" title="burp.IScannerInsertionPointProvider">IScannerInsertionPointProvider</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IScannerInsertionPointProvider</code></div>
+    </div>
+    <div class="validation-section" id="validation_24">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(24,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(24,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(24,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_24"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(24, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_24"
+          onclick="submitVote(24)" disabled>Submit</button>
+        <span class="submit-status" id="status_24"></span>
+      </div>
+      <input type="hidden" id="vote_24"          value="">
+      <input type="hidden" id="meta_source_24"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_24"   value="burp.IScannerInsertionPointProvider">
+      <input type="hidden" id="meta_rank_24"     value="25">
+      <input type="hidden" id="meta_score_24"    value="1.7159">
+      <input type="hidden" id="meta_cochange_24" value="-1">
+      <input type="hidden" id="meta_distance_24" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.BypassTableModel"
+     data-score="1.6725"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="26">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.BypassTableModel">BypassTableModel</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#26</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.6725</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+          <span class="edge-tag coupling" title="VARIABLE_FIELD_DECLARATION">Variable Field Declaration</span>
+          <span class="edge-tag coupling" title="VARIABLE_RETURN_STATEMENT">Variable Return Statement</span>
+          <span class="edge-tag coupling" title="ATOMIC_PARAMETER_COUPLING">Atomic Parameter Coupling</span>
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.BypassTableModel">BY</div>
+        <div class="node-label" title="Main.BypassTableModel">BypassTableModel</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span><span class="coupling-chip">VARIABLE_FIELD_DECLARATION</span><span class="coupling-chip">VARIABLE_RETURN_STATEMENT</span><span class="coupling-chip">ATOMIC_PARAMETER_COUPLING</span><span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.BypassTableModel</code></div>
+    </div>
+    <div class="validation-section" id="validation_25">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(25,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(25,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(25,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_25"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(25, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_25"
+          onclick="submitVote(25)" disabled>Submit</button>
+        <span class="submit-status" id="status_25"></span>
+      </div>
+      <input type="hidden" id="vote_25"          value="">
+      <input type="hidden" id="meta_source_25"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_25"   value="Main.BypassTableModel">
+      <input type="hidden" id="meta_rank_25"     value="26">
+      <input type="hidden" id="meta_score_25"    value="1.6725">
+      <input type="hidden" id="meta_cochange_25" value="-1">
+      <input type="hidden" id="meta_distance_25" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IScannerCheck"
+     data-score="1.6623"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="27">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IScannerCheck">IScannerCheck</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#27</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.6623</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IScannerCheck">IS</div>
+        <div class="node-label" title="burp.IScannerCheck">IScannerCheck</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IScannerCheck</code></div>
+    </div>
+    <div class="validation-section" id="validation_26">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(26,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(26,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(26,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_26"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(26, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_26"
+          onclick="submitVote(26)" disabled>Submit</button>
+        <span class="submit-status" id="status_26"></span>
+      </div>
+      <input type="hidden" id="vote_26"          value="">
+      <input type="hidden" id="meta_source_26"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_26"   value="burp.IScannerCheck">
+      <input type="hidden" id="meta_rank_26"     value="27">
+      <input type="hidden" id="meta_score_26"    value="1.6623">
+      <input type="hidden" id="meta_cochange_26" value="-1">
+      <input type="hidden" id="meta_distance_26" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IBurpExtender"
+     data-score="1.6486"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="28">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IBurpExtender">IBurpExtender</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#28</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.6486</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IBurpExtender">IB</div>
+        <div class="node-label" title="burp.IBurpExtender">IBurpExtender</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IBurpExtender</code></div>
+    </div>
+    <div class="validation-section" id="validation_27">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(27,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(27,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(27,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_27"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(27, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_27"
+          onclick="submitVote(27)" disabled>Submit</button>
+        <span class="submit-status" id="status_27"></span>
+      </div>
+      <input type="hidden" id="vote_27"          value="">
+      <input type="hidden" id="meta_source_27"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_27"   value="burp.IBurpExtender">
+      <input type="hidden" id="meta_rank_27"     value="28">
+      <input type="hidden" id="meta_score_27"    value="1.6486">
+      <input type="hidden" id="meta_cochange_27" value="-1">
+      <input type="hidden" id="meta_distance_27" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IMenuItemHandler"
+     data-score="1.6486"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="29">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IMenuItemHandler">IMenuItemHandler</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#29</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.6486</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IMenuItemHandler">IM</div>
+        <div class="node-label" title="burp.IMenuItemHandler">IMenuItemHandler</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IMenuItemHandler</code></div>
+    </div>
+    <div class="validation-section" id="validation_28">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(28,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(28,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(28,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_28"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(28, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_28"
+          onclick="submitVote(28)" disabled>Submit</button>
+        <span class="submit-status" id="status_28"></span>
+      </div>
+      <input type="hidden" id="vote_28"          value="">
+      <input type="hidden" id="meta_source_28"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_28"   value="burp.IMenuItemHandler">
+      <input type="hidden" id="meta_rank_28"     value="29">
+      <input type="hidden" id="meta_score_28"    value="1.6486">
+      <input type="hidden" id="meta_cochange_28" value="-1">
+      <input type="hidden" id="meta_distance_28" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IHttpRequestResponseWithMarkers"
+     data-score="1.6397"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="30">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IHttpRequestResponseWithMarkers">IHttpRequestResponseWithMarkers</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#30</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.6397</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IHttpRequestResponseWithMarkers">IH</div>
+        <div class="node-label" title="burp.IHttpRequestResponseWithMarkers">IHttpRequestResponseWithMarkers</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IHttpRequestResponseWithMarkers</code></div>
+    </div>
+    <div class="validation-section" id="validation_29">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(29,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(29,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(29,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_29"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(29, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_29"
+          onclick="submitVote(29)" disabled>Submit</button>
+        <span class="submit-status" id="status_29"></span>
+      </div>
+      <input type="hidden" id="vote_29"          value="">
+      <input type="hidden" id="meta_source_29"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_29"   value="burp.IHttpRequestResponseWithMarkers">
+      <input type="hidden" id="meta_rank_29"     value="30">
+      <input type="hidden" id="meta_score_29"    value="1.6397">
+      <input type="hidden" id="meta_cochange_29" value="-1">
+      <input type="hidden" id="meta_distance_29" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IScanQueueItem"
+     data-score="1.6397"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="31">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IScanQueueItem">IScanQueueItem</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#31</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.6397</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IScanQueueItem">IS</div>
+        <div class="node-label" title="burp.IScanQueueItem">IScanQueueItem</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IScanQueueItem</code></div>
+    </div>
+    <div class="validation-section" id="validation_30">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(30,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(30,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(30,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_30"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(30, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_30"
+          onclick="submitVote(30)" disabled>Submit</button>
+        <span class="submit-status" id="status_30"></span>
+      </div>
+      <input type="hidden" id="vote_30"          value="">
+      <input type="hidden" id="meta_source_30"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_30"   value="burp.IScanQueueItem">
+      <input type="hidden" id="meta_rank_30"     value="31">
+      <input type="hidden" id="meta_score_30"    value="1.6397">
+      <input type="hidden" id="meta_cochange_30" value="-1">
+      <input type="hidden" id="meta_distance_30" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.Bypass"
+     data-score="1.5572"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="32">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.Bypass">Bypass</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#32</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.5572</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_OBJECT_PARAMETER">Method Invocation Object Parameter</span>
+          <span class="edge-tag coupling" title="VARIABLE_RETURN_STATEMENT">Variable Return Statement</span>
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="VARIABLE_FIELD_DECLARATION">Variable Field Declaration</span>
+          <span class="edge-tag coupling" title="VARIABLE_DECLARATION_STATEMENT">Variable Declaration Statement</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="Main.BypassTable">BY</div>
+        <div class="node-label" title="Main.BypassTable">BypassTable</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.Bypass">BY</div>
+        <div class="node-label" title="Main.Bypass">Bypass</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_OBJECT_PARAMETER</span><span class="coupling-chip">VARIABLE_RETURN_STATEMENT</span><span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">VARIABLE_FIELD_DECLARATION</span><span class="coupling-chip">VARIABLE_DECLARATION_STATEMENT</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.Bypass</code></div>
+    </div>
+    <div class="validation-section" id="validation_31">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(31,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(31,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(31,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_31"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(31, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_31"
+          onclick="submitVote(31)" disabled>Submit</button>
+        <span class="submit-status" id="status_31"></span>
+      </div>
+      <input type="hidden" id="vote_31"          value="">
+      <input type="hidden" id="meta_source_31"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_31"   value="Main.Bypass">
+      <input type="hidden" id="meta_rank_31"     value="32">
+      <input type="hidden" id="meta_score_31"    value="1.5572">
+      <input type="hidden" id="meta_cochange_31" value="-1">
+      <input type="hidden" id="meta_distance_31" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IMessageEditorController"
+     data-score="1.5517"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="33">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IMessageEditorController">IMessageEditorController</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#33</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.5517</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IMessageEditorController">IM</div>
+        <div class="node-label" title="burp.IMessageEditorController">IMessageEditorController</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IMessageEditorController</code></div>
+    </div>
+    <div class="validation-section" id="validation_32">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(32,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(32,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(32,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_32"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(32, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_32"
+          onclick="submitVote(32)" disabled>Submit</button>
+        <span class="submit-status" id="status_32"></span>
+      </div>
+      <input type="hidden" id="vote_32"          value="">
+      <input type="hidden" id="meta_source_32"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_32"   value="burp.IMessageEditorController">
+      <input type="hidden" id="meta_rank_32"     value="33">
+      <input type="hidden" id="meta_score_32"    value="1.5517">
+      <input type="hidden" id="meta_cochange_32" value="-1">
+      <input type="hidden" id="meta_distance_32" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IHttpRequestResponsePersisted"
+     data-score="1.5432"
+     data-cochange="-1"
+     data-distance="2"
+     data-rank="34">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IHttpRequestResponsePersisted">IHttpRequestResponsePersisted</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#34</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.5432</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">2</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IHttpRequestResponsePersisted">IH</div>
+        <div class="node-label" title="burp.IHttpRequestResponsePersisted">IHttpRequestResponsePersisted</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IHttpRequestResponsePersisted</code></div>
+    </div>
+    <div class="validation-section" id="validation_33">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(33,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(33,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(33,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_33"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(33, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_33"
+          onclick="submitVote(33)" disabled>Submit</button>
+        <span class="submit-status" id="status_33"></span>
+      </div>
+      <input type="hidden" id="vote_33"          value="">
+      <input type="hidden" id="meta_source_33"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_33"   value="burp.IHttpRequestResponsePersisted">
+      <input type="hidden" id="meta_rank_33"     value="34">
+      <input type="hidden" id="meta_score_33"    value="1.5432">
+      <input type="hidden" id="meta_cochange_33" value="-1">
+      <input type="hidden" id="meta_distance_33" value="2">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IIntruderAttack"
+     data-score="1.2816"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="35">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IIntruderAttack">IIntruderAttack</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#35</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.2816</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IIntruderPayloadGeneratorFactory">II</div>
+        <div class="node-label" title="burp.IIntruderPayloadGeneratorFactory">IIntruderPayloadGeneratorFactory</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IIntruderAttack">II</div>
+        <div class="node-label" title="burp.IIntruderAttack">IIntruderAttack</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IIntruderAttack</code></div>
+    </div>
+    <div class="validation-section" id="validation_34">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(34,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(34,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(34,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_34"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(34, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_34"
+          onclick="submitVote(34)" disabled>Submit</button>
+        <span class="submit-status" id="status_34"></span>
+      </div>
+      <input type="hidden" id="vote_34"          value="">
+      <input type="hidden" id="meta_source_34"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_34"   value="burp.IIntruderAttack">
+      <input type="hidden" id="meta_rank_34"     value="35">
+      <input type="hidden" id="meta_score_34"    value="1.2816">
+      <input type="hidden" id="meta_cochange_34" value="-1">
+      <input type="hidden" id="meta_distance_34" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IIntruderPayloadGenerator"
+     data-score="1.2747"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="36">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IIntruderPayloadGenerator">IIntruderPayloadGenerator</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#36</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.2747</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IIntruderPayloadGeneratorFactory">II</div>
+        <div class="node-label" title="burp.IIntruderPayloadGeneratorFactory">IIntruderPayloadGeneratorFactory</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IIntruderPayloadGenerator">II</div>
+        <div class="node-label" title="burp.IIntruderPayloadGenerator">IIntruderPayloadGenerator</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IIntruderPayloadGenerator</code></div>
+    </div>
+    <div class="validation-section" id="validation_35">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(35,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(35,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(35,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_35"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(35, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_35"
+          onclick="submitVote(35)" disabled>Submit</button>
+        <span class="submit-status" id="status_35"></span>
+      </div>
+      <input type="hidden" id="vote_35"          value="">
+      <input type="hidden" id="meta_source_35"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_35"   value="burp.IIntruderPayloadGenerator">
+      <input type="hidden" id="meta_rank_35"     value="36">
+      <input type="hidden" id="meta_score_35"    value="1.2747">
+      <input type="hidden" id="meta_cochange_35" value="-1">
+      <input type="hidden" id="meta_distance_35" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IMessageEditorTab"
+     data-score="1.2747"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="37">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IMessageEditorTab">IMessageEditorTab</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#37</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.2747</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IMessageEditorTabFactory">IM</div>
+        <div class="node-label" title="burp.IMessageEditorTabFactory">IMessageEditorTabFactory</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IMessageEditorTab">IM</div>
+        <div class="node-label" title="burp.IMessageEditorTab">IMessageEditorTab</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IMessageEditorTab</code></div>
+    </div>
+    <div class="validation-section" id="validation_36">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(36,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(36,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(36,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_36"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(36, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_36"
+          onclick="submitVote(36)" disabled>Submit</button>
+        <span class="submit-status" id="status_36"></span>
+      </div>
+      <input type="hidden" id="vote_36"          value="">
+      <input type="hidden" id="meta_source_36"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_36"   value="burp.IMessageEditorTab">
+      <input type="hidden" id="meta_rank_36"     value="37">
+      <input type="hidden" id="meta_score_36"    value="1.2747">
+      <input type="hidden" id="meta_cochange_36" value="-1">
+      <input type="hidden" id="meta_distance_36" value="3">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="Main.MainPanel"
+     data-score="1.2222"
+     data-cochange="1"
+     data-distance="1"
+     data-rank="38">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="Main.MainPanel">MainPanel</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#38</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.2222</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag cochange">co-change: 1</span>
+          <span class="edge-tag coupling" title="METHOD_INVOCATION_ATOMIC_PARAMETER">Method Invocation Atomic Parameter</span>
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="Main.MainPanel">MA</div>
+        <div class="node-label" title="Main.MainPanel">MainPanel</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_INVOCATION_ATOMIC_PARAMETER</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>Main.MainPanel</code></div>
+    </div>
+    <div class="validation-section" id="validation_37">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(37,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(37,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(37,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_37"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(37, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_37"
+          onclick="submitVote(37)" disabled>Submit</button>
+        <span class="submit-status" id="status_37"></span>
+      </div>
+      <input type="hidden" id="vote_37"          value="">
+      <input type="hidden" id="meta_source_37"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_37"   value="Main.MainPanel">
+      <input type="hidden" id="meta_rank_37"     value="38">
+      <input type="hidden" id="meta_score_37"    value="1.2222">
+      <input type="hidden" id="meta_cochange_37" value="1">
+      <input type="hidden" id="meta_distance_37" value="1">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="burp.IMessageEditor"
+     data-target="burp.IScannerInsertionPoint"
+     data-score="1.1795"
+     data-cochange="-1"
+     data-distance="3"
+     data-rank="39">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="burp.IMessageEditor">IMessageEditor</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="burp.IScannerInsertionPoint">IScannerInsertionPoint</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#39</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">1.1795</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">NONE</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">3</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="burp.IMessageEditor">IM</div>
+        <div class="node-label" title="burp.IMessageEditor">IMessageEditor</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag coupling" title="METHOD_RETURN_TYPE">Method Return Type</span>
+          <span class="edge-tag coupling" title="PARAMETERIZED_TYPE">Parameterized Type</span>
+          <span class="edge-tag coupling" title="METHOD_PARAMETER_TYPE">Method Parameter Type</span>
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IBurpExtenderCallbacks">IB</div>
+        <div class="node-label" title="burp.IBurpExtenderCallbacks">IBurpExtenderCallbacks</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node ">
+        <div class="node-circle" title="burp.IScannerCheck">IS</div>
+        <div class="node-label" title="burp.IScannerCheck">IScannerCheck</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="burp.IScannerInsertionPoint">IS</div>
+        <div class="node-label" title="burp.IScannerInsertionPoint">IScannerInsertionPoint</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="coupling-chip">METHOD_RETURN_TYPE</span><span class="coupling-chip">PARAMETERIZED_TYPE</span><span class="coupling-chip">METHOD_PARAMETER_TYPE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>burp.IMessageEditor</code></div>
+      <div><strong>Target:</strong> <code>burp.IScannerInsertionPoint</code></div>
+    </div>
+    <div class="validation-section" id="validation_38">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(38,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(38,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(38,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_38"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(38, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_38"
+          onclick="submitVote(38)" disabled>Submit</button>
+        <span class="submit-status" id="status_38"></span>
+      </div>
+      <input type="hidden" id="vote_38"          value="">
+      <input type="hidden" id="meta_source_38"   value="burp.IMessageEditor">
+      <input type="hidden" id="meta_target_38"   value="burp.IScannerInsertionPoint">
+      <input type="hidden" id="meta_rank_38"     value="39">
+      <input type="hidden" id="meta_score_38"    value="1.1795">
+      <input type="hidden" id="meta_cochange_38" value="-1">
+      <input type="hidden" id="meta_distance_38" value="3">
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<script>
+const REPO          = '0x727_BypassPro';
+const SOURCE_SAFE   = 'burp_IMessageEditor';
+const STORAGE_PREFIX = 'ocpa_vote_' + REPO + '__' + SOURCE_SAFE + '__';
+const TOTAL_CARDS   = 39;
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/change.vein@gmail.com';
+
+function saveEmail(v) {
+  localStorage.setItem('email_' + REPO, v);
+  document.getElementById('userEmail').classList.remove('invalid');
+}
+
+function saveComment(idx, value) {
+  localStorage.setItem(STORAGE_PREFIX + idx + '__comment', value);
+}
+
+function selectVote(idx, vote, btn) {
+  btn.parentElement.querySelectorAll('.vote-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('vote_' + idx).value = vote;
+  document.getElementById('submitBtn_' + idx).disabled = false;
+}
+
+async function submitVote(idx) {
+  const vote = document.getElementById('vote_' + idx).value;
+  if (!vote) return;
+
+  const email = document.getElementById('userEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('userEmail').classList.add('invalid');
+    document.getElementById('userEmail').focus();
+    alert('Please enter a valid email in the header before submitting.');
+    return;
+  }
+
+  const comment  = document.getElementById('comment_'       + idx).value;
+  const source   = document.getElementById('meta_source_'   + idx).value;
+  const target   = document.getElementById('meta_target_'   + idx).value;
+  const rank     = document.getElementById('meta_rank_'     + idx).value;
+  const score    = document.getElementById('meta_score_'    + idx).value;
+  const cochange = document.getElementById('meta_cochange_' + idx).value;
+  const distance = document.getElementById('meta_distance_' + idx).value;
+
+  const statusEl  = document.getElementById('status_'    + idx);
+  const submitBtn = document.getElementById('submitBtn_' + idx);
+  submitBtn.disabled = true;
+  statusEl.textContent = 'Submitting…';
+  statusEl.className   = 'submit-status';
+
+  const payload = {
+    _subject:       '[OCPA Validation] ' + REPO + ' — ' + source + ' → ' + target + ': ' + vote.toUpperCase(),
+    Email:          email,
+    Repository:     REPO,
+    Source_Class:   source,
+    Affected_Class: target,
+    Rank:           rank,
+    Score:          score,
+    CoChange:       cochange,
+    Distance:       distance,
+    Validation:     vote,
+    Comment:        comment || '(no comment)',
+    Timestamp:      new Date().toISOString(),
+  };
+
+  const storageKey = STORAGE_PREFIX + idx;
+  try {
+    const res  = await fetch(FORMSUBMIT_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (data.success === 'true' || data.success === true) {
+      statusEl.style.color = 'var(--green)';
+      statusEl.textContent = '✓ Submitted!';
+    } else {
+      throw new Error(data.message || 'Unknown error');
+    }
+  } catch (err) {
+    statusEl.style.color  = 'var(--orange)';
+    statusEl.textContent  = '⚠ Saved locally. Export CSV to send later.';
+    console.warn('FormSubmit error:', err);
+  }
+  localStorage.setItem(storageKey, JSON.stringify({ ...payload, vote }));
+  markAsSent(idx, vote);
+  updateProgress();
+}
+
+function markAsSent(idx, vote) {
+  const section = document.getElementById('validation_' + idx);
+  const labels  = { correct: '✅ Correct', incorrect: '❌ Incorrect', unsure: '❓ Unsure' };
+  section.innerHTML = '<div class="already-sent">✓ Validation submitted: <strong>' + (labels[vote] || vote) + '</strong></div>';
+}
+
+function updateProgress() {
+  let count = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(STORAGE_PREFIX) && !k.endsWith('__comment')) count++;
+  }
+  const pct = TOTAL_CARDS > 0 ? Math.round((count / TOTAL_CARDS) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent  = count + ' / ' + TOTAL_CARDS;
+}
+
+function filterCards() {
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.display = (!q || c.dataset.target.toLowerCase().includes(q)) ? "" : "none";
+  });
+}
+
+function sortCards() {
+  const by        = document.getElementById('sortBy').value;
+  const container = document.getElementById('cardsContainer');
+  const cards     = Array.from(container.querySelectorAll('.card'));
+  cards.sort((a, b) => {
+    if (by === "score")    return parseFloat(b.dataset.score)    - parseFloat(a.dataset.score);
+    if (by === "cochange") return parseFloat(b.dataset.cochange) - parseFloat(a.dataset.cochange);
+    if (by === "distance") return parseFloat(a.dataset.distance) - parseFloat(b.dataset.distance);
+    if (by === "rank")     return parseFloat(a.dataset.rank)     - parseFloat(b.dataset.rank);
+    return 0;
+  });
+  cards.forEach(c => container.appendChild(c));
+}
+
+function exportCSV() {
+  const email = document.getElementById('userEmail').value.trim();
+  const rows  = [['Email','Repository','Source_Class','Affected_Class','Rank','Score','CoChange','Distance','Validation','Comment','Timestamp']];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(STORAGE_PREFIX) && !key.endsWith('__comment')) {
+      try {
+        const d = JSON.parse(localStorage.getItem(key));
+        rows.push([ d.Email||email||'', d.Repository||'', d.Source_Class||'', d.Affected_Class||'', d.Rank||'', d.Score||'', d.CoChange||'', d.Distance||'', d.Validation||d.vote||'', d.Comment||'', d.Timestamp||'' ]);
+      } catch(e) {}
+    }
+  }
+  const csv  = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""')+'"').join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const a    = document.createElement("a");
+  a.href     = URL.createObjectURL(blob);
+  a.download = 'ocpa_' + REPO + '_' + SOURCE_SAFE + '.csv';
+  a.click();
+}
+
+function restoreState() {
+  const email = localStorage.getItem('email_' + REPO) || '';
+  if (email) document.getElementById('userEmail').value = email;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(STORAGE_PREFIX) && !key.endsWith('__comment')) {
+      const idx = key.substring(STORAGE_PREFIX.length);
+      try {
+        const data = JSON.parse(localStorage.getItem(key));
+        if (data && data.vote) markAsSent(idx, data.vote);
+      } catch(e) {}
+    }
+  }
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(STORAGE_PREFIX) && key.endsWith('__comment')) {
+      const idxStr = key.slice(STORAGE_PREFIX.length, -'__comment'.length);
+      const el = document.getElementById('comment_' + idxStr);
+      if (el) el.value = localStorage.getItem(key) || "";
+    }
+  }
+  updateProgress();
+}
+
+document.addEventListener("DOMContentLoaded", restoreState);
+</script>
+</body>
+</html>

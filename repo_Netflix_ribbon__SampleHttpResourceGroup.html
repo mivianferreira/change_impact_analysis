@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OCPA — Netflix/ribbon — SampleHttpResourceGroup</title>
+<style>
+
+:root {
+  --bg: #0d1117; --surface: #161b22; --surface2: #21262d;
+  --border: #30363d; --text: #e6edf3; --text2: #8b949e;
+  --accent: #58a6ff; --green: #3fb950; --orange: #d29922;
+  --red: #f85149; --purple: #bc8cff; --cyan: #39d2c0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; }
+
+/* ── Sticky page header (Page C) ── */
+.page-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 32px; position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.back-btn { color: var(--text2); font-size: 13px; text-decoration: none; padding: 6px 14px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface2); white-space: nowrap; }
+.back-btn:hover { color: var(--accent); border-color: var(--accent); }
+.src-label { color: var(--text2); font-size: 12px; }
+.src-name-h { color: var(--text); font-weight: 700; font-size: 14px; }
+.header-email-wrap { display: flex; flex-direction: column; gap: 3px; }
+.header-email-wrap label { font-size: 11px; color: var(--text2); }
+.header-email-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 12px; color: var(--text); font-size: 13px; width: 240px; font-family: inherit; }
+.header-email-input:focus { outline: none; border-color: var(--accent); }
+.header-email-input.invalid { border-color: var(--red); }
+.export-btn { padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; font-size: 12px; }
+.export-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Main container ── */
+.container { max-width: 900px; margin: 0 auto; padding: 24px 32px; }
+
+/* ── Progress bar ── */
+.progress-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
+.progress-bar .bar-track { flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.progress-bar .bar-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s; }
+.progress-bar .bar-label { font-size: 13px; color: var(--text2); white-space: nowrap; }
+
+/* ── Cards ── */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.2s; }
+.card:hover { border-color: var(--accent); }
+.card-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border); cursor: pointer; }
+.card-header .source-target { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+.class-badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-family: 'SFMono-Regular', Consolas, monospace; font-size: 12px; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.class-badge.source { border-color: var(--orange); color: var(--orange); }
+.class-badge.target { border-color: var(--green); color: var(--green); }
+.arrow-icon { color: var(--text2); font-size: 18px; flex-shrink: 0; }
+.metrics-mini { display: flex; gap: 16px; flex-shrink: 0; }
+.metric-pill { display: flex; flex-direction: column; align-items: center; }
+.metric-pill .val { font-weight: 700; font-size: 14px; }
+.metric-pill .lbl { font-size: 10px; color: var(--text2); text-transform: uppercase; }
+.metric-pill.score .val { color: var(--red); }
+.metric-pill.cochange .val { color: var(--cyan); }
+.metric-pill.dist .val { color: var(--purple); }
+.metric-pill.rank-m .val { color: var(--text2); }
+.card-body { padding: 20px; display: none; border-top: 1px solid var(--border); }
+.card.open .card-body { display: block; }
+
+/* ── Path diagram ── */
+.path-diagram { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding: 16px 0; }
+.path-node { display: flex; flex-direction: column; align-items: center; min-width: 80px; flex-shrink: 0; }
+.path-node .node-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; border: 2px solid var(--border); background: var(--surface2); }
+.path-node.first .node-circle { border-color: var(--orange); background: rgba(210,153,34,0.15); color: var(--orange); }
+.path-node.last .node-circle { border-color: var(--green); background: rgba(63,185,80,0.15); color: var(--green); }
+.path-node .node-label { font-size: 10px; color: var(--text2); text-align: center; margin-top: 4px; max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.path-edge { display: flex; flex-direction: column; align-items: center; min-width: 100px; flex-shrink: 0; padding-top: 10px; }
+.path-edge .edge-arrow { display: flex; align-items: center; color: var(--text2); font-size: 12px; white-space: nowrap; }
+.path-edge .edge-arrow .line { width: 40px; height: 2px; background: var(--border); }
+.path-edge .edge-arrow .tip { margin-left: -2px; }
+.path-edge .edge-tags { display: flex; flex-direction: column; align-items: center; gap: 3px; margin-top: 4px; }
+.edge-tag { font-size: 9px; padding: 1px 6px; border-radius: 4px; white-space: nowrap; }
+.edge-tag.cochange { background: rgba(57,210,192,0.15); color: var(--cyan); border: 1px solid rgba(57,210,192,0.3); }
+.edge-tag.coupling { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+.edge-tag.none { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+
+/* ── Coupling section ── */
+.coupling-section { margin-top: 16px; }
+.coupling-section h4 { font-size: 12px; color: var(--text2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.coupling-chip { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 12px; margin: 2px 4px 2px 0; background: rgba(188,140,255,0.12); color: var(--purple); border: 1px solid rgba(188,140,255,0.25); font-family: monospace; }
+.none-text { color: var(--text2); font-style: italic; font-size: 12px; }
+.toggle-icon { transition: transform 0.2s; color: var(--text2); font-size: 18px; margin-left: 12px; }
+.card.open .toggle-icon { transform: rotate(180deg); }
+
+/* ── Validation section ── */
+.validation-section { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border); }
+.validation-section h4 { font-size: 12px; color: var(--text2); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.vote-buttons { display: flex; gap: 8px; margin-bottom: 10px; }
+.vote-btn { padding: 8px 18px; border-radius: 8px; border: 2px solid var(--border); background: var(--surface2); color: var(--text); cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.vote-btn:hover { border-color: var(--accent); }
+.vote-btn.correct.selected { border-color: var(--green); background: rgba(63,185,80,0.15); color: var(--green); }
+.vote-btn.incorrect.selected { border-color: var(--red); background: rgba(248,81,73,0.15); color: var(--red); }
+.vote-btn.unsure.selected { border-color: var(--orange); background: rgba(210,153,34,0.15); color: var(--orange); }
+.validation-comment { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; color: var(--text); padding: 8px 12px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 50px; margin-bottom: 10px; }
+.validation-comment::placeholder { color: var(--text2); }
+.submit-row { display: flex; align-items: center; gap: 12px; }
+.submit-btn { padding: 8px 24px; border-radius: 8px; border: none; background: var(--accent); color: #fff; cursor: pointer; font-size: 13px; font-weight: 600; transition: opacity 0.2s; }
+.submit-btn:hover { opacity: 0.85; }
+.submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.submit-status { font-size: 12px; color: var(--green); }
+.submit-status.error { color: var(--red); }
+.already-sent { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.25); color: var(--green); font-size: 13px; }
+
+@media (max-width: 768px) {
+  .metrics-mini { gap: 8px; }
+  .class-badge { max-width: 150px; font-size: 11px; }
+  .container { padding: 16px; }
+  .page-header { padding: 12px 16px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── Sticky Header ── -->
+<div class="page-header">
+  <a class="back-btn" href="repo_Netflix_ribbon.html">← Back to class list</a>
+  <div>
+    <div class="src-label">Source class &nbsp;·&nbsp; Netflix/ribbon</div>
+    <div class="src-name-h">SampleHttpResourceGroup</div>
+  </div>
+  <div style="flex:1"></div>
+  <div class="header-email-wrap">
+    <label for="userEmail">✉️ Email <span style="color:var(--red)">*</span></label>
+    <input type="email" class="header-email-input" id="userEmail"
+      placeholder="your@email.com" oninput="saveEmail(this.value)">
+  </div>
+  <button onclick="exportCSV()" class="export-btn">📥 Export CSV</button>
+</div>
+
+<!-- ── Main content ── -->
+<div class="container">
+
+<div class="progress-bar">
+  <span class="bar-label">Validation progress:</span>
+  <div class="bar-track"><div class="bar-fill" id="progressFill" style="width:0%"></div></div>
+  <span class="bar-label" id="progressText">0 / 2</span>
+</div>
+
+<div id="cardsContainer">
+<div class="card"
+     data-source="SampleHttpResourceGroup"
+     data-target="BrokenMovieServiceWithResourceGroupNameAndClassAnnotation"
+     data-score="0.9669"
+     data-cochange="1"
+     data-distance="1"
+     data-rank="2">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="SampleHttpResourceGroup">SampleHttpResourceGroup</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="BrokenMovieServiceWithResourceGroupNameAndClassAnnotation">BrokenMovieServiceWithResourceGroupNameAndClassAnnotation</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#2</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">0.9669</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="SampleHttpResourceGroup">SA</div>
+        <div class="node-label" title="SampleHttpResourceGroup">SampleHttpResourceGroup</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag cochange">co-change: 1</span>
+          <span class="edge-tag none">no coupling</span>
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="BrokenMovieServiceWithResourceGroupNameAndClassAnnotation">BR</div>
+        <div class="node-label" title="BrokenMovieServiceWithResourceGroupNameAndClassAnnotation">BrokenMovieServiceWithResourceGroupNameAndClassAnnotation</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="none-text">NONE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>SampleHttpResourceGroup</code></div>
+      <div><strong>Target:</strong> <code>BrokenMovieServiceWithResourceGroupNameAndClassAnnotation</code></div>
+    </div>
+    <div class="validation-section" id="validation_0">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(0,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(0,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(0,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_0"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(0, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_0"
+          onclick="submitVote(0)" disabled>Submit</button>
+        <span class="submit-status" id="status_0"></span>
+      </div>
+      <input type="hidden" id="vote_0"          value="">
+      <input type="hidden" id="meta_source_0"   value="SampleHttpResourceGroup">
+      <input type="hidden" id="meta_target_0"   value="BrokenMovieServiceWithResourceGroupNameAndClassAnnotation">
+      <input type="hidden" id="meta_rank_0"     value="2">
+      <input type="hidden" id="meta_score_0"    value="0.9669">
+      <input type="hidden" id="meta_cochange_0" value="1">
+      <input type="hidden" id="meta_distance_0" value="1">
+    </div>
+  </div>
+</div>
+<div class="card"
+     data-source="SampleHttpResourceGroup"
+     data-target="SampleMovieServiceWithResourceGroupClassAnnotation"
+     data-score="0.9669"
+     data-cochange="1"
+     data-distance="1"
+     data-rank="3">
+  <div class="card-header" onclick="this.parentElement.classList.toggle('open')">
+    <div class="source-target">
+      <span class="class-badge source" title="SampleHttpResourceGroup">SampleHttpResourceGroup</span>
+      <span class="arrow-icon">&#8594;</span>
+      <span class="class-badge target" title="SampleMovieServiceWithResourceGroupClassAnnotation">SampleMovieServiceWithResourceGroupClassAnnotation</span>
+    </div>
+    <div class="metrics-mini">
+      <div class="metric-pill rank-m"><span class="val">#3</span><span class="lbl">Rank</span></div>
+      <div class="metric-pill score"><span class="val">0.9669</span><span class="lbl">Score</span></div>
+      <div class="metric-pill cochange"><span class="val">1</span><span class="lbl">Co-change</span></div>
+      <div class="metric-pill dist"><span class="val">1</span><span class="lbl">Distance</span></div>
+    </div>
+    <span class="toggle-icon">&#9660;</span>
+  </div>
+  <div class="card-body">
+    <h4 style="color:var(--text2);font-size:12px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;">Propagation Path</h4>
+    <div class="path-diagram">
+      <div class="path-node first">
+        <div class="node-circle" title="SampleHttpResourceGroup">SA</div>
+        <div class="node-label" title="SampleHttpResourceGroup">SampleHttpResourceGroup</div>
+      </div>
+      <div class="path-edge">
+        <div class="edge-arrow"><span class="line"></span><span class="tip">&#9658;</span></div>
+        <div class="edge-tags">
+          <span class="edge-tag cochange">co-change: 1</span>
+          <span class="edge-tag none">no coupling</span>
+        </div>
+      </div>
+      <div class="path-node last">
+        <div class="node-circle" title="SampleMovieServiceWithResourceGroupClassAnnotation">SA</div>
+        <div class="node-label" title="SampleMovieServiceWithResourceGroupClassAnnotation">SampleMovieServiceWithResourceGroupClassAnnotation</div>
+      </div>
+    </div>
+
+    <div class="coupling-section">
+      <h4>Coupling Types on Path</h4>
+      <span class="none-text">NONE</span>
+    </div>
+    <div style="margin-top:16px; font-size:11px; color:var(--text2);">
+      <div><strong>Source:</strong> <code>SampleHttpResourceGroup</code></div>
+      <div><strong>Target:</strong> <code>SampleMovieServiceWithResourceGroupClassAnnotation</code></div>
+    </div>
+    <div class="validation-section" id="validation_1">
+      <h4>&#128203; Validation — Is this propagation correct?</h4>
+      <div class="vote-buttons">
+        <button class="vote-btn correct"   onclick="selectVote(1,'correct',this)">&#9989; Correct</button>
+        <button class="vote-btn incorrect" onclick="selectVote(1,'incorrect',this)">&#10060; Incorrect</button>
+        <button class="vote-btn unsure"    onclick="selectVote(1,'unsure',this)">&#10067; Unsure</button>
+      </div>
+      <textarea class="validation-comment" id="comment_1"
+        placeholder="Optional comment (e.g., why you think it is incorrect)…"
+        oninput="saveComment(1, this.value)"></textarea>
+      <div class="submit-row">
+        <button class="submit-btn" id="submitBtn_1"
+          onclick="submitVote(1)" disabled>Submit</button>
+        <span class="submit-status" id="status_1"></span>
+      </div>
+      <input type="hidden" id="vote_1"          value="">
+      <input type="hidden" id="meta_source_1"   value="SampleHttpResourceGroup">
+      <input type="hidden" id="meta_target_1"   value="SampleMovieServiceWithResourceGroupClassAnnotation">
+      <input type="hidden" id="meta_rank_1"     value="3">
+      <input type="hidden" id="meta_score_1"    value="0.9669">
+      <input type="hidden" id="meta_cochange_1" value="1">
+      <input type="hidden" id="meta_distance_1" value="1">
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<script>
+const REPO          = 'Netflix_ribbon';
+const SOURCE_SAFE   = 'SampleHttpResourceGroup';
+const STORAGE_PREFIX = 'ocpa_vote_' + REPO + '__' + SOURCE_SAFE + '__';
+const TOTAL_CARDS   = 2;
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/change.vein@gmail.com';
+
+function saveEmail(v) {
+  localStorage.setItem('email_' + REPO, v);
+  document.getElementById('userEmail').classList.remove('invalid');
+}
+
+function saveComment(idx, value) {
+  localStorage.setItem(STORAGE_PREFIX + idx + '__comment', value);
+}
+
+function selectVote(idx, vote, btn) {
+  btn.parentElement.querySelectorAll('.vote-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('vote_' + idx).value = vote;
+  document.getElementById('submitBtn_' + idx).disabled = false;
+}
+
+async function submitVote(idx) {
+  const vote = document.getElementById('vote_' + idx).value;
+  if (!vote) return;
+
+  const email = document.getElementById('userEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('userEmail').classList.add('invalid');
+    document.getElementById('userEmail').focus();
+    alert('Please enter a valid email in the header before submitting.');
+    return;
+  }
+
+  const comment  = document.getElementById('comment_'       + idx).value;
+  const source   = document.getElementById('meta_source_'   + idx).value;
+  const target   = document.getElementById('meta_target_'   + idx).value;
+  const rank     = document.getElementById('meta_rank_'     + idx).value;
+  const score    = document.getElementById('meta_score_'    + idx).value;
+  const cochange = document.getElementById('meta_cochange_' + idx).value;
+  const distance = document.getElementById('meta_distance_' + idx).value;
+
+  const statusEl  = document.getElementById('status_'    + idx);
+  const submitBtn = document.getElementById('submitBtn_' + idx);
+  submitBtn.disabled = true;
+  statusEl.textContent = 'Submitting…';
+  statusEl.className   = 'submit-status';
+
+  const payload = {
+    _subject:       '[OCPA Validation] ' + REPO + ' — ' + source + ' → ' + target + ': ' + vote.toUpperCase(),
+    Email:          email,
+    Repository:     REPO,
+    Source_Class:   source,
+    Affected_Class: target,
+    Rank:           rank,
+    Score:          score,
+    CoChange:       cochange,
+    Distance:       distance,
+    Validation:     vote,
+    Comment:        comment || '(no comment)',
+    Timestamp:      new Date().toISOString(),
+  };
+
+  const storageKey = STORAGE_PREFIX + idx;
+  try {
+    const res  = await fetch(FORMSUBMIT_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (data.success === 'true' || data.success === true) {
+      statusEl.style.color = 'var(--green)';
+      statusEl.textContent = '✓ Submitted!';
+    } else {
+      throw new Error(data.message || 'Unknown error');
+    }
+  } catch (err) {
+    statusEl.style.color  = 'var(--orange)';
+    statusEl.textContent  = '⚠ Saved locally. Export CSV to send later.';
+    console.warn('FormSubmit error:', err);
+  }
+  localStorage.setItem(storageKey, JSON.stringify({ ...payload, vote }));
+  markAsSent(idx, vote);
+  updateProgress();
+}
+
+function markAsSent(idx, vote) {
+  const section = document.getElementById('validation_' + idx);
+  const labels  = { correct: '✅ Correct', incorrect: '❌ Incorrect', unsure: '❓ Unsure' };
+  section.innerHTML = '<div class="already-sent">✓ Validation submitted: <strong>' + (labels[vote] || vote) + '</strong></div>';
+}
+
+function updateProgress() {
+  let count = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith(STORAGE_PREFIX) && !k.endsWith('__comment')) count++;
+  }
+  const pct = TOTAL_CARDS > 0 ? Math.round((count / TOTAL_CARDS) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent  = count + ' / ' + TOTAL_CARDS;
+}
+
+function filterCards() {
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.display = (!q || c.dataset.target.toLowerCase().includes(q)) ? "" : "none";
+  });
+}
+
+function sortCards() {
+  const by        = document.getElementById('sortBy').value;
+  const container = document.getElementById('cardsContainer');
+  const cards     = Array.from(container.querySelectorAll('.card'));
+  cards.sort((a, b) => {
+    if (by === "score")    return parseFloat(b.dataset.score)    - parseFloat(a.dataset.score);
+    if (by === "cochange") return parseFloat(b.dataset.cochange) - parseFloat(a.dataset.cochange);
+    if (by === "distance") return parseFloat(a.dataset.distance) - parseFloat(b.dataset.distance);
+    if (by === "rank")     return parseFloat(a.dataset.rank)     - parseFloat(b.dataset.rank);
+    return 0;
+  });
+  cards.forEach(c => container.appendChild(c));
+}
+
+function exportCSV() {
+  const email = document.getElementById('userEmail').value.trim();
+  const rows  = [['Email','Repository','Source_Class','Affected_Class','Rank','Score','CoChange','Distance','Validation','Comment','Timestamp']];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(STORAGE_PREFIX) && !key.endsWith('__comment')) {
+      try {
+        const d = JSON.parse(localStorage.getItem(key));
+        rows.push([ d.Email||email||'', d.Repository||'', d.Source_Class||'', d.Affected_Class||'', d.Rank||'', d.Score||'', d.CoChange||'', d.Distance||'', d.Validation||d.vote||'', d.Comment||'', d.Timestamp||'' ]);
+      } catch(e) {}
+    }
+  }
+  const csv  = rows.map(r => r.map(c => '"' + String(c).replace(/"/g,'""')+'"').join(",")).join("\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const a    = document.createElement("a");
+  a.href     = URL.createObjectURL(blob);
+  a.download = 'ocpa_' + REPO + '_' + SOURCE_SAFE + '.csv';
+  a.click();
+}
+
+function restoreState() {
+  const email = localStorage.getItem('email_' + REPO) || '';
+  if (email) document.getElementById('userEmail').value = email;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(STORAGE_PREFIX) && !key.endsWith('__comment')) {
+      const idx = key.substring(STORAGE_PREFIX.length);
+      try {
+        const data = JSON.parse(localStorage.getItem(key));
+        if (data && data.vote) markAsSent(idx, data.vote);
+      } catch(e) {}
+    }
+  }
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith(STORAGE_PREFIX) && key.endsWith('__comment')) {
+      const idxStr = key.slice(STORAGE_PREFIX.length, -'__comment'.length);
+      const el = document.getElementById('comment_' + idxStr);
+      if (el) el.value = localStorage.getItem(key) || "";
+    }
+  }
+  updateProgress();
+}
+
+document.addEventListener("DOMContentLoaded", restoreState);
+</script>
+</body>
+</html>
